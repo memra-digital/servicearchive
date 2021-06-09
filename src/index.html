@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <title>servicearchive</title>
+  </head>
+  <body>
+    <div
+      class="sidebar">
+
+      <input
+        class="sidebar-input"
+        id="search-input" />
+
+      <div class="sidebar-gradient"></div>
+
+      <div
+        id="search-results">
+
+        <p>Atrada <span id="search-result-count">0</span> rezultātus atbilstošajam meklēšanas kritērijam.</p>
+        
+        <div
+          id="search-title-list">
+        </div>
+      
+        <div
+          id="search-content-list">
+        </div>
+      </div>
+      
+      <div
+        id="article-list">
+
+        <b>Visi raksti</b>
+      </div>
+
+      <button
+        class="sidebar-btn"
+        id="settings-btn">
+      
+        <i class="bi bi-gear"></i>
+      </button>
+      <button
+        class="sidebar-btn"
+        id="sync-btn">
+      
+        <i class="bi bi-phone"></i>
+      </button>
+    </div>
+    
+    <div
+      class="workspace">
+      <div
+        class="tabbar"
+        id="tabbar">
+
+      </div>
+      
+      <div
+        class="editor"
+        id="editor">
+
+        <div 
+          class="editor-toolstrip">
+
+          <button
+            class="editor-toolstrip-btn"
+            id="editor-bold-btn">
+
+            <i class="bi bi-type-bold"></i>
+          </button>
+
+          <button
+            class="editor-toolstrip-btn"
+            id="editor-italic-btn">
+
+            <i class="bi bi-type-italic"></i>
+          </button>
+
+          <button
+            class="editor-toolstrip-btn"
+            id="editor-underline-btn">
+
+            <i class="bi bi-type-underline"></i>
+          </button>
+
+          <button
+            class="editor-toolstrip-btn"
+            id="editor-strikethrough-btn">
+
+            <i class="bi bi-type-strikethrough"></i>
+          </button>
+        </div>
+
+        <div
+          class="textarea"
+          id="editor-textarea"
+          contenteditable="true">
+
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal"
+      id="modal">
+
+      <div
+        class="modal-sidebar"
+        id="modal-sidebar">
+
+
+      </div>
+    
+    </div>
+    <div
+      class="modal-bg"
+      id="modal-bg"></div>
+
+    
+    <div
+      class="modal"
+      id="sync-modal">
+
+      <h1>Sync with your phone</h1>
+
+      <p>To sync, open up servicearchive mobile on your mobile device, tap the sync button next to the search button and
+        hold up your camera to the QR code below! Don't wait for too long as the QR code can expire after a few minutes.</p>
+
+      <div
+        id="sync-qr-code-loading"
+        class="sync-qr-code-loading">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-power" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+        </svg>
+        
+        <b>Loading...</b>
+      </div>
+
+      <img
+        class="sync-qr-code"
+        id="sync-qr-code" />
+
+      <div
+        id="sync-options">
+
+        <button>
+          <i class="bi bi-phone"></i>
+          <i class="bi bi-arrow-left-short"></i>
+          <i class="bi bi-laptop"></i>
+        </button>
+        <button>
+          <i class="bi bi-phone"></i>
+          <i class="bi bi-arrow-right-short"></i>
+          <i class="bi bi-laptop"></i>
+        </button>
+      </div>
+    
+    </div>
+    <div
+      class="modal-bg"
+      id="sync-modal-bg"></div>
+  </body>
+</html>

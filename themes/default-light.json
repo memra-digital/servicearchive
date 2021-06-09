@@ -1,0 +1,15 @@
+{
+    "name": "Default Light",
+    "description": "Default light theme for servicearchive.",
+    "version": "1.0.0",
+    "colors": {
+        "sidebar": {
+            "bg": "",
+            "fg": ""
+        },
+        "": {
+
+        }
+
+    }
+}
