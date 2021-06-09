@@ -1,8 +1,8 @@
 {
   "name": "servicearchive",
   "productName": "servicearchive",
-  "version": "0.1.0",
-  "description": "My Electron application description",
+  "version": "0.2.0",
+  "description": "A tool for writing down and transcribing church services and related things.",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -10,7 +10,7 @@
     "make": "electron-forge make",
     "publish": "electron-forge publish"
   },
-  "author": "d āvis",
+  "author": "Lekvado Media",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
@@ -35,7 +35,8 @@
     "electron-squirrel-startup": "^1.0.0",
     "node-abi": "^2.30.0",
     "node-sass": "^6.0.0",
-    "qr-code-styling": "^1.5.0"
+    "qr-code-styling": "^1.5.0",
+    "v8-compile-cache": "^2.3.0"
   },
   "config": {
     "forge": {

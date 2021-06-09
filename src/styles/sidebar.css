@@ -1,0 +1,154 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+.sidebar {
+	padding: 1rem;
+
+	background: var(--sidebar-bg);
+	color: var(--sidebar-fg);
+
+	border-radius: var(--sidebar-corner-radius);
+
+	z-index: 2;
+
+	position: fixed;
+	left: 0;
+	top: 0;
+
+	display: block;
+	width: 30vw;
+	height: 100vh;
+}
+
+.sidebar-input {
+	border: 0;
+
+	border-radius: var(--sidebar-input-corner-radius);
+
+	background: var(--sidebar-input-bg);
+	color: var(--sidebar-input-fg);
+
+	width: 100%;
+
+	padding: .5rem;
+
+	margin-bottom: 1rem;
+}
+.sidebar-gradient {
+	position: absolute;
+	top: 6rem;
+	left: 1rem;
+
+	display: block;
+	width: calc(100% - 2rem - var(--sidebar-scrollbar-width));
+	height: 2rem;
+
+	background: linear-gradient(180deg, var(--sidebar-gradient-col1) 0%, var(--sidebar-gradient-col2) 100%);
+
+	z-index: 2;
+}
+
+.sidebar-article-list {
+	position: relative;
+
+	padding-top: 1.5rem;
+
+	overflow-x: hidden;
+	overflow-y: scroll;
+
+	min-height: calc(100% - 5rem);
+}
+.sidebar-article-list::-webkit-scrollbar {
+	width: var(--sidebar-scrollbar-width);
+}
+.sidebar-article-list::-webkit-scrollbar-track {
+	background: var(--sidebar-scrollbar-bg);
+
+	border-radius: var(--sidebar-scrollbar-corner-radius);
+}
+.sidebar-article-list::-webkit-scrollbar-thumb {
+	background: var(--sidebar-scrollbar-fg);
+
+	border-radius: var(--sidebar-scrollbar-corner-radius);
+}
+
+.sidebar-article {
+	border: 0;
+
+	background: var(--sidebar-article-bg);
+	color: var(--sidebar-article-fg);
+
+	text-align: left;
+
+	width: 100%;
+
+	display: block;
+	
+	padding: 1rem;
+
+	cursor: pointer;
+
+	user-select: none;
+	user-zoom: none;
+	-webkit-user-drag: none;
+}
+.sidebar-article b {
+	font-family: 'Overpass', 'Open Sans', sans-serif;
+}
+
+.sidebar-options {
+	display: block;
+	width: 100%;
+	height: 2rem;
+
+	text-align: center;
+}
+.sidebar-btn {
+	background: var(--sidebar-btn-bg);
+	color: var(--sidebar-btn-fg);
+
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+
+	padding: 0;
+
+	margin: .25rem;
+	margin-left: .5rem;
+	margin-right: .5rem;
+
+	font-size: 1.5rem;
+	line-height: 1.5rem;
+
+	border: 0;
+
+	cursor: pointer;
+
+	user-select: none;
+	-webkit-user-drag: none;
+
+	transition: .2s opacity;
+}
+.sidebar-btn:hover {
+	opacity: .75;
+}
+
+.sidebar-resizer {
+	position: fixed;
+	left: calc(30vw - .25rem);
+	top: 0;
+
+	display: block;
+	width: .5rem;
+	height: 100vh;
+
+	background: none;
+
+	cursor: col-resize;
+
+	z-index: 2;
+}

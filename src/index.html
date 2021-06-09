@@ -1,166 +1,192 @@
 <!DOCTYPE html>
+<!-- © Lekvado Media, 2019-2021. Licensed under the GPLv3 license. -->
 <html>
-  <head>
-    <meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8">
 
-    <title>servicearchive</title>
-  </head>
-  <body>
-    <div
-      class="sidebar">
+		<title>servicearchive</title>
+	</head>
+	<body>
+		<div
+			id="sidebar"
+			class="sidebar">
 
-      <input
-        class="sidebar-input"
-        id="search-input" />
+			<input
+				class="sidebar-input"
+				id="search-input" />
 
-      <div class="sidebar-gradient"></div>
+			<div
+				class="sidebar-options">
+				
+				<button
+					class="sidebar-btn"
+					id="add-btn">
+				
+					<i class="bi bi-plus-circle"></i>
+				</button>
 
-      <div
-        id="search-results">
+				<button
+					class="sidebar-btn"
+					id="sync-btn">
+				
+					<i class="bi bi-phone"></i>
+				</button>
 
-        <p>Atrada <span id="search-result-count">0</span> rezultātus atbilstošajam meklēšanas kritērijam.</p>
-        
-        <div
-          id="search-title-list">
-        </div>
-      
-        <div
-          id="search-content-list">
-        </div>
-      </div>
-      
-      <div
-        id="article-list">
+				<button
+					class="sidebar-btn"
+					id="settings-btn">
+				
+					<i class="bi bi-gear"></i>
+				</button>
+			</div>
 
-        <b>Visi raksti</b>
-      </div>
+			<div
+				class="sidebar-gradient"></div>
 
-      <button
-        class="sidebar-btn"
-        id="settings-btn">
-      
-        <i class="bi bi-gear"></i>
-      </button>
-      <button
-        class="sidebar-btn"
-        id="sync-btn">
-      
-        <i class="bi bi-phone"></i>
-      </button>
-    </div>
-    
-    <div
-      class="workspace">
-      <div
-        class="tabbar"
-        id="tabbar">
+			<div
+				class="sidebar-article-list"
+				id="search-results">
 
-      </div>
-      
-      <div
-        class="editor"
-        id="editor">
+				<p>
+					Atrada <span id="search-result-count">0</span> rezultātus atbilstošajam meklēšanas kritērijam.
+				</p>
+				
+				<div
+					id="search-title-list"></div>
+			
+				<div
+					id="search-content-list"></div>
+			</div>
+			
+			<div
+				class="sidebar-article-list"
+				id="article-list">
 
-        <div 
-          class="editor-toolstrip">
+				<b>Visi raksti</b>
+			</div>
+		</div>
+		<div
+			id="sidebar-resizer"
+			class="sidebar-resizer"></div>
+		
+		<div
+			id="workspace"
+			class="workspace">
 
-          <button
-            class="editor-toolstrip-btn"
-            id="editor-bold-btn">
+			<div
+				class="tabbar"
+				id="tabbar"></div>
+		
+			<div
+				class="editor"
+				id="editor">
 
-            <i class="bi bi-type-bold"></i>
-          </button>
+				<div 
+					class="editor-toolstrip">
 
-          <button
-            class="editor-toolstrip-btn"
-            id="editor-italic-btn">
+					<button
+						class="editor-toolstrip-btn"
+						id="editor-bold-btn">
 
-            <i class="bi bi-type-italic"></i>
-          </button>
+						<i class="bi bi-type-bold"></i>
+					</button>
 
-          <button
-            class="editor-toolstrip-btn"
-            id="editor-underline-btn">
+					<button
+						class="editor-toolstrip-btn"
+						id="editor-italic-btn">
 
-            <i class="bi bi-type-underline"></i>
-          </button>
+						<i class="bi bi-type-italic"></i>
+					</button>
 
-          <button
-            class="editor-toolstrip-btn"
-            id="editor-strikethrough-btn">
+					<button
+						class="editor-toolstrip-btn"
+						id="editor-underline-btn">
 
-            <i class="bi bi-type-strikethrough"></i>
-          </button>
-        </div>
+						<i class="bi bi-type-underline"></i>
+					</button>
 
-        <div
-          class="textarea"
-          id="editor-textarea"
-          contenteditable="true">
+					<button
+						class="editor-toolstrip-btn"
+						id="editor-strikethrough-btn">
 
-        </div>
-      </div>
-    </div>
+						<i class="bi bi-type-strikethrough"></i>
+					</button>
 
-    <div
-      class="modal"
-      id="modal">
+					<div
+						class="editor-toolstrip-info">
+						
+						<p><span id="info-word-count">0</span> words</p>
+						
+						<p><span id="info-character-count">0</span> characters</p>
 
-      <div
-        class="modal-sidebar"
-        id="modal-sidebar">
+					</div>
+				</div>
 
+				<div
+					class="textarea"
+					id="editor-textarea"
+					contenteditable="true"></div>
+				
+			</div>
+		</div>
 
-      </div>
-    
-    </div>
-    <div
-      class="modal-bg"
-      id="modal-bg"></div>
+		<div
+			class="modal"
+			id="modal">
 
-    
-    <div
-      class="modal"
-      id="sync-modal">
+			<div
+				class="modal-sidebar"
+				id="modal-sidebar"></div>
+		
+		</div>
 
-      <h1>Sync with your phone</h1>
+		<div
+			class="modal-bg"
+			id="modal-bg"></div>
 
-      <p>To sync, open up servicearchive mobile on your mobile device, tap the sync button next to the search button and
-        hold up your camera to the QR code below! Don't wait for too long as the QR code can expire after a few minutes.</p>
+		
+		<div
+			class="modal"
+			id="sync-modal">
 
-      <div
-        id="sync-qr-code-loading"
-        class="sync-qr-code-loading">
-        
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-power" viewBox="0 0 16 16">
-          <path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
-        </svg>
-        
-        <b>Loading...</b>
-      </div>
+			<h1>Sync with your phone</h1>
 
-      <img
-        class="sync-qr-code"
-        id="sync-qr-code" />
+			<p>To sync, open up servicearchive mobile on your mobile device, tap the sync button next to the search button and
+				hold up your camera to the QR code below! Don't wait for too long as the QR code can expire after a few minutes.</p>
 
-      <div
-        id="sync-options">
+			<div
+				id="sync-qr-code-loading"
+				class="sync-qr-code-loading">
+				
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#000000" class="bi bi-power" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
+				</svg>
+				
+				<b>Loading...</b>
+			</div>
+			
+			<img
+				class="sync-qr-code"
+				id="sync-qr-code" />
 
-        <button>
-          <i class="bi bi-phone"></i>
-          <i class="bi bi-arrow-left-short"></i>
-          <i class="bi bi-laptop"></i>
-        </button>
-        <button>
-          <i class="bi bi-phone"></i>
-          <i class="bi bi-arrow-right-short"></i>
-          <i class="bi bi-laptop"></i>
-        </button>
-      </div>
-    
-    </div>
-    <div
-      class="modal-bg"
-      id="sync-modal-bg"></div>
-  </body>
+			<div
+				id="sync-options">
+
+				<button>
+					<i class="bi bi-phone"></i>
+					<i class="bi bi-arrow-left-short"></i>
+					<i class="bi bi-laptop"></i>
+				</button>
+				<button>
+					<i class="bi bi-phone"></i>
+					<i class="bi bi-arrow-right-short"></i>
+					<i class="bi bi-laptop"></i>
+				</button>
+			</div>
+		</div>
+
+		<div
+			class="modal-bg"
+			id="sync-modal-bg"></div>
+	</body>
 </html>

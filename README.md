@@ -2,14 +2,13 @@
 
 [![Build status](https://github.com/lekvado/servicearchive/workflows/Build%20status/badge.svg)](https://github.com/lekvado/servicearchive/actions?query=workflow%3A%22Build+status%22)
 
-**Current version: BETA v0.1.0**
+**Current version: BETA v0.2.0**
 
-# About
 A tool for writing down and transcribing church services and related things.
 
-👨‍💻 by Lekvado
 
 # Get started
+
 There are no builds or installers yet, so you will have to use NodeJS.
 
 1. Install NPM from [www.npmjs.com](https://www.npmjs.com) or a package manager. It comes with NodeJS.
@@ -40,5 +39,10 @@ On Linux, you may have to use sudo:
 
 ✔️ This should start the application.
 
-To build the application, use the command ```yarn run build```.
+To build the application, use the command ```yarn build```.
 
+***
+
+© Lekvado Media, 2019-2021
+
+Licensed under the GPLv3 license.

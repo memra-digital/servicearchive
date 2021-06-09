@@ -1,8 +1,14 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
 let allowedThemeProperties: Array<string> = [
     `sidebar-bg`,
     `sidebar-fg`,
     `sidebar-corner-radius`,
-    `sidebar-width`,
     `sidebar-scrollbar-width`,
     `sidebar-scrollbar-corner-radius`,
     `sidebar-scrollbar-bg`,
@@ -27,7 +33,8 @@ let allowedThemeProperties: Array<string> = [
     `editor-fg`,
     `editor-selection-bg`,
     `editor-selection-fg`,
-    `editor-toolstrip-bg`,
+    `editor-toolstrip-gradient-col1`,
+    `editor-toolstrip-gradient-col2`,
     `editor-toolstrip-btn-bg`,
     `editor-toolstrip-btn-fg`,
     `editor-toolstrip-btn-active-bg`,

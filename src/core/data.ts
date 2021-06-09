@@ -1,10 +1,17 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
 import type { Service, ServiceListResult } from '../schemas';
 
 let data: Array<Service> = [];
 
 export let getArticleList = () => {
     let results: Array<ServiceListResult> = [];
-    
+
     for (let i = 0; i < data.length; i++) {
         results.push({
             id: data[i].id,

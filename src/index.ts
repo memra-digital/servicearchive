@@ -1,50 +1,47 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+import { app, BrowserWindow, Menu } from 'electron';
+import 'v8-compile-cache';
 import * as electronIsDev from 'electron-is-dev';
+import * as performance from './main/performance';
+
+performance.startMeasuringStartupTime();
+
 declare const MAIN_WINDOW_WEBPACK_ENTRY: any;
 
 if (require('electron-squirrel-startup')) {
-  app.quit();
+	app.quit();
 }
 
 app.on(`ready`, () => {
-  const mainWindow: BrowserWindow = new BrowserWindow({
-    height: 600,
-    width: 800,
-    title: `servicearchive`,
-    show: false
-  });
+	const mainWindow: BrowserWindow = new BrowserWindow({
+		title: `servicearchive`,
+		show: false
+	});
 
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  mainWindow.maximize();
+	mainWindow.maximize();
+	Menu.setApplicationMenu(null)
 
-  if (electronIsDev) {
-    mainWindow.webContents.openDevTools();
-  }
+	if (electronIsDev) {
+		mainWindow.webContents.openDevTools();
+	}
 
-  mainWindow.once(`ready-to-show`, () => {
-    mainWindow.show()
-  })
+	mainWindow.once(`ready-to-show`, () => {
+		mainWindow.show();
+		
+		console.log(`Started servicearchive in ${performance.stopMeasuringStartupTime()}ms!`);
+	});
 });
 
 app.on(`window-all-closed`, () => {
-  if (process.platform !== `darwin`) {
-    app.quit();
-  }
-});
-
-
-ipcMain.on(`save-data`, (event, arg) => {
-  writeFileSync(join(__dirname, `/data/data.json`), JSON.stringify(arg));
-
-  event.returnValue = true;
-})
-ipcMain.on(`load-data`, (event, arg) => {
-  if (!existsSync(join(__dirname, `/data/data.json`))) {
-    writeFileSync(join(__dirname, `/data/data.json`), `[]`);
-  }
-
-  event.returnValue = readFileSync(join(__dirname, `/data/data.json`));
+	if (process.platform !== `darwin`) {
+		app.quit();
+	}
 });

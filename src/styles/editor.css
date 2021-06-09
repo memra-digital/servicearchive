@@ -1,0 +1,100 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+.editor {
+	display: none;
+	width: 100%;
+	height: calc(100vh - 3rem);
+
+	background: var(--editor-bg);
+	color: var(--editor-fg);
+
+	opacity: 0;
+}
+.editor::before {
+	content: "";
+
+	display: block;
+	width: 100%;
+	height: calc(100% - 3rem);
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	z-index: -1;
+
+	background: var(--editor-bg);
+}
+
+.editor-toolstrip {
+	width: 100%;
+
+	padding: .5rem;
+
+	background: linear-gradient(180deg, var(--editor-toolstrip-gradient-col1) 0%, var(--editor-toolstrip-gradient-col2) 100%);
+
+	user-select: none;
+	-webkit-user-drag: none;
+}
+.editor-toolstrip-btn {
+	background: var(--editor-toolstrip-btn-bg);
+	color: var(--editor-toolstrip-btn-fg);
+
+	cursor: pointer;
+
+	border: 0;
+
+	border-radius: 1rem;
+
+	display: inline-block;
+	width: 2rem;
+	height: 2rem;
+
+	font-size: 1.5rem;
+	line-height: 1.675rem;
+
+	padding-left: .25rem;
+	padding-right: .25rem;
+}
+.editor-toolstrip-btn.active,
+.editor-toolstrip-btn:hover {
+	background: var(--editor-toolstrip-btn-active-bg);
+	color: var(--editor-toolstrip-btn-active-fg);
+}
+.editor-toolstrip-info {
+	display: inline-block;
+
+	vertical-align: bottom;
+
+	margin-left: .5rem;
+}
+.editor-toolstrip-info p {
+	display: block;
+
+	font-size: .8rem;
+	line-height: .925srem;
+}
+
+.textarea {
+	padding: 1rem;
+
+	background: var(--editor-bg);
+	color: var(--editor-fg);
+	text-decoration-color: var(--editor-fg);
+
+	width: 100%;
+	height: 100%;
+
+	overflow: auto;
+}
+.textarea::selection,
+.textarea ::selection {
+	background: var(--editor-selection-bg);
+	color: var(--editor-selection-fg);
+	text-decoration-color: var(--editor-selection-fg);
+}

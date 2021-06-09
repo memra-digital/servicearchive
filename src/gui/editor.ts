@@ -1,7 +1,17 @@
-import * as data from './data';
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+import '../styles/editor.css';
+import * as data from '../core/data';
 
 let editor: HTMLElement = document.getElementById(`editor`);
 let textarea: HTMLTextAreaElement = <HTMLTextAreaElement>document.getElementById(`editor-textarea`);
+let wordCountDisplay: HTMLSpanElement = <HTMLSpanElement>document.getElementById(`info-word-count`);
+let characterCountDisplay: HTMLSpanElement = <HTMLSpanElement>document.getElementById(`info-character-count`);
 let boldBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-bold-btn`);
 let italicBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-italic-btn`);
 let underlineBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-underline-btn`);
@@ -17,8 +27,11 @@ export const openArticle = (id: number) => {
 
 	if (currentArticleId == -1) {
 		editor.style.opacity = `0`;
+		setTimeout(() => editor.style.display = `none`, 200);
 	} else {
-		editor.style.opacity = `1`;
+		editor.style.display = `block`;
+		setTimeout(() => editor.style.opacity = `1`, 1);
+		
 		textarea.innerHTML = data.getArticleContent(id);
 
 		boldBtn.className = `editor-toolstrip-btn`;
@@ -27,6 +40,8 @@ export const openArticle = (id: number) => {
 		strikethroughBtn.className = `editor-toolstrip-btn`;
 
 		document.getSelection().removeAllRanges();
+
+		updateCountInfo();
 	}
 }
 
@@ -87,6 +102,8 @@ const getCurrentFormat = () => {
 	italicBtn.className = formats.includes(`i`) ? `editor-toolstrip-btn active` : `editor-toolstrip-btn`;
 	underlineBtn.className = formats.includes(`u`) ? `editor-toolstrip-btn active` : `editor-toolstrip-btn`;
 	strikethroughBtn.className = formats.includes(`strike`) ? `editor-toolstrip-btn active` : `editor-toolstrip-btn`;
+
+	updateCountInfo();
 }
 getCurrentFormat();
 
@@ -95,3 +112,8 @@ const saveText = () => {
 	setTimeout(saveText, 1000);
 }
 setTimeout(saveText, 1000);
+
+const updateCountInfo = () => {
+	wordCountDisplay.innerHTML = textarea.innerText.split(` `).length.toString();
+	characterCountDisplay.innerHTML = textarea.innerText.split(``).length.toString();
+}

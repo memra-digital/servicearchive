@@ -1,0 +1,93 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Overpass&display=swap');
+
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+
+	user-select: none;
+	-webkit-user-drag: none;
+}
+body {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100vw;
+	height: 100vh;
+
+	overflow: hidden;
+
+	background: var(--tabbar-bg);
+}
+*:focus {
+	outline: none;
+}
+
+.workspace {
+	width: 70vw;
+
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+
+.modal {
+	position: absolute;
+	top: 25vh;
+	left: 25vw;
+
+	display: none;
+	width: 50vw;
+	height: 50vh;
+
+	z-index: 5;
+
+	background: #ffffff;
+
+	border-radius: 1rem;
+
+	transform: scale(0);
+
+	transition: .2s transform;
+
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.modal h1 {
+	margin: 1rem;
+}
+.modal-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	display: none;
+	width: 100vw;
+	height: 100vh;
+
+	z-index: 4;
+
+	background: #000000;
+
+	opacity: 0;
+
+	transition: .2s opacity;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
