@@ -1,4 +1,11 @@
-{
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+export const lv_lv: any = {
     "language-code": "lv-lv",
     "language-english": "Latvian",
     "language-native": "Latviešu",
@@ -25,4 +32,4 @@
     
     "editor-words": "$ vārdi",
     "editor-characters": "$ rakstzīmes"
-}
+};

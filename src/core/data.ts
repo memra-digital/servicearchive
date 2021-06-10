@@ -15,7 +15,6 @@ export let getArticleList = () => {
 	let results: Array<ServiceListResult> = [];
 
 	for (let i = 0; i < data.length; i++) {
-		console.log(data[i]);
 		results.push({
 			id: data[i].id,
 			title: data[i].title,

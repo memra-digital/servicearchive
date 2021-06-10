@@ -1,5 +1,5 @@
 /.webpack/
 /node_modules/
-/data/
+/out/
 yarn.lock
 package-lock.json

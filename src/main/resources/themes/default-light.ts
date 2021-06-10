@@ -1,4 +1,11 @@
-{
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+export const default_light: any = {
 	"name": "Default Light",
 	"description": "Default light theme for servicearchive.",
 	"version": "1.0.0",

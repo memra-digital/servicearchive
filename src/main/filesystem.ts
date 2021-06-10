@@ -5,25 +5,55 @@
 =====================================
 */
 
-import { ipcMain } from 'electron';
+import { ipcMain, app } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
+import { loadDefaultResources } from './resourceLoader';
 
 ipcMain.on(`get-language`, (event, arg) => {
-	event.returnValue = JSON.parse(fs.readFileSync(path.join(__dirname, `../../languages/${arg}.json`)).toString());
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/languages/`))) {
+		fs.mkdirSync(path.join(app.getPath(`userData`), `/languages/`));
+		loadDefaultResources();
+	}
+
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/languages/${arg}.json`))) {
+		loadDefaultResources();
+	}
+
+	event.returnValue = JSON.parse(fs.readFileSync(path.join(app.getPath(`userData`), `/languages/${arg}.json`)).toString());
 });
 ipcMain.on(`get-theme`, (event, arg) => {
-	event.returnValue = JSON.parse(fs.readFileSync(path.join(__dirname, `../../themes/${arg}.json`)).toString());
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/themes/`))) {
+		fs.mkdirSync(path.join(app.getPath(`userData`), `/themes/`));
+		loadDefaultResources();
+	}
+
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/themes/${arg}.json`))) {
+		loadDefaultResources();
+	}
+
+	event.returnValue = JSON.parse(fs.readFileSync(path.join(app.getPath(`userData`), `/themes/${arg}.json`)).toString());
 });
 
 ipcMain.on(`get-data`, (event, arg) => {
-	if (!fs.existsSync(path.join(__dirname, `../../data/data.json`))) {
-		fs.writeFileSync(path.join(__dirname, `../../data/data.json`), JSON.stringify([]));
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/`))) {
+		fs.mkdirSync(path.join(app.getPath(`userData`), `/data/`));
+		loadDefaultResources();
+	}
+
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/data.json`))) {
+		fs.writeFileSync(path.join(app.getPath(`userData`), `/data/data.json`), `[]`);
 	}
 	
-	event.returnValue = JSON.parse(fs.readFileSync(path.join(__dirname, `../../data/data.json`)).toString());
+	event.returnValue = JSON.parse(fs.readFileSync(path.join(app.getPath(`userData`), `/data/data.json`)).toString());
 });
 ipcMain.on(`set-data`, (event, arg) => {
-	fs.writeFileSync(path.join(__dirname, `../../data/data.json`), JSON.stringify(arg));
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/`))) {
+		fs.mkdirSync(path.join(app.getPath(`userData`), `/data/`));
+		loadDefaultResources();
+	}
+
+	fs.writeFileSync(path.join(app.getPath(`userData`), `/data/data.json`), JSON.stringify(arg));
 	event.returnValue = arg;
 });
+loadDefaultResources();

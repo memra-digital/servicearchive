@@ -1,4 +1,11 @@
-{
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+export const en_us: any = {
     "language-code": "en-us",
     "language-english": "English (US)",
     "language-native": "English (US)",
@@ -25,4 +32,4 @@
     
     "editor-words": "$ words",
     "editor-characters": "$ characters"
-}
+};
