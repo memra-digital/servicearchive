@@ -2,7 +2,7 @@
 
 [![Build status](https://github.com/lekvado/servicearchive/workflows/Build%20status/badge.svg)](https://github.com/lekvado/servicearchive/actions?query=workflow%3A%22Build+status%22)
 
-**Current version: BETA v0.2.0**
+**Current version: BETA v0.4.0**
 
 A tool for writing down and transcribing church services and related things.
 
