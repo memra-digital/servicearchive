@@ -22,7 +22,7 @@
 	width: 100%;
 	height: calc(100% - 3rem);
 
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	left: 0;
 
@@ -33,10 +33,11 @@
 
 .editor-toolstrip {
 	width: 100%;
+	height: 3rem;
 
 	padding: .5rem;
 
-	background: linear-gradient(180deg, var(--editor-toolstrip-gradient-col1) 0%, var(--editor-toolstrip-gradient-col2) 100%);
+	background: var(--editor-toolstrip-bg);
 
 	user-select: none;
 	-webkit-user-drag: none;
@@ -88,13 +89,29 @@
 	text-decoration-color: var(--editor-fg);
 
 	width: 100%;
-	height: 100%;
+	height: calc(100% - 3rem);
 
 	overflow: auto;
+
+	cursor: text;
 }
 .textarea::selection,
 .textarea ::selection {
 	background: var(--editor-selection-bg);
 	color: var(--editor-selection-fg);
 	text-decoration-color: var(--editor-selection-fg);
+}
+
+.textarea::-webkit-scrollbar {
+	width: var(--editor-scrollbar-width);
+}
+.textarea::-webkit-scrollbar-track {
+	background: var(--editor-scrollbar-bg);
+
+	border-radius: var(--editor-scrollbar-corner-radius);
+}
+.textarea::-webkit-scrollbar-thumb {
+	background: var(--editor-scrollbar-fg);
+
+	border-radius: var(--editor-scrollbar-corner-radius);
 }

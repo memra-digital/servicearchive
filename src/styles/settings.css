@@ -1,0 +1,70 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+.settings-modal {
+    overflow: hidden;
+}
+
+.settings-modal-sidebar {
+    background: var(--modal-sidebar-bg);
+    color: var(--modal-sidebar-fg);
+
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+
+    vertical-align: top;
+}
+.settings-modal-sidebar h1 {
+    margin-bottom: 0;
+
+    font-family: 'Overpass', 'Open Sans', sans-serif;
+    font-weight: regular;
+}
+.settings-modal-sidebar button {
+    background: none;
+    color: var(--modal-sidebar-fg);
+
+    width: 100%;
+    height: 2rem;
+
+    font-size: 1rem;
+    text-align: left;
+    
+    padding: 1rem;
+
+    border: 0;
+
+    cursor: pointer;
+
+    transition: .2s opacity;
+}
+.settings-modal-sidebar button:hover,
+.settings-modal-sidebar button.active {
+    opacity: 0.75;
+}
+
+.settings-modal-main {
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+
+    margin-left: -5px;
+
+    padding: 1rem;
+
+    vertical-align: top;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.settings-modal-main h1 {
+    margin: 0;
+
+    font-family: 'Overpass', 'Open Sans', sans-serif;
+    font-weight: regular;
+}

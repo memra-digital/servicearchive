@@ -39,7 +39,7 @@ On Linux, you may have to use sudo:
 
 ✔️ This should start the application.
 
-To build the application, use the command ```yarn build```.
+To build the application, use the command ```yarn make```.
 
 ***
 

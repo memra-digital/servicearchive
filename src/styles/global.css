@@ -51,9 +51,9 @@ body {
 
 	z-index: 5;
 
-	background: #ffffff;
+	background: var(--modal-bg);
 
-	border-radius: 1rem;
+	border-radius: var(--modal-corner-radius);
 
 	transform: scale(0);
 
@@ -64,6 +64,19 @@ body {
 }
 .modal h1 {
 	margin: 1rem;
+}
+.modal::-webkit-scrollbar {
+	width: var(--modal-scrollbar-width);
+}
+.modal::-webkit-scrollbar-track {
+	background: var(--modal-scrollbar-bg);
+
+	border-radius: var(--modal-scrollbar-corner-radius);
+}
+.modal::-webkit-scrollbar-thumb {
+	background: var(--modal-scrollbar-fg);
+
+	border-radius: var(--modal-scrollbar-corner-radius);
 }
 .modal-bg {
 	position: absolute;

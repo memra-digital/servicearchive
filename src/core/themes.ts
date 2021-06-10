@@ -5,6 +5,8 @@
 =====================================
 */
 
+import { ipcRenderer } from 'electron';
+
 let allowedThemeProperties: Array<string> = [
     `sidebar-bg`,
     `sidebar-fg`,
@@ -33,16 +35,27 @@ let allowedThemeProperties: Array<string> = [
     `editor-fg`,
     `editor-selection-bg`,
     `editor-selection-fg`,
-    `editor-toolstrip-gradient-col1`,
-    `editor-toolstrip-gradient-col2`,
+    `editor-toolstrip-bg`,
+    `editor-toolstrip-shadow`,
     `editor-toolstrip-btn-bg`,
     `editor-toolstrip-btn-fg`,
     `editor-toolstrip-btn-active-bg`,
     `editor-toolstrip-btn-active-fg`,
+    `editor-scrollbar-width`,
+	`editor-scrollbar-corner-radius`,
+	`editor-scrollbar-bg`,
+	`editor-scrollbar-fg`,
     `modal-bg`,
     `modal-fg`,
+    `modal-corner-radius`,
     `modal-btn-bg`,
-    `modal-btn-fg`
+    `modal-btn-fg`,
+    `modal-sidebar-bg`,
+    `modal-sidebar-fg`,
+    `modal-scrollbar-width`,
+	`modal-scrollbar-corner-radius`,
+	`modal-scrollbar-bg`,
+	`modal-scrollbar-fg`,
 ];
 
 export const applyTheme = (theme: any) => {
@@ -54,3 +67,4 @@ export const applyTheme = (theme: any) => {
         }
     }
 }
+applyTheme(ipcRenderer.sendSync(`get-theme`, `default-light`));

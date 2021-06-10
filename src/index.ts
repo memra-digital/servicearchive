@@ -5,10 +5,12 @@
 =====================================
 */
 
-import { app, BrowserWindow, Menu } from 'electron';
+import { app, BrowserWindow, Menu, ipcMain } from 'electron';
 import 'v8-compile-cache';
 import * as electronIsDev from 'electron-is-dev';
 import * as performance from './main/performance';
+import './main/filesystem';
+import type { IpcMainEvent } from 'electron/main';
 
 performance.startMeasuringStartupTime();
 
@@ -21,7 +23,11 @@ if (require('electron-squirrel-startup')) {
 app.on(`ready`, () => {
 	const mainWindow: BrowserWindow = new BrowserWindow({
 		title: `servicearchive`,
-		show: false
+		show: false,
+		webPreferences: {
+			nodeIntegration: true,
+			contextIsolation: false
+		}
 	});
 
 	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
@@ -45,3 +51,7 @@ app.on(`window-all-closed`, () => {
 		app.quit();
 	}
 });
+
+ipcMain.on('msg', (event: IpcMainEvent, arg: string) => {
+	console.log(arg) // prints "ping"
+})

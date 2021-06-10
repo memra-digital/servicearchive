@@ -8,7 +8,7 @@
 		"sidebar-corner-radius": "0 1rem 1rem 0",
 
 		"sidebar-scrollbar-width": ".5rem",
-		"sidebar-scrollbar-corner-radius": ".25rem",
+		"sidebar-scrollbar-corner-radius": ".5rem",
 		"sidebar-scrollbar-bg": "#26262f",
 		"sidebar-scrollbar-fg": "#4a4a58",
 
@@ -38,16 +38,29 @@
 		"editor-selection-bg": "#d8d8d8",
 		"editor-selection-fg": "#000000",
 
-		"editor-toolstrip-gradient-col1": "#ffffffff",
-		"editor-toolstrip-gradient-col2": "#ffffff00",
+		"editor-toolstrip-bg": "#ffffff",
+		"editor-toolstrip-shadow": "#00000080",
 		"editor-toolstrip-btn-bg": "none",
 		"editor-toolstrip-btn-fg": "#000000",
 		"editor-toolstrip-btn-active-bg": "#d8d8d8",
 		"editor-toolstrip-btn-active-fg": "#000000",
 
+		"editor-scrollbar-width": ".5rem",
+		"editor-scrollbar-corner-radius": ".5rem",
+		"editor-scrollbar-bg": "#ffffff",
+		"editor-scrollbar-fg": "#d8d8d8",
+
 		"modal-bg": "#ffffff",
 		"modal-fg": "#000000",
+		"modal-corner-radius": "1rem",
 		"modal-btn-bg": "#dddddd",
-		"modal-btn-fg": "#000000"
+		"modal-btn-fg": "#000000",
+		"modal-sidebar-bg": "#1a1a1f",
+		"modal-sidebar-fg": "#ffffff",
+
+		"modal-scrollbar-width": ".5rem",
+		"modal-scrollbar-corner-radius": ".25rem",
+		"modal-scrollbar-bg": "#26262f",
+		"modal-scrollbar-fg": "#4a4a58"
 	}
 }

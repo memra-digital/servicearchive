@@ -6,9 +6,10 @@
 */
 
 import '../../styles/tabs.css';
-import * as editor from '../editor';
-import { Service } from '../../schemas';
+import * as reordering from './reordering';
 import { createTabElement } from './element';
+import * as editor from '../editor/main';
+import type { Service } from '../../schemas';
 
 let tabbar: HTMLDivElement = <HTMLDivElement>document.getElementById(`tabbar`);
 
@@ -86,72 +87,14 @@ export const openTab = (id: number) => {
 		}
 	}
 }
-
-let tabMouseDownStartPosition: number = 0;
-let currentMovingTabIndex: number = -1;
-let clickedTab: boolean = false;
-let newTabPosition: number = 0;
-
-const handleTabMouseDown = (event: MouseEvent, id: number) => {
-	tabMouseDownStartPosition = event.clientX;
-	clickedTab = true;
-
-	for (let i: number = 0; i < openTabs.length; i++) {
-		if (openTabs[i].id == id) {
-			currentMovingTabIndex = i;
-			break;
-		}
-	}
-
-	openTab(openTabs[currentMovingTabIndex].id);
-}
-document.onmousemove = (event: MouseEvent) => {
-	if (!clickedTab) {
-		return;
-	}
-	if (Math.abs(event.clientX - tabMouseDownStartPosition) > 10) {
-		let tabbarX: number = tabbar.getBoundingClientRect().x;
-		let tabWidth: number = tabbar.children[0].clientWidth;
-		newTabPosition = Math.floor((event.clientX - tabbarX) / tabWidth);
-
-		if (newTabPosition < 0) {
-			newTabPosition = 0;
-		} else if (newTabPosition > openTabs.length) {
-			newTabPosition = openTabs.length;
-		}
-
-		const tabItemToMove = openTabs.splice(openTabs.indexOf(openTabs[currentMovingTabIndex]), 1)[0];
-    	openTabs.splice(newTabPosition, 0, tabItemToMove);
-
-		// If the tabs get reordered, remove their elements and add everything back in the new order
-		if (currentMovingTabIndex != newTabPosition) {
-			tabbar.innerHTML = ``;
-
-			for (let i = 0; i < openTabs.length; i++) {
-				tabbar.appendChild(createTabElement(openTabs[i], i == newTabPosition));
-			}
-
-			recalculateLayout();
-		}	
-
-		currentMovingTabIndex = newTabPosition;
-		openTabIndex = newTabPosition;
-	}
-}
-document.onmouseup = (event: MouseEvent) => {
-	if (!clickedTab) {
-		return;
-	}
-
-	clickedTab = false;
-
-	recalculateLayout();
+export const openTabAtIndex = (index: number) => {
+	openTabIndex = index;
 }
 
-const recalculateLayout = () => {
+export const recalculateLayout = () => {
 	for (let i: number = 0; i < openTabs.length; i++) {
 		if (document.getElementById(`tab-${openTabs[i].id}`) != undefined) {
-			document.getElementById(`tab-${openTabs[i].id}`).onmousedown = (e) => handleTabMouseDown(e, openTabs[i].id);
+			document.getElementById(`tab-${openTabs[i].id}`).onmousedown = (e) => reordering.handleTabMouseDown(e, openTabs[i].id);
 
 			document.getElementById(`tab-${openTabs[i].id}-close`).onclick = () => closeTab(openTabs[i].id);
 

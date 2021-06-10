@@ -41,15 +41,15 @@
 			</div>
 
 			<div
-				class="sidebar-gradient"></div>
+				class="sidebar-gradient-top"></div>
 
 			<div
 				class="sidebar-article-list"
 				id="search-results">
 
-				<p>
-					Atrada <span id="search-result-count">0</span> rezultātus atbilstošajam meklēšanas kritērijam.
-				</p>
+				<p
+					class="search-result-count"
+					id="search-result-count"></p>
 				
 				<div
 					id="search-title-list"></div>
@@ -64,6 +64,9 @@
 
 				<b>Visi raksti</b>
 			</div>
+
+			<div
+				class="sidebar-gradient-bottom"></div>
 		</div>
 		<div
 			id="sidebar-resizer"
@@ -112,12 +115,26 @@
 						<i class="bi bi-type-strikethrough"></i>
 					</button>
 
+					<button
+						class="editor-toolstrip-btn"
+						id="editor-undo-btn">
+
+						<i class="bi bi-arrow-counterclockwise"></i>
+					</button>
+
+					<button
+						class="editor-toolstrip-btn"
+						id="editor-redo-btn">
+
+						<i class="bi bi-arrow-clockwise"></i>
+					</button>
+
 					<div
 						class="editor-toolstrip-info">
 						
-						<p><span id="info-word-count">0</span> words</p>
+						<p id="info-word-count"></p>
 						
-						<p><span id="info-character-count">0</span> characters</p>
+						<p id="info-character-count"></p>
 
 					</div>
 				</div>
@@ -131,28 +148,30 @@
 		</div>
 
 		<div
-			class="modal"
-			id="modal">
+			class="modal settings-modal"
+			id="settings-modal">
 
 			<div
-				class="modal-sidebar"
-				id="modal-sidebar"></div>
+				class="settings-modal-sidebar"
+				id="settings-modal-sidebar"></div>
+
+			<div
+				class="settings-modal-main"
+				id="settings-modal-main"></div>
 		
 		</div>
-
 		<div
 			class="modal-bg"
-			id="modal-bg"></div>
+			id="settings-modal-bg"></div>
 
 		
 		<div
 			class="modal"
 			id="sync-modal">
 
-			<h1>Sync with your phone</h1>
+			<h1 id="sync-title"></h1>
 
-			<p>To sync, open up servicearchive mobile on your mobile device, tap the sync button next to the search button and
-				hold up your camera to the QR code below! Don't wait for too long as the QR code can expire after a few minutes.</p>
+			<p id="sync-instructions"></p>
 
 			<div
 				id="sync-qr-code-loading"
@@ -162,7 +181,7 @@
 				<path fill-rule="evenodd" d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
 				</svg>
 				
-				<b>Loading...</b>
+				<b></b>
 			</div>
 			
 			<img
@@ -184,7 +203,6 @@
 				</button>
 			</div>
 		</div>
-
 		<div
 			class="modal-bg"
 			id="sync-modal-bg"></div>

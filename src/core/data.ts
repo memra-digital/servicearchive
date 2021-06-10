@@ -5,56 +5,81 @@
 =====================================
 */
 
+import { ipcRenderer } from 'electron';
+import * as utils from './utils';
 import type { Service, ServiceListResult } from '../schemas';
 
 let data: Array<Service> = [];
 
 export let getArticleList = () => {
-    let results: Array<ServiceListResult> = [];
+	let results: Array<ServiceListResult> = [];
 
-    for (let i = 0; i < data.length; i++) {
-        results.push({
-            id: data[i].id,
-            title: data[i].title,
-            contentPreview: `${data[i].content.replace(`\n`, `  `).substr(0, 50)}${data[i].content.length > 50 ? `...` : ``}`
-        });
-    }
+	for (let i = 0; i < data.length; i++) {
+		console.log(data[i]);
+		results.push({
+			id: data[i].id,
+			title: data[i].title,
+			contentPreview: utils.createContentPreviewString(data[i].content)
+		});
+	}
 
-    return results;
+	return results;
 }
 export let getArticle = (id: number) => {
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id == id) {
-            return data[i];
-        }
-    }
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].id == id) {
+			return data[i];
+		}
+	}
 }
 export let getArticleContent = (id: number) => {
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id == id) {
-            return data[i].content;
-        }
-    }
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].id == id) {
+			return data[i].content;
+		}
+	}
 }
 export let setArticleContent = (id: number, content: string) => {
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id == id) {
-            data[i].content = content;
-        }
-    }
-    save();
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].id == id) {
+			data[i].content = content;
+		}
+	}
+	save();
 }
-export let setArticleName = () => {
-    save();
+export let setArticleName = (id: number, title: string) => {
+	save();
+}
+export let addArticle = (title: string) => {
+	let newId: number;
+	if (data.length == 0) {
+		newId = 0;
+	} else {
+		newId = data[data.length - 1].id + 1
+	}
+
+	let article: Service = {
+		id: newId,
+		title,
+		content: ``,
+		created: 0,
+		modified: 0
+	};
+
+	data.push(article);
+
+	return article;
 }
 export let getData = () => {
-    return data;
+	return data;
+}
+export let setData = (input: any) => {
+	data = input;
+
+	save();
 }
 export let save = () => {
-    localStorage.setItem(`data`, JSON.stringify(data));
+	ipcRenderer.sendSync(`set-data`, data);
 }
 
-if (localStorage.getItem(`data`) == null) {
-    localStorage.setItem(`data`, `[]`);
-}
-data = JSON.parse(localStorage.getItem(`data`));
+data = ipcRenderer.sendSync(`get-data`);

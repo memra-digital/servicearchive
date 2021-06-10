@@ -5,9 +5,10 @@
 =====================================
 */
 
+import * as utils from '../../core/utils';
 import type { Service, ServiceSearchResults } from '../../schemas';
 
-const contentPreviewPadding: number = 5;
+const contentPreviewPadding: number = 10;
 
 export const search = (data: Array<Service>, phrase: string) => {
 	let results: ServiceSearchResults = {
@@ -21,18 +22,18 @@ export const search = (data: Array<Service>, phrase: string) => {
 			results.title.push({
 				id: data[i].id,
 				title: data[i].title,
-				content: `${data[i].content.substr(0, 20)}`,
+				contentPreview: `${utils.removeHTMLTags(data[i].content).substr(0, 20)}`,
 				highlightStart: data[i].title.indexOf(phrase),
 				highlightEnd: data[i].title.indexOf(phrase) + phrase.length 
 			});
 		}
 
 		// Find in contents
-		indexOfAll(removeHTMLTags(data[i].content), phrase).forEach((index: number) => {
+		indexOfAll(utils.removeHTMLTags(data[i].content), phrase).forEach((index: number) => {
 			results.content.push({
 				id: data[i].id,
 				title: data[i].title,
-				content: removeHTMLTags(data[i].content).substr(index - contentPreviewPadding, phrase.length + contentPreviewPadding * 2),
+				contentPreview: utils.removeHTMLTags(data[i].content).substr(index - contentPreviewPadding, phrase.length + contentPreviewPadding * 2),
 				highlightStart: contentPreviewPadding,
 				highlightEnd: contentPreviewPadding + phrase.length
 			});
@@ -56,7 +57,4 @@ const indexOfAll = (str: string, searchStr: string) => { // Function taken from 
         startIndex = index + searchStrLen;
     }
     return indices;
-}
-const removeHTMLTags = (input: string) => { // Function taken from https://www.tutorialspoint.com/how-to-remove-html-tags-from-a-string-in-javascript
-	return input.replace( /(<([^>]+)>)/ig, '');
 }

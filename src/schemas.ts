@@ -18,11 +18,10 @@ export interface ServiceListResult {
 	title: string,
 	contentPreview: string
 }
-
 export interface ServiceSearchResult {
 	id: number,
 	title: string,
-	content: string,
+	contentPreview: string,
 	highlightStart: number,
 	highlightEnd: number
 }
