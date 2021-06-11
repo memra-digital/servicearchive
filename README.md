@@ -4,8 +4,6 @@
 
 **Current version: BETA v0.6.0**
 
-A tool for writing down and transcribing church services and related things.
-
 
 # Planned release dates
 
