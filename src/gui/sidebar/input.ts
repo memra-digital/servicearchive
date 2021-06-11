@@ -22,7 +22,9 @@ export const addArticleInput = () => {
 
 		// CSS :nth-child(1) selector stops targetting the first article when this input is added
 		// so enforce these rules via JS
-		(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = `.5rem`;
+		if (sidebarArticleList.children.length > 0) {
+			(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = `.5rem`;
+		}
 
 		// Create the elements
 		let inputElement = createSidebarInput(language.getString(`add-document`));
@@ -52,7 +54,9 @@ export const addRenameInput = (id: number) => {
 
 		// CSS :nth-child(1) selector stops targetting the first article when this input is added
 		// so enforce these rules via JS
-		(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = `.5rem`;
+		if (sidebarArticleList.children.length > 0) {
+			(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = `.5rem`;
+		}
 
 		// Create the elements
 		let inputElement = createSidebarInput(language.getString(`rename-document`));

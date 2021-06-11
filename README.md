@@ -2,14 +2,16 @@
 
 [![Build status](https://github.com/lekvado/servicearchive/workflows/Build%20status/badge.svg)](https://github.com/lekvado/servicearchive/actions?query=workflow%3A%22Build+status%22)
 
-**Current version: BETA v0.6.0**
+**Current version: BETA v0.6.1*
 
 
 # Planned release dates
 
 0.5.0 ✅ - June 10, 2021
 
-**0.6.0 ✅** - June 11, 2021
+0.6.0 ✅ - June 11, 2021
+
+**0.6.1 ✅** - (unplanned) June 11, 2021
 
 0.7.0 - June 12, 2021
 
