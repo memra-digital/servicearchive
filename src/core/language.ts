@@ -24,4 +24,8 @@ export const changeLanguage = (code: string) => {
 	currentLanguageCode = code;
 	currentLanguage = ipcRenderer.sendSync(`get-language`, currentLanguageCode);
 }
-changeLanguage(`lv-lv`);
+
+if (localStorage.getItem(`settings/language`) == null) {
+    localStorage.setItem(`settings/language`, `lv-lv`);
+}
+changeLanguage(localStorage.getItem(`settings/language`));

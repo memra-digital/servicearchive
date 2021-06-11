@@ -5,6 +5,7 @@
 =====================================
 */
 
+export const version: string = `v0.6.0-BETA (unstable)`;
 export const removeHTMLTags = (input: string) => { // Function taken from https://www.tutorialspoint.com/how-to-remove-html-tags-from-a-string-in-javascript
 	return input.replace( /(<([^>]+)>)/ig, '');
 }

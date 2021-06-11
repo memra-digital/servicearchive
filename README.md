@@ -2,14 +2,32 @@
 
 [![Build status](https://github.com/lekvado/servicearchive/workflows/Build%20status/badge.svg)](https://github.com/lekvado/servicearchive/actions?query=workflow%3A%22Build+status%22)
 
-**Current version: BETA v0.4.0**
+**Current version: BETA v0.6.0**
 
 A tool for writing down and transcribing church services and related things.
 
 
-# Get started
+# Planned release dates
 
-There are no builds or installers yet, so you will have to use NodeJS.
+0.5.0 ✅ - June 10, 2021
+
+**0.6.0 ✅** - June 11, 2021
+
+0.7.0 - June 12, 2021
+
+1.0.0 release candidates - June 18, 2021
+
+1.0.0 - June 19, 2021
+
+After 1.0.0, servicearchive and servicearchive mobile are going to be following the same version numbers unless the update is a critical bug fix for a bug on only one of the platforms, which will increase the third version number.
+
+
+# Builds
+
+Builds will be published on release 1.0.0.
+
+
+# Setting up for development
 
 1. Install NPM from [www.npmjs.com](https://www.npmjs.com) or a package manager. It comes with NodeJS.
 
@@ -40,6 +58,7 @@ On Linux, you may have to use sudo:
 ✔️ This should start the application.
 
 To build the application, use the command ```yarn make```.
+
 
 ***
 

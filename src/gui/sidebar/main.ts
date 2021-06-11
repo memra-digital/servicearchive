@@ -72,7 +72,33 @@ export const appendArticleToList = (service: ServiceListResult) => {
 	}));
 }
 export const updateContentInList = (id: number, newContent: string) => {
+	let element: HTMLElement = document.getElementById(`sidebar-article-btn-${id}`).getElementsByTagName(`p`)[0];
+
+	if (newContent != ``) {
+		element.innerHTML = utils.createContentPreviewString(newContent);
+		element.style.opacity = ``;
+	} else {
+		element.innerHTML = language.getString(`empty-document`);
+		element.style.opacity = `0.5`;
+	}
+}
+export const updateTitleInList = (id: number, newTitle: string) => {
+	let element: HTMLElement = document.getElementById(`sidebar-article-btn-${id}`).getElementsByTagName(`b`)[0];
+
+	if (newTitle != ``) {
+		element.innerHTML = utils.createContentPreviewString(newTitle);
+		element.style.opacity = ``;
+	} else {
+		element.innerHTML = language.getString(`empty-document`);
+		element.style.opacity = `0.5`;
+	}
+}
+export const removeArticleInList = (id: number) => {
 	let element: HTMLElement = document.getElementById(`sidebar-article-btn-${id}`);
 
-	element.getElementsByTagName(`p`)[0].innerHTML = utils.createContentPreviewString(newContent);
+	element.style.height = `0`;
+
+	setTimeout(() => {
+		element.parentElement.removeChild(element);
+	}, 200);
 }

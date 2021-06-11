@@ -50,10 +50,10 @@ let allowedThemeProperties: Array<string> = [
     `modal-corner-radius`,
     `modal-btn-bg`,
     `modal-btn-fg`,
+    `modal-btn-shadow`,
     `modal-sidebar-bg`,
     `modal-sidebar-fg`,
     `modal-scrollbar-width`,
-	`modal-scrollbar-corner-radius`,
 	`modal-scrollbar-bg`,
 	`modal-scrollbar-fg`,
 ];
@@ -67,4 +67,8 @@ export const applyTheme = (theme: any) => {
         }
     }
 }
-applyTheme(ipcRenderer.sendSync(`get-theme`, `default-light`));
+
+if (localStorage.getItem(`settings/theme`) == undefined) {
+    localStorage.setItem(`settings/theme`, `default-light`);
+}
+applyTheme(ipcRenderer.sendSync(`get-theme`, localStorage.getItem(`settings/theme`)));

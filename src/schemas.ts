@@ -29,3 +29,13 @@ export interface ServiceSearchResults {
 	title: Array<ServiceSearchResult>,
 	content: Array<ServiceSearchResult>
 }
+
+export interface ThemeListItem {
+	name: string,
+	description: string,
+	file: string
+}
+export interface LanguageListItem {
+	name: string,
+	file: string
+}

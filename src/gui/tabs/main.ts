@@ -87,6 +87,11 @@ export const openTab = (id: number) => {
 		}
 	}
 }
+export const renameTab = (id: number, title: string) => {
+	if (document.getElementById(`tab-${id}`) != undefined) {
+		document.getElementById(`tab-${id}`).getElementsByTagName(`p`)[0].innerText = title;
+	}
+}
 export const openTabAtIndex = (index: number) => {
 	openTabIndex = index;
 }

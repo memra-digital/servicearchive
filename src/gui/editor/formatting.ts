@@ -41,6 +41,9 @@ export const init = () => {
 	}
 }
 export const getCurrentFormat = () => {
+	if (textarea.innerText == ``) {
+		return [];
+	}
 
 	let formats: Array<string> = [];
 	let selection: Selection = document.getSelection();

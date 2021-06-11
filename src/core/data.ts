@@ -47,6 +47,11 @@ export let setArticleContent = (id: number, content: string) => {
 	save();
 }
 export let setArticleName = (id: number, title: string) => {
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].id == id) {
+			data[i].title = title;
+		}
+	}
 	save();
 }
 export let addArticle = (title: string) => {
@@ -68,6 +73,13 @@ export let addArticle = (title: string) => {
 	data.push(article);
 
 	return article;
+}
+export let removeArticle = (id: number) => {
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].id == id) {
+			data.splice(i, 1);
+		}
+	}
 }
 export let getData = () => {
 	return data;

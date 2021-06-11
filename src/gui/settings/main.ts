@@ -16,7 +16,8 @@ let settingsModalBg: HTMLElement = document.getElementById(`settings-modal-bg`);
 export let tabs: string[] = [
 	`<i class="bi bi-gear-wide-connected"></i> ${language.getString(`settings-general`)}`,
 	`<i class="bi bi-brush"></i> ${language.getString(`settings-theme`)}`,
-	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`
+	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`,
+	`<i class="bi bi-info-circle"></i> ${language.getString(`settings-about`)}`
 ];
 
 export let isSettingsModalOpen: boolean = false;

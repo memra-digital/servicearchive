@@ -7,7 +7,9 @@
 
 import * as data from '../../core/data';
 import * as language from '../../core/language';
+import * as input from './input';
 import * as tabs from '../tabs/main';
+import * as sidebar from './main';
 import { ServiceListResult, ServiceSearchResult } from '../../schemas';
 
 let articleList: HTMLDivElement = <HTMLDivElement>document.getElementById(`article-list`);
@@ -17,6 +19,7 @@ export const formatServiceList = (serviceList: ServiceListResult[]) => {
 		articleList.appendChild(formatServiceListItem(serviceList[i]));
 	}
 }
+
 export const formatServiceListItem = (service: ServiceListResult) => {
 	let buttonElement: HTMLButtonElement = document.createElement(`button`);
 	buttonElement.setAttribute(`id`, `sidebar-article-btn-${service.id}`);
@@ -26,15 +29,47 @@ export const formatServiceListItem = (service: ServiceListResult) => {
 	titleElement.innerHTML = service.title;
 	
 	let contentElement: HTMLElement = document.createElement(`p`);
-	contentElement.innerHTML = service.contentPreview;
+	if (service.contentPreview != ``) {
+		contentElement.innerText = service.contentPreview;
+		contentElement.style.opacity = ``;
+	} else {
+		contentElement.innerText = language.getString(`empty-document`);
+		contentElement.style.opacity = `0.5`;
+	}
+
+	let renameButtonElement: HTMLButtonElement = document.createElement(`button`);
+	renameButtonElement.innerHTML = `<i class="bi bi-input-cursor-text"></i>`;
+
+	let deleteButtonElement: HTMLButtonElement = document.createElement(`button`);
+	deleteButtonElement.innerHTML = `<i class="bi bi-trash"></i>`;
 
 	buttonElement.appendChild(titleElement);
 	buttonElement.appendChild(contentElement);
+	buttonElement.appendChild(renameButtonElement);
+	buttonElement.appendChild(deleteButtonElement);
 
-	buttonElement.onclick = () => tabs.addTab(data.getArticle(service.id));
+	buttonElement.onclick = (event: MouseEvent) => {
+		if (event.target != renameButtonElement &&
+			event.target != deleteButtonElement &&
+			event.target != renameButtonElement.children[0] &&
+			event.target != deleteButtonElement.children[0]) {
+
+			tabs.addTab(data.getArticle(service.id));
+		}
+	}
+
+	renameButtonElement.onclick = () => {
+		input.addRenameInput(service.id);
+	}
+	deleteButtonElement.onclick = () => {
+		sidebar.removeArticleInList(service.id);
+		data.removeArticle(service.id);
+		tabs.closeTab(service.id);
+	}
 
 	return buttonElement;
 }
+
 export const formatSearchResults = (element: HTMLElement, searchResults: ServiceSearchResult[]) => {
 	let lastArticleID: number = -1;
 	let timesLastArticleHasAppeared: number = 0;

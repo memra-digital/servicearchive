@@ -52,6 +52,7 @@ body {
 	z-index: 5;
 
 	background: var(--modal-bg);
+	color: var(--modal-fg);
 
 	border-radius: var(--modal-corner-radius);
 

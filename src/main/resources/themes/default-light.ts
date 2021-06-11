@@ -62,12 +62,12 @@ export const default_light: any = {
 		"modal-corner-radius": "1rem",
 		"modal-btn-bg": "#dddddd",
 		"modal-btn-fg": "#000000",
+		"modal-btn-shadow": "#0a0d214d",
 		"modal-sidebar-bg": "#1a1a1f",
 		"modal-sidebar-fg": "#ffffff",
 
 		"modal-scrollbar-width": ".5rem",
-		"modal-scrollbar-corner-radius": ".25rem",
-		"modal-scrollbar-bg": "#26262f",
-		"modal-scrollbar-fg": "#4a4a58"
+		"modal-scrollbar-bg": "#ffffff",
+		"modal-scrollbar-fg": "#d8d8d8"
 	}
 }
