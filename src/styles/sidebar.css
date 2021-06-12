@@ -61,7 +61,7 @@
 	background: linear-gradient(0deg, var(--sidebar-gradient-col1) 0%, var(--sidebar-gradient-col2) 100%);
 }
 
-.sidebar-article-list {
+.sidebar-document-list {
 	position: relative;
 
 	padding-top: 1.5rem;
@@ -72,37 +72,37 @@
 
 	height: calc(100% - 6rem);
 }
-.sidebar-article-list b {
+.sidebar-document-list b {
 	font-size: 1.1rem;
 	font-weight: bold;
 
 	margin-top: 1rem;
 }
-.sidebar-article-list p {
+.sidebar-document-list p {
 	margin-top: .5rem;
 	margin-left: 1rem;
 
 	font-size: 0.9rem;
 }
-.sidebar-article-list::-webkit-scrollbar {
+.sidebar-document-list::-webkit-scrollbar {
 	width: var(--sidebar-scrollbar-width);
 }
-.sidebar-article-list::-webkit-scrollbar-track {
+.sidebar-document-list::-webkit-scrollbar-track {
 	background: var(--sidebar-scrollbar-bg);
 
 	border-radius: var(--sidebar-scrollbar-corner-radius);
 }
-.sidebar-article-list::-webkit-scrollbar-thumb {
+.sidebar-document-list::-webkit-scrollbar-thumb {
 	background: var(--sidebar-scrollbar-fg);
 
 	border-radius: var(--sidebar-scrollbar-corner-radius);
 }
 
-.sidebar-article {
+.sidebar-document {
 	border: 0;
 
-	background: var(--sidebar-article-bg);
-	color: var(--sidebar-article-fg);
+	background: var(--sidebar-document-bg);
+	color: var(--sidebar-document-fg);
 
 	text-align: left;
 
@@ -123,7 +123,7 @@
 	transition-duration: .2s;
 	transition-property: height, opacity;
 }
-.sidebar-article b {
+.sidebar-document b {
 	font-family: 'Overpass', 'Open Sans', sans-serif;
 	font-size: 0.8rem;
 	text-transform: uppercase;
@@ -132,7 +132,7 @@
 
 	transition: .2s opacity;
 }
-.sidebar-article p {
+.sidebar-document p {
 	font-size: 0.8rem;
 
 	display: inline-block;
@@ -143,16 +143,14 @@
 	
 	transition: .2s opacity;
 }
-.sidebar-article:nth-child(1),
-#search-title-list .sidebar-article:nth-child(1),
-#search-title-content .sidebar-article:nth-child(1) {
+.sidebar-document:nth-child(1) {
 	margin-top: .5rem;
 }
-.sidebar-article:hover b,
-.sidebar-article:hover p {
+.sidebar-document:hover b,
+.sidebar-document:hover p {
 	opacity: 0.75;
 }
-.sidebar-article button {
+.sidebar-document button {
 	display: inline-block;
 	width: 2rem;
 	height: 2rem;
@@ -172,11 +170,17 @@
 
 	opacity: 0;
 }
-.sidebar-article:hover button {
+.sidebar-document:hover button {
 	opacity: 1;
 }
-.sidebar-article:hover button:hover {
+.sidebar-document:hover button:hover {
 	opacity: 0.75;
+}
+.sidebar-document-highlight {
+	background: var(--sidebar-document-highlight-bg);
+	color: var(--sidebar-document-highlight-fg);
+
+	border-radius: .5rem;
 }
 
 .sidebar-options {

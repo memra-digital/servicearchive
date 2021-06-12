@@ -5,7 +5,7 @@
 =====================================
 */
 
-import { currentArticleId } from './main';
+import { currentDocumentId } from './main';
 import * as formatting from './formatting';
 import * as updating from './updating';
 import * as data from '../../core/data';
@@ -29,11 +29,11 @@ export const init = () => {
 const onTextareaUpdate = () => {
 	updating.updateToolstripButtons(formatting.getCurrentFormat());
 	updating.updateCountInfo(textarea.innerText);
-	updating.updateSidebarContent(currentArticleId, textarea.innerText);
+	updating.updateSidebarContent(currentDocumentId, textarea.innerText);
 }
 
 const saveText = () => {
-	data.setArticleContent(currentArticleId, textarea.innerHTML);
+	data.setDocumentContent(currentDocumentId, textarea.innerHTML);
 	setTimeout(saveText, 10000);
 }
 setTimeout(saveText, 10000);

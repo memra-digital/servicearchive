@@ -41,11 +41,11 @@ export const init = () => {
 	}
 }
 export const getCurrentFormat = () => {
-	if (textarea.innerText == ``) {
+	if (textarea.innerHTML == `` || textarea.innerHTML == `<br>`) {
 		return [];
 	}
 
-	let formats: Array<string> = [];
+	let formats: string[] = [];
 	let selection: Selection = document.getSelection();
 
 	if (selection.rangeCount == 0) {

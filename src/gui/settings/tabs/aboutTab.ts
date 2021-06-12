@@ -41,7 +41,8 @@ export const loadAboutTab = () => {
 
 	let textElement: HTMLElement = document.createElement(`p`);
 	textElement.innerText =
-		`© Lekvado, 2019-2021
+		`© Lekvado Media, 2019-2021
+		License: GPLv3 ("GPL-3.0-only")
 		
 		servicearchive ${utils.version}
 		${osInfo} (${os.release()})`;

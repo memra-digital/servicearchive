@@ -6,12 +6,14 @@
 */
 
 import { ipcRenderer } from 'electron';
+import * as language from '../../../core/language';
 import { ThemeListItem } from '../../../schemas';
 
+let themes: ThemeListItem[] = [];
 export const loadThemeTab = () => {
 	let elements: HTMLElement[] = [];
 
-	let themes: ThemeListItem[] = ipcRenderer.sendSync(`get-theme-list`);
+	themes = ipcRenderer.sendSync(`get-theme-list`);
 	let activeTheme: string = localStorage.getItem(`settings/theme`)
 	
 	for (let i: number = 0; i < themes.length; i++) {
@@ -24,8 +26,15 @@ export const loadThemeTab = () => {
 			buttonElement.className += ` active`;
 		}
 
+		buttonElement.onclick = () => switchTheme(i);
+
 		elements.push(buttonElement);
 	}
 
 	return elements;
+}
+const switchTheme = (index: number) => {
+	localStorage.setItem(`settings/theme`, themes[index].file.split(`.`)[0]);
+
+	location.reload();
 }

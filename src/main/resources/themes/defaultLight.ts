@@ -5,7 +5,7 @@
 =====================================
 */
 
-export const default_light: any = {
+export const defaultLightTheme: any = {
 	"name": "Default Light",
 	"description": "Default light theme for servicearchive.",
 	"version": "1.0.0",
@@ -26,8 +26,10 @@ export const default_light: any = {
 		"sidebar-gradient-col1": "#1a1a1fff",
 		"sidebar-gradient-col2": "#1a1a1f00",
 
-		"sidebar-article-fg": "#ffffff",
-		"sidebar-article-bg": "none",
+		"sidebar-document-fg": "#ffffff",
+		"sidebar-document-bg": "none",
+		"sidebar-document-highlight-fg": "#ffffff",
+		"sidebar-document-highlight-bg": "#32323b",
 
 		"sidebar-btn-fg": "#ffffff",
 		"sidebar-btn-bg": "none",
@@ -38,7 +40,6 @@ export const default_light: any = {
 		"tab-corner-radius": ".5rem",
 		"tab-active-bg": "#ffffff",
 		"tab-active-fg": "#000000",
-		"floating-tab-shadow": "#000000",
 
 		"editor-bg": "#ffffff",
 		"editor-fg": "#000000",
@@ -62,6 +63,8 @@ export const default_light: any = {
 		"modal-corner-radius": "1rem",
 		"modal-btn-bg": "#dddddd",
 		"modal-btn-fg": "#000000",
+		"modal-btn-active-bg": "#afafaf",
+		"modal-btn-active-fg": "#000000",
 		"modal-btn-shadow": "#0a0d214d",
 		"modal-sidebar-bg": "#1a1a1f",
 		"modal-sidebar-fg": "#ffffff",

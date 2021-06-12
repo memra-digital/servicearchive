@@ -8,14 +8,12 @@
 import '../../styles/sync.css';
 import * as language from '../../core/language';
 import * as data from '../../core/data';
-import * as sidebar from '../sidebar/main';
+import * as connection from './connection';
 import QRCodeStyling from 'qr-code-styling';
-
-const url: string = `https://servicearchive.herokuapp.com`;
-let key: string = ``;
 
 let openSyncModalBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`sync-btn`);
 let syncModal: HTMLElement = document.getElementById(`sync-modal`);
+let syncModalCloseBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`sync-modal-close-btn`);
 let syncModalBg: HTMLElement = document.getElementById(`sync-modal-bg`);
 let syncModalTitle: HTMLElement = document.getElementById(`sync-title`);
 let syncModalInstructions: HTMLElement = document.getElementById(`sync-instructions`);
@@ -24,13 +22,11 @@ let qrCodeOptions: HTMLElement = document.getElementById(`sync-options`);
 let qrCodeLoading: HTMLElement = document.getElementById(`sync-qr-code-loading`);
 
 export let isSyncModalOpen: boolean = false;
-export const openSyncModal = () => {
+
+export const openSyncModal = async () => {
+	qrCodeLoading.style.display = `block`;
 	qrCodeDisplay.style.display = `none`;
 	qrCodeOptions.style.display = `none`;
-	qrCodeLoading.style.display = `block`;
-
-	choiceUploaded = false;
-	selfChoice = ``;
 
 	syncModalTitle.innerText = language.getString(`sync`);
 	syncModalInstructions.innerText = language.getString(`sync-instructions`);
@@ -44,47 +40,45 @@ export const openSyncModal = () => {
 		syncModal.style.transform = `scale(1.0)`;
 	}, 1);
 
+	syncModalCloseBtn.onclick = () => closeSyncModal();
 	syncModalBg.onclick = () => closeSyncModal();
 
-	fetch(`${url}/sync/init?data=[]`).then(async (result) => {
-		let res: any = await result.json();
 
-		if (res.error != ``) {
-			return;
-		}
-
-		key = res.key;
-
-		const qrCode = new QRCodeStyling({
-			width: 300,
-			height: 300,
-			type: `canvas`,
-			data: `sa-${key}`,
-			dotsOptions: {
-				color: `#000000`,
-				type: `rounded`
-			},
-			backgroundOptions: {
-				color: `#ffffff`,
-			}
-		});
-		
-		let fileReader: FileReader = new FileReader();
-		fileReader.readAsDataURL(await qrCode.getRawData());
-
-		fileReader.onload = () => {
-			qrCodeDisplay.src = <string>fileReader.result;
-		}
-
-		qrCodeDisplay.style.display = `block`;
+	connection.init(data.getData()).then((key: string) => {
 		qrCodeLoading.style.display = `none`;
+		qrCodeDisplay.style.display = `block`;
+		qrCodeOptions.style.display = `none`;
 
-		fetchConnectionUpdate();
+		setTimeout(() => update(), 500);
+
+		displayQRCode(`sa-${key}`);
 	});
 }
+const update = () => {
+	if (connection.connectorConnected) {
+		qrCodeLoading.style.display = `none`;
+		qrCodeDisplay.style.display = `none`;
+		qrCodeOptions.style.display = `block`;
+	}
+
+	if (connection.uploadedChoice != ``) {
+		if (connection.uploadedChoice == `mobileToDesktop`) {
+			data.setData(connection.connectorData);
+
+			location.reload();
+		}
+
+		closeSyncModal();
+	}
+
+	setTimeout(() => update(), 500);
+}
+
 export const closeSyncModal = () => {
 	syncModalBg.style.opacity = `0`;
 	syncModal.style.transform = `scale(0)`;
+	
+	connection.cancel();
 	
 	setTimeout(() => {
 		syncModalBg.style.display = `none`;
@@ -94,31 +88,28 @@ export const closeSyncModal = () => {
 
 openSyncModalBtn.onclick = () => openSyncModal();
 
-let choiceUploaded: boolean = false;
-let selfChoice: string = ``;
-const fetchConnectionUpdate = () => {
-	fetch(`${url}/sync/update?key=${key}${(!choiceUploaded && selfChoice != ``) ? `&choice=${selfChoice}` : ``}`).then(async (result) => {
-		let res: any = await result.json();
+(<HTMLButtonElement>qrCodeOptions.children[0]).onclick = () => connection.choose(`desktopToMobile`);
+(<HTMLButtonElement>qrCodeOptions.children[1]).onclick = () => connection.choose(`mobileToDesktop`);
 
-		if (res.connectorData != ``) {
-			qrCodeOptions.style.display = `block`;
-			qrCodeDisplay.style.display = `none`;
-		}
-
-		if (res.choice != ``) choiceUploaded = true;
-
-		if (!choiceUploaded) {
-			setTimeout(() => fetchConnectionUpdate(), 1000);
-		} else {
-			if (res.choice == `mobileToDesktop`) {
-				data.setData(JSON.parse(res.connectorData));
-				sidebar.updateSidebar();
-			}
-
-			closeSyncModal();
+const displayQRCode = async (value: string) => {
+	const qrCode = new QRCodeStyling({
+		width: 300,
+		height: 300,
+		type: `canvas`,
+		data: value,
+		dotsOptions: {
+			color: `#000000`,
+			type: `rounded`
+		},
+		backgroundOptions: {
+			color: `#ffffff`,
 		}
 	});
-}
+	
+	let fileReader: FileReader = new FileReader();
+	fileReader.readAsDataURL(await qrCode.getRawData());
 
-(<HTMLElement>qrCodeOptions.children[0]).onclick = () => selfChoice = `desktopToMobile`;
-(<HTMLElement>qrCodeOptions.children[1]).onclick = () => selfChoice = `mobileToDesktop`;
+	fileReader.onload = () => {
+		qrCodeDisplay.src = <string>fileReader.result;
+	}
+}

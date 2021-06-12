@@ -9,17 +9,17 @@ import '../../styles/tabs.css';
 import * as reordering from './reordering';
 import { createTabElement } from './element';
 import * as editor from '../editor/main';
-import type { Service } from '../../schemas';
+import type { Document } from '../../schemas';
 
 let tabbar: HTMLDivElement = <HTMLDivElement>document.getElementById(`tabbar`);
 
-export let openTabs: Array<Service> = [];
+export let openTabs: Document[] = [];
 export let openTabIndex: number = -1;
 
-export const addTab = (article: Service) => {
+export const addTab = (sourceDocument: Document) => {
 	// If the tab has been already added, just open it
-	if (document.getElementById(`tab-${article.id}`) !== null) {
-		openTab(article.id);
+	if (document.getElementById(`tab-${sourceDocument.id}`) !== null) {
+		openTab(sourceDocument.id);
 		return;
 	}
 	// Limit the tab amount to the largest amount that still looks somewhat fine
@@ -27,43 +27,45 @@ export const addTab = (article: Service) => {
 		return;
 	}
 
-	openTabs.push(article);
+	openTabs.push(sourceDocument);
 
 	recalculateLayout();
 
 	setTimeout(() => {
-		tabbar.appendChild(createTabElement(article));
+		tabbar.appendChild(createTabElement(sourceDocument));
 
 		setTimeout(() => {
 			recalculateLayout();
 		}, 20);
 
-		openTab(article.id);
+		openTab(sourceDocument.id);
 	}, 200);
 }
 export const closeTab = (id: number) => {
 	for (let i = 0; i < openTabs.length; i++) {
 		if (openTabs[i].id == id) {
-			// If the active tab was deleted, pick a new position
-			if (openTabIndex == i) {
-				if (openTabIndex >= openTabs.length - 1) {
-					openTabIndex = 0;
-				}
+			let tabToRemove: HTMLElement = document.getElementById(`tab-${id}`);
+			tabToRemove.style.width = `0`;
+
+			if (openTabs.length > 1) {
+				document.getElementById(`tab-${openTabs[openTabIndex].id}`).className = `tab tab-active`;
+
+				editor.openDocument(openTabs[openTabIndex].id);
+			} else {
+				setTimeout(() => editor.openDocument(-1), 200);
 			}
 
 			openTabs.splice(i, 1);
 
-			document.getElementById(`tab-${id}`).style.width = `0`;
-			if (openTabs.length != 0) {
-				document.getElementById(`tab-${openTabs[openTabIndex].id}`).className = `tab tab-active`;
-
-				editor.openArticle(openTabs[openTabIndex].id);
-			} else {
-				setTimeout(() => editor.openArticle(-1), 200);
+			if (openTabs.length > 0) {
+				if (openTabIndex >= openTabs.length) {
+					openTabIndex = openTabs.length - 1;
+				}
+				openTab(openTabs[openTabIndex].id);
 			}
 
 			setTimeout(() => {
-				tabbar.removeChild(document.getElementById(`tab-${id}`));
+				tabbar.removeChild(tabToRemove);
 			}, 200);
 
 			continue;
@@ -73,17 +75,15 @@ export const closeTab = (id: number) => {
 	setTimeout(() => recalculateLayout(), 200);
 }
 export const openTab = (id: number) => {
-	if (openTabs[openTabIndex] != undefined) document.getElementById(`tab-${openTabs[openTabIndex].id}`).className = `tab`;
-
-	for (let i = 0; i < openTabs.length; i++) {
+	for (let i: number = 0; i < openTabs.length; i++) {
 		if (openTabs[i].id == id) {
 			openTabIndex = i;
 
-			document.getElementById(`tab-${id}`).className += ` tab-active`;
+			document.getElementById(`tab-${openTabs[i].id}`).className += ` tab-active`;
 
-			editor.openArticle(openTabs[i].id);
-
-			continue;
+			editor.openDocument(openTabs[i].id);
+		} else {
+			document.getElementById(`tab-${openTabs[i].id}`).className = `tab`;
 		}
 	}
 }

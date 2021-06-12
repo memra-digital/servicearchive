@@ -7,12 +7,24 @@
 
 import { ipcRenderer } from 'electron';
 import * as utils from './utils';
-import type { Service, ServiceListResult } from '../schemas';
+import type { Document, DocumentListItem } from '../schemas';
 
-let data: Array<Service> = [];
+let data: Document[] = [];
 
-export let getArticleList = () => {
-	let results: Array<ServiceListResult> = [];
+export let documentExists = (title: string) => {
+	let result: boolean = false;
+
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].title == title) {
+			result = true;
+		}
+	}
+
+	return result;
+}
+
+export let getDocumentList = () => {
+	let results: DocumentListItem[] = [];
 
 	for (let i = 0; i < data.length; i++) {
 		results.push({
@@ -24,21 +36,28 @@ export let getArticleList = () => {
 
 	return results;
 }
-export let getArticle = (id: number) => {
+export let getDocument = (id: number) => {
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {
 			return data[i];
 		}
 	}
 }
-export let getArticleContent = (id: number) => {
+export let getDocumentTitle = (id: number) => {
+	for (let i = 0; i < data.length; i++) {
+		if (data[i].id == id) {
+			return data[i].title;
+		}
+	}
+}
+export let getDocumentContent = (id: number) => {
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {
 			return data[i].content;
 		}
 	}
 }
-export let setArticleContent = (id: number, content: string) => {
+export let setDocumentContent = (id: number, content: string) => {
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {
 			data[i].content = content;
@@ -46,15 +65,26 @@ export let setArticleContent = (id: number, content: string) => {
 	}
 	save();
 }
-export let setArticleName = (id: number, title: string) => {
+export let setDocumentTitle = (id: number, title: string) => {
+	if (documentExists(title)) {
+		return false;
+	}
+
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {
 			data[i].title = title;
 		}
 	}
 	save();
+
+	return true;
 }
-export let addArticle = (title: string) => {
+
+export let addDocument = (title: string) => {
+	if (documentExists(title)) {
+		return false;
+	}
+
 	let newId: number;
 	if (data.length == 0) {
 		newId = 0;
@@ -62,7 +92,7 @@ export let addArticle = (title: string) => {
 		newId = data[data.length - 1].id + 1
 	}
 
-	let article: Service = {
+	let document: Document = {
 		id: newId,
 		title,
 		content: ``,
@@ -70,11 +100,11 @@ export let addArticle = (title: string) => {
 		modified: 0
 	};
 
-	data.push(article);
+	data.push(document);
 
-	return article;
+	return document;
 }
-export let removeArticle = (id: number) => {
+export let removeDocument = (id: number) => {
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {
 			data.splice(i, 1);

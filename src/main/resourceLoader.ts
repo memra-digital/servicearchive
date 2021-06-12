@@ -9,17 +9,19 @@ import { app } from 'electron';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { en_us } from './resources/languages/en-us';
-import { lv_lv } from './resources/languages/lv-lv';
+import { enUsLang } from './resources/languages/enUs';
+import { lvLvLang } from './resources/languages/lvLv';
 
-import { default_light } from './resources/themes/default-light';
+import { defaultLightTheme } from './resources/themes/defaultLight';
+import { defaultDarkTheme } from './resources/themes/defaultDark';
 
 let defaultLanguages: any = {
-	"en-us": en_us,
-	"lv-lv": lv_lv
+	"en-us": enUsLang,
+	"lv-lv": lvLvLang
 };
 let defaultThemes: any = {
-	"default-light": default_light
+	"default-light": defaultLightTheme,
+	"default-dark": defaultDarkTheme
 };
 export const loadDefaultResources = () => {
 	// Create the resource directories if they are non existant

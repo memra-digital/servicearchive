@@ -6,10 +6,9 @@
 */
 
 import { tabs } from './main';
-import { loadGeneralTab } from './tabs/generalTab';
+import { loadAboutTab } from './tabs/aboutTab';
 import { loadThemeTab } from './tabs/themeTab';
 import { loadLanguageTab } from './tabs/languageTab';
-import { loadAboutTab } from './tabs/aboutTab';
 
 let modalMain: HTMLElement = document.getElementById(`settings-modal-main`);
 let modalSidebar: HTMLElement = document.getElementById(`settings-modal-sidebar`);
@@ -37,8 +36,7 @@ export const switchTab = (index: number) => {
 }
 
 let tabHandlers: (() => HTMLElement[])[] = [
-	loadGeneralTab,
+	loadAboutTab,
 	loadThemeTab,
-	loadLanguageTab,
-	loadAboutTab
+	loadLanguageTab
 ];

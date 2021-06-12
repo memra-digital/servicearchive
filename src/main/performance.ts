@@ -5,8 +5,6 @@
 =====================================
 */
 
-import { CPUUsage, MemoryInfo } from 'electron';
-
 let startTime: number, stopTime: number;
 
 export let startupTime: number;

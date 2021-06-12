@@ -1,0 +1,42 @@
+/*
+=====================================
+  © Lekvado Media, 2019-2021
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+.popup {
+    text-align: center;
+
+    padding-top: calc(25vh / 2 - 2.6rem);
+}
+.popup button {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+
+    padding: .75rem;
+
+    background: var(--modal-btn-bg);
+    color: var(--modal-btn-fg);
+
+    border: 0;
+
+    margin: .5rem;
+
+    border-radius: 1.5rem;
+
+    cursor: pointer;
+
+    transition: .2s all;
+}
+.popup button:hover {
+    box-shadow: 0px 2px 7px 1px var(--modal-btn-shadow);
+}
+.popup button:active {
+    background: var(--modal-btn-active-bg);
+    color: var(--modal-btn-active-fg);
+}

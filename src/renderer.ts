@@ -15,4 +15,4 @@ import './gui/sync/main';
 import './gui/settings/main';
 
 import { ServiceAPI } from './core/api';
-// window.ServiceAPI = new ServiceAPI();
+(<any>window).ServiceAPI = new ServiceAPI();

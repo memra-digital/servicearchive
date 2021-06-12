@@ -6,16 +6,13 @@
 */
 
 import { ipcRenderer } from 'electron';
-import * as language from '../../../core/language';
+import { openSettingsModal } from '../main';
+import { switchTab } from '../tabSwitcher';
 import type { LanguageListItem } from '../../../schemas';
 
 let languages: LanguageListItem[] = [];
 export const loadLanguageTab = () => {
 	let elements: HTMLElement[] = [];
-
-	let noticeTextElement = document.createElement(`p`);
-	noticeTextElement.innerText = language.getString(`settings-language-notice`);
-	elements.push(noticeTextElement);
 
 	languages = ipcRenderer.sendSync(`get-language-list`);
 	let activeLanguage: string = localStorage.getItem(`settings/language`);
@@ -40,12 +37,5 @@ export const loadLanguageTab = () => {
 const switchLanguage = (index: number) => {
 	localStorage.setItem(`settings/language`, languages[index].file.split(`.`)[0]);
 
-	let buttons: HTMLCollectionOf<HTMLButtonElement> = <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName(`settings-language-button`);
-	for (let i: number = 0; i < buttons.length; i++) {
-		if (i == index) {
-			buttons[i].className = `settings-wide-button settings-language-button active`;
-		} else {
-			buttons[i].className = `settings-wide-button settings-language-button`;
-		}
-	}
+	location.reload();
 }

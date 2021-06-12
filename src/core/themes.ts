@@ -7,7 +7,7 @@
 
 import { ipcRenderer } from 'electron';
 
-let allowedThemeProperties: Array<string> = [
+let allowedThemeProperties: string[] = [
     `sidebar-bg`,
     `sidebar-fg`,
     `sidebar-corner-radius`,
@@ -20,8 +20,10 @@ let allowedThemeProperties: Array<string> = [
     `sidebar-input-corner-radius`,
     `sidebar-gradient-col1`,
     `sidebar-gradient-col2`,
-    `sidebar-article-fg`,
-    `sidebar-article-bg`,
+    `sidebar-document-fg`,
+    `sidebar-document-bg`,
+    `sidebar-document-highlight-fg`,
+    `sidebar-document-highlight-bg`,
     `sidebar-btn-bg`,
     `sidebar-btn-fg`,
     `tabbar-bg`,
@@ -30,7 +32,6 @@ let allowedThemeProperties: Array<string> = [
     `tab-corner-radius`,
     `tab-active-bg`,
     `tab-active-fg`,
-    `floating-tab-shadow`,
     `editor-bg`,
     `editor-fg`,
     `editor-selection-bg`,
@@ -50,6 +51,8 @@ let allowedThemeProperties: Array<string> = [
     `modal-corner-radius`,
     `modal-btn-bg`,
     `modal-btn-fg`,
+    `modal-btn-active-bg`,
+    `modal-btn-active-fg`,
     `modal-btn-shadow`,
     `modal-sidebar-bg`,
     `modal-sidebar-fg`,

@@ -5,7 +5,7 @@
 =====================================
 */
 
-export interface Service {
+export interface Document {
 	id: number,
 	title: string,
 	content: string,
@@ -13,21 +13,21 @@ export interface Service {
 	modified: number
 }
 
-export interface ServiceListResult {
+export interface DocumentListItem {
 	id: number,
 	title: string,
 	contentPreview: string
 }
-export interface ServiceSearchResult {
+export interface DocumentSearchResult {
 	id: number,
 	title: string,
 	contentPreview: string,
 	highlightStart: number,
 	highlightEnd: number
 }
-export interface ServiceSearchResults {
-	title: Array<ServiceSearchResult>,
-	content: Array<ServiceSearchResult>
+export interface DocumentSearchResults {
+	title: DocumentSearchResult[],
+	content: DocumentSearchResult[]
 }
 
 export interface ThemeListItem {

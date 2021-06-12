@@ -5,7 +5,7 @@
 =====================================
 */
 
-export const lv_lv: any = {
+export const lvLvLang: any = {
 	"language-code": "lv-lv",
 	"language-english": "Latvian",
 	"language-native": "Latviešu",
@@ -21,6 +21,7 @@ export const lv_lv: any = {
 	"add-document": "Ievadi jaunā dokumenta nosakumu:",
 	"rename-document": "Ievadi jauno dokumenta nosaukumu:",
 	"empty-document": "(Tukšs)",
+	"delete-document": "Vai Jūs tiešām vēlaties izdzēst dokumentu \"$\"?",
 
 	"loading": "Ielādējas...",
 
@@ -28,10 +29,8 @@ export const lv_lv: any = {
 	"sync-instructions": "Lai sinhronizētu, atveriet servicearchive Jūsu mobilajā ierīcē, tad nospiediet uz datora ikonu blakus meklēšanas lodziņam un noskenējiet QR kodu, kas redzams zemāk! Negaidiet pārāk ilgi, jo QR kods var beigt darboties pēc dažām minūtēm.",
 
 	"settings": "Iestatījumi",
-	"settings-general": "Vispārēji",
 	"settings-theme": "Dizains",
 	"settings-language": "Valoda",
-	"settings-language-notice": "Lai valodu nomainītu, pēc valodas izvēlēšanās Jums vajag restartēt servicearchive!",
 	"settings-about": "Par",
 	
 	"editor-words": "$ vārdi",

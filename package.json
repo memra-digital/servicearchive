@@ -1,14 +1,13 @@
 {
   "name": "servicearchive",
   "productName": "servicearchive",
-  "version": "0.4.0",
-  "description": "A tool for writing down and transcribing church services and related things.",
+  "version": "0.7.0",
+  "description": "A tool for transcribing and preparing for church services.",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "make": "electron-forge make"
   },
   "author": "Lekvado Media",
   "license": "GPL-3.0-only",
@@ -45,13 +44,14 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "servicearchive"
+            "name": "servicearchive",
+            "iconUrl": "https://github.com/lekvado/servicearchive/raw/master/assets/icons/windows.ico",
+            "copyright": "© Lekvado Media, 2019-2021"
           }
         },
         {
           "name": "@electron-forge/maker-zip",
           "platforms": [
-            "darwin",
             "linux"
           ]
         }

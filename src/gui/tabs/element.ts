@@ -5,19 +5,19 @@
 =====================================
 */
 
-import { Service } from '../../schemas';
+import { Document } from '../../schemas';
 
-export const createTabElement = (article: Service, active: boolean = false) => {
+export const createTabElement = (sourceDocument: Document, active: boolean = false) => {
 	let element: HTMLDivElement = document.createElement(`div`);
 	element.className = `tab`;
 	if (active) element.className += ` tab-active`;
-	element.setAttribute(`id`, `tab-${article.id}`);
+	element.setAttribute(`id`, `tab-${sourceDocument.id}`);
 
 	let textElement: HTMLParagraphElement = document.createElement(`p`);
-	textElement.innerText = article.title;
+	textElement.innerText = sourceDocument.title;
 
 	let closeBtnElement: HTMLButtonElement = document.createElement(`button`);
-	closeBtnElement.setAttribute(`id`, `tab-${article.id}-close`);
+	closeBtnElement.setAttribute(`id`, `tab-${sourceDocument.id}-close`);
 	closeBtnElement.innerHTML = `<i class="bi bi-x"></i>`;
 
 	element.appendChild(textElement);

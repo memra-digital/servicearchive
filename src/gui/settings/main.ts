@@ -11,13 +11,13 @@ import * as loader from './loader';
 
 let openSettingsModalBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`settings-btn`);
 let settingsModal: HTMLElement = document.getElementById(`settings-modal`);
+let settingsModalCloseBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`settings-modal-close-btn`);
 let settingsModalBg: HTMLElement = document.getElementById(`settings-modal-bg`);
 
 export let tabs: string[] = [
-	`<i class="bi bi-gear-wide-connected"></i> ${language.getString(`settings-general`)}`,
+	`<i class="bi bi-info-circle"></i> ${language.getString(`settings-about`)}`,
 	`<i class="bi bi-brush"></i> ${language.getString(`settings-theme`)}`,
-	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`,
-	`<i class="bi bi-info-circle"></i> ${language.getString(`settings-about`)}`
+	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`
 ];
 
 export let isSettingsModalOpen: boolean = false;
@@ -32,9 +32,10 @@ export const openSettingsModal = () => {
 		settingsModal.style.transform = `scale(1.0)`;
 	}, 1);
 
-	settingsModalBg.onclick = () => closeSyncModal();
+	settingsModalCloseBtn.onclick = () => closeSettingsModal();
+	settingsModalBg.onclick = () => closeSettingsModal();
 }
-export const closeSyncModal = () => {
+export const closeSettingsModal = () => {
 	settingsModalBg.style.opacity = `0`;
 	settingsModal.style.transform = `scale(0)`;
 	

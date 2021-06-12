@@ -9,154 +9,170 @@ import * as data from '../../core/data';
 import * as language from '../../core/language';
 import * as sidebar from './main';
 import * as tabs from '../tabs/main';
-import { Service } from '../../schemas';
+import { Document } from '../../schemas';
 
-let sidebarArticleList: HTMLElement = document.getElementById(`article-list`);
-let addArticleBtn: HTMLElement = document.getElementById(`add-btn`);
-let articleInputOpen: boolean = false;
+let sidebarDocumentList: HTMLElement = document.getElementById(`document-list`);
+let addDocumentBtn: HTMLElement = document.getElementById(`add-btn`);
+let documentInputOpen: boolean = false;
 let renamingDocumentId: number = 0;
 
-export const addArticleInput = () => {
-	if (!articleInputOpen) {
-		articleInputOpen = true;
+export const showAddDocumentInput = () => {
+	if (!documentInputOpen) {
+		documentInputOpen = true;
 
-		// CSS :nth-child(1) selector stops targetting the first article when this input is added
+		// CSS :nth-child(1) selector stops targetting the first document when this input is added
 		// so enforce these rules via JS
-		if (sidebarArticleList.children.length > 0) {
-			(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = `.5rem`;
+		if (sidebarDocumentList.children.length > 0) {
+			(<HTMLElement>sidebarDocumentList.children[0]).style.marginTop = `.5rem`;
 		}
 
 		// Create the elements
-		let inputElement = createSidebarInput(language.getString(`add-document`));
+		let containerElement: HTMLElement = document.createElement(`div`);
+		containerElement.setAttribute(`class`, `sidebar-document-input`)
+		containerElement.setAttribute(`id`, `new-document`);
 
-		inputElement.getElementsByTagName(`button`)[0].onclick = () => solidifyArticleInput();
-		document.body.addEventListener(`keypress`, inputAddKeyboardEvent);
+		let textElement: HTMLElement = document.createElement(`p`);
+		textElement.innerText = language.getString(`add-document`);
+		containerElement.appendChild(textElement);
 
-		sidebarArticleList.insertBefore(inputElement, sidebarArticleList.children[0]);
+		let inputElement: HTMLElement = document.createElement(`input`);
+		inputElement.setAttribute(`id`, `new-document-input`);
+		containerElement.appendChild(inputElement);
 
-		addArticleBtn.style.transform = `rotate(45deg)`;
+		let buttonElement: HTMLElement = document.createElement(`button`);
+		buttonElement.innerHTML = `<i class="bi bi-check2"></i>`;
+		containerElement.appendChild(buttonElement);
 
-		sidebarArticleList.scrollTop = 0;
+
+		buttonElement.onclick = () => applyAddDocumentInput();
+		document.body.addEventListener(`keypress`, keyboardEventDuringAddInput);
+
+		sidebarDocumentList.insertBefore(containerElement, sidebarDocumentList.children[0]);
+
+		addDocumentBtn.style.transform = `rotate(45deg)`;
+
+		sidebarDocumentList.scrollTop = 0;
 
 		setTimeout(() => {
-			inputElement.style.height = `4rem`
-			inputElement.getElementsByTagName(`input`)[0].focus();
+			containerElement.style.height = `4rem`
+			inputElement.focus();
 		}, 1);
 	} else {
-		removeArticleInput();
+		removeInput();
 	}
 }
-export const addRenameInput = (id: number) => {
-	if (!articleInputOpen) {
-		articleInputOpen = true;
+export const applyAddDocumentInput = () => {
+	let input: HTMLInputElement = <HTMLInputElement>document.getElementById(`new-document-input`);
+
+	if (input.value != ``) {
+		let newDocument: Document | boolean = data.addDocument(input.value);
+
+		if (newDocument != false) {
+			sidebar.appendDocumentToList({
+				id: newDocument.id,
+				title: newDocument.title,
+				contentPreview: ``
+			});
+		}
+	}
+
+	removeInput();
+}
+
+export const showRenameDocumentInput = (id: number) => {
+	if (!documentInputOpen) {
+		documentInputOpen = true;
 
 		renamingDocumentId = id;
 
-		// CSS :nth-child(1) selector stops targetting the first article when this input is added
+		// CSS :nth-child(1) selector stops targetting the first document when this input is added
 		// so enforce these rules via JS
-		if (sidebarArticleList.children.length > 0) {
-			(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = `.5rem`;
+		if (sidebarDocumentList.children.length > 0) {
+			(<HTMLElement>sidebarDocumentList.children[0]).style.marginTop = `.5rem`;
 		}
 
 		// Create the elements
-		let inputElement = createSidebarInput(language.getString(`rename-document`));
+		let containerElement: HTMLElement = document.createElement(`div`);
+		containerElement.setAttribute(`class`, `sidebar-document-input`)
+		containerElement.setAttribute(`id`, `new-document`);
 
-		inputElement.getElementsByTagName(`button`)[0].onclick = () => renameArticleInput();
-		document.body.addEventListener(`keypress`, inputRenameKeyboardEvent);
+		let textElement: HTMLElement = document.createElement(`p`);
+		textElement.innerText = language.getString(`rename-document`);
+		containerElement.appendChild(textElement);
 
-		sidebarArticleList.insertBefore(inputElement, sidebarArticleList.children[0]);
+		let inputElement: HTMLInputElement = document.createElement(`input`);
+		inputElement.setAttribute(`id`, `new-document-input`);
+		inputElement.value = data.getDocumentTitle(id);
+		containerElement.appendChild(inputElement);
 
-		addArticleBtn.style.transform = `rotate(45deg)`;
+		let buttonElement: HTMLElement = document.createElement(`button`);
+		buttonElement.innerHTML = `<i class="bi bi-check2"></i>`;
+		containerElement.appendChild(buttonElement);
 
-		sidebarArticleList.scrollTop = 0;
+
+		buttonElement.onclick = () => applyRenameDocumentInput();
+		document.body.addEventListener(`keypress`, keyboardEventDuringRenameInput);
+
+		sidebarDocumentList.insertBefore(containerElement, sidebarDocumentList.children[0]);
+
+		addDocumentBtn.style.transform = `rotate(45deg)`;
+
+		sidebarDocumentList.scrollTop = 0;
 
 		setTimeout(() => {
-			inputElement.style.height = `4rem`
-			inputElement.getElementsByTagName(`input`)[0].focus();
+			containerElement.style.height = `4rem`
+			inputElement.focus();
 		}, 1);
 	} else {
-		removeArticleInput();
+		removeInput();
 	}
 }
-export const removeArticleInput = () => {
-	articleInputOpen = false;
+export const applyRenameDocumentInput = () => {
+	let input: HTMLInputElement = <HTMLInputElement>document.getElementById(`new-document-input`);
 
-	let containerElement: HTMLElement = document.getElementById(`new-article`);
+	if (input.value != ``) {
+		if (data.setDocumentTitle(renamingDocumentId, input.value) != false) {
+			sidebar.updateTitleInList(
+				renamingDocumentId,
+				input.value
+			);
+
+			tabs.renameTab(renamingDocumentId, input.value);
+		}
+	}
+
+	removeInput();
+}
+
+export const removeInput = () => {
+	documentInputOpen = false;
+
+	let containerElement: HTMLElement = document.getElementById(`new-document`);
 	containerElement.style.height = `0`;
 
-	addArticleBtn.style.transform = `rotate(0deg)`;
+	addDocumentBtn.style.transform = `rotate(0deg)`;
 
-	document.body.removeEventListener(`keypress`, inputAddKeyboardEvent);
-	document.body.removeEventListener(`keypress`, inputRenameKeyboardEvent);
+	document.body.removeEventListener(`keypress`, keyboardEventDuringAddInput);
+	document.body.removeEventListener(`keypress`, keyboardEventDuringRenameInput);
 
 	setTimeout(() => {
-		sidebarArticleList.removeChild(containerElement);
+		sidebarDocumentList.removeChild(containerElement);
 
-		(<HTMLElement>sidebarArticleList.children[0]).style.marginTop = ``;
+		(<HTMLElement>sidebarDocumentList.children[0]).style.marginTop = ``;
 	}, 200);
 }
-export const renameArticleInput = () => {
-	let input: HTMLInputElement = <HTMLInputElement>document.getElementById(`new-article-input`);
 
-	if (input.value != ``) {
-		data.setArticleName(renamingDocumentId, input.value);
-
-		sidebar.updateTitleInList(
-			renamingDocumentId,
-			input.value
-		);
-
-		tabs.renameTab(renamingDocumentId, input.value);
-	}
-
-	removeArticleInput();
-}
-export const solidifyArticleInput = () => {
-	let input: HTMLInputElement = <HTMLInputElement>document.getElementById(`new-article-input`);
-
-	if (input.value != ``) {
-		let newArticle: Service = data.addArticle(input.value);
-
-		sidebar.appendArticleToList({
-			id: newArticle.id,
-			title: newArticle.title,
-			contentPreview: ``
-		});
-	}
-
-	removeArticleInput();
-}
-
-addArticleBtn.onclick = () => {
-	addArticleInput();
-}
-
-const createSidebarInput = (text: string) => {
-	let containerElement: HTMLElement = document.createElement(`div`);
-	containerElement.setAttribute(`class`, `sidebar-document-input`)
-	containerElement.setAttribute(`id`, `new-article`);
-
-	let textElement: HTMLElement = document.createElement(`p`);
-	textElement.innerText = text;
-	containerElement.appendChild(textElement);
-
-	let inputElement: HTMLElement = document.createElement(`input`);
-	inputElement.setAttribute(`id`, `new-article-input`);
-	containerElement.appendChild(inputElement);
-
-	let buttonElement: HTMLElement = document.createElement(`button`);
-	buttonElement.innerHTML = `<i class="bi bi-check2"></i>`;
-	containerElement.appendChild(buttonElement);
-
-	return containerElement;
-}
-const inputAddKeyboardEvent = (event: KeyboardEvent) => {
+const keyboardEventDuringAddInput = (event: KeyboardEvent) => {
 	if (event.key == `Enter`) {
-		solidifyArticleInput();
+		applyAddDocumentInput();
 	}
 }
-const inputRenameKeyboardEvent = (event: KeyboardEvent) => {
+const keyboardEventDuringRenameInput = (event: KeyboardEvent) => {
 	if (event.key == `Enter`) {
-		renameArticleInput();
+		applyRenameDocumentInput();
 	}
+}
+
+addDocumentBtn.onclick = () => {
+	showAddDocumentInput();
 }

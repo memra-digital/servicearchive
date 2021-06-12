@@ -17,20 +17,22 @@ let italicBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`e
 let underlineBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-underline-btn`);
 let strikethroughBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-strikethrough-btn`);
 
-export let currentArticleId: number = -1;
+export let currentDocumentId: number = -1;
 
-export const openArticle = (id: number) => {
-	if (currentArticleId != -1) data.setArticleContent(currentArticleId, textarea.innerHTML);
-	currentArticleId = id;
+export const openDocument = (id: number) => {
+	if (currentDocumentId != -1) data.setDocumentContent(currentDocumentId, textarea.innerHTML);
+	currentDocumentId = id;
 
-	if (currentArticleId == -1) {
+	if (currentDocumentId == -1) {
+		document.title = `servicearchive`;
+		
 		editor.style.opacity = `0`;
 		setTimeout(() => editor.style.display = `none`, 200);
 	} else {
 		editor.style.display = `block`;
 		setTimeout(() => editor.style.opacity = `1`, 1);
 		
-		textarea.innerHTML = data.getArticleContent(id);
+		textarea.innerHTML = data.getDocumentContent(id);
 
 		boldBtn.className = `editor-toolstrip-btn`;
 		italicBtn.className = `editor-toolstrip-btn`;
@@ -40,6 +42,8 @@ export const openArticle = (id: number) => {
 		document.getSelection().removeAllRanges();
 
 		updating.updateCountInfo(textarea.innerText);
+
+		document.title = `${data.getDocumentTitle(id)} - servicearchive`
 	}
 }
 

@@ -6,55 +6,65 @@
 */
 
 import * as utils from '../../core/utils';
-import type { Service, ServiceSearchResults } from '../../schemas';
+import type { Document, DocumentSearchResults } from '../../schemas';
 
-const contentPreviewPadding: number = 10;
+export const contentPreviewPadding: number = 10;
 
-export const search = (data: Array<Service>, phrase: string) => {
-	let results: ServiceSearchResults = {
+export const search = (data: Document[], phrase: string) => {
+	let results: DocumentSearchResults = {
 		title: [],
 		content: []
 	};
 
 	for (let i: number = 0; i < data.length; i++) {
-		// Find in titles
+		// Find in title
+		let start: number = data[i].title.indexOf(phrase);
+		let end: number = data[i].title.indexOf(phrase) + phrase.length;
+	
+		let title: string = data[i].title;
+		let highlightedTitle: string = title.slice(0, start);
+		highlightedTitle += `<span class="sidebar-document-highlight">`;
+		highlightedTitle += title.slice(start, end);
+		highlightedTitle += `</span>`;
+		highlightedTitle += title.slice(end, title.length);
+
+		let contentPreview: string = utils.removeHTMLTags(data[i].content).substr(0, 50);
+		if (data[i].content.length > 50) contentPreview += `...`;
+		if (data[i].content == ``) contentPreview = ``;
+
 		if (data[i].title.toLowerCase().includes(phrase.toLowerCase())) {
 			results.title.push({
 				id: data[i].id,
-				title: data[i].title,
-				contentPreview: `${utils.removeHTMLTags(data[i].content).substr(0, 20)}`,
-				highlightStart: data[i].title.indexOf(phrase),
-				highlightEnd: data[i].title.indexOf(phrase) + phrase.length 
+				title: highlightedTitle,
+				contentPreview,
+				highlightStart: start,
+				highlightEnd: end
 			});
 		}
 
 		// Find in contents
-		indexOfAll(utils.removeHTMLTags(data[i].content), phrase).forEach((index: number) => {
+		utils.indexOfAll(utils.removeHTMLTags(data[i].content), phrase).forEach((index: number) => {
+			let start: number = Math.max(index, 0);
+			let end: number = Math.min(index + phrase.length, data[i].content.length);
+			
+			let content: string = utils.removeHTMLTags(data[i].content);
+			let contentPreview: string = (start - contentPreviewPadding <= 0) ? `` : `...`;
+			contentPreview += content.slice(Math.max(start - contentPreviewPadding, 0), start);
+			contentPreview += `<span class="sidebar-document-highlight">`;
+			contentPreview += content.slice(start, end);
+			contentPreview += `</span>`;
+			contentPreview += content.slice(end, Math.min(end + contentPreviewPadding, data[i].content.length));
+			contentPreview += (end + contentPreviewPadding >= data[i].content.length - 1) ? `` : `...`;
+
 			results.content.push({
 				id: data[i].id,
 				title: data[i].title,
-				contentPreview: utils.removeHTMLTags(data[i].content).substr(index - contentPreviewPadding, phrase.length + contentPreviewPadding * 2),
-				highlightStart: contentPreviewPadding,
-				highlightEnd: contentPreviewPadding + phrase.length
+				contentPreview,
+				highlightStart: start,
+				highlightEnd: end
 			});
 		});
 	}
 
 	return results;
-}
-const indexOfAll = (str: string, searchStr: string) => { // Function taken from https://stackoverflow.com/questions/3410464/how-to-find-indices-of-all-occurrences-of-one-string-in-another-in-javascript
-	var searchStrLen = searchStr.length;
-    if (searchStrLen == 0) {
-        return [];
-    }
-    var startIndex = 0, index, indices = [];
-
-	str = str.toLowerCase();
-	searchStr = searchStr.toLowerCase();
-
-    while ((index = str.indexOf(searchStr, startIndex)) > -1) {
-        indices.push(index);
-        startIndex = index + searchStrLen;
-    }
-    return indices;
 }

@@ -5,12 +5,12 @@
 =====================================
 */
 
-import { app, BrowserWindow, Menu, ipcMain } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import 'v8-compile-cache';
-import * as electronIsDev from 'electron-is-dev';
 import * as performance from './main/performance';
 import './main/filesystem';
-import type { IpcMainEvent } from 'electron/main';
+
+const isDev = require('electron-is-dev');
 
 performance.startMeasuringStartupTime();
 
@@ -35,14 +35,15 @@ app.on(`ready`, () => {
 	mainWindow.maximize();
 	Menu.setApplicationMenu(null)
 
-	if (electronIsDev) {
+	if (isDev) {
 		mainWindow.webContents.openDevTools();
 	}
 
 	mainWindow.once(`ready-to-show`, () => {
 		mainWindow.show();
 		
-		console.log(`Started servicearchive in ${performance.stopMeasuringStartupTime()}ms!`);
+		performance.stopMeasuringStartupTime();
+		console.log(`Startup time: ${performance.startupTime}`);
 	});
 });
 
@@ -51,7 +52,3 @@ app.on(`window-all-closed`, () => {
 		app.quit();
 	}
 });
-
-ipcMain.on('msg', (event: IpcMainEvent, arg: string) => {
-	console.log(arg) // prints "ping"
-})

@@ -6,31 +6,33 @@
 */
 
 import * as data from '../../core/data';
+import * as utils from '../../core/utils';
 import * as language from '../../core/language';
 import * as input from './input';
+import * as search from './search';
 import * as tabs from '../tabs/main';
-import * as sidebar from './main';
-import { ServiceListResult, ServiceSearchResult } from '../../schemas';
+import * as popup from './popup';
+import { DocumentListItem, DocumentSearchResult } from '../../schemas';
 
-let articleList: HTMLDivElement = <HTMLDivElement>document.getElementById(`article-list`);
+let documentListElement: HTMLDivElement = <HTMLDivElement>document.getElementById(`document-list`);
 
-export const formatServiceList = (serviceList: ServiceListResult[]) => {
-	for (let i: number = 0; i < serviceList.length; i++) {
-		articleList.appendChild(formatServiceListItem(serviceList[i]));
+export const formatDocumentList = (documentList: DocumentListItem[]) => {
+	for (let i: number = 0; i < documentList.length; i++) {
+		documentListElement.appendChild(formatDocumentListItem(documentList[i]));
 	}
 }
 
-export const formatServiceListItem = (service: ServiceListResult) => {
+export const formatDocumentListItem = (inputDocument: DocumentListItem) => {
 	let buttonElement: HTMLButtonElement = document.createElement(`button`);
-	buttonElement.setAttribute(`id`, `sidebar-article-btn-${service.id}`);
-	buttonElement.setAttribute(`class`, `sidebar-article`);
+	buttonElement.setAttribute(`id`, `sidebar-document-btn-${inputDocument.id}`);
+	buttonElement.setAttribute(`class`, `sidebar-document`);
 
 	let titleElement: HTMLElement = document.createElement(`b`);
-	titleElement.innerHTML = service.title;
+	titleElement.innerHTML = inputDocument.title;
 	
 	let contentElement: HTMLElement = document.createElement(`p`);
-	if (service.contentPreview != ``) {
-		contentElement.innerText = service.contentPreview;
+	if (inputDocument.contentPreview != ``) {
+		contentElement.innerText = inputDocument.contentPreview;
 		contentElement.style.opacity = ``;
 	} else {
 		contentElement.innerText = language.getString(`empty-document`);
@@ -54,72 +56,79 @@ export const formatServiceListItem = (service: ServiceListResult) => {
 			event.target != renameButtonElement.children[0] &&
 			event.target != deleteButtonElement.children[0]) {
 
-			tabs.addTab(data.getArticle(service.id));
+			tabs.addTab(data.getDocument(inputDocument.id));
 		}
 	}
 
 	renameButtonElement.onclick = () => {
-		input.addRenameInput(service.id);
+		input.showRenameDocumentInput(inputDocument.id);
 	}
 	deleteButtonElement.onclick = () => {
-		sidebar.removeArticleInList(service.id);
-		data.removeArticle(service.id);
-		tabs.closeTab(service.id);
+		popup.open(inputDocument.id);
 	}
 
 	return buttonElement;
 }
 
-export const formatSearchResults = (element: HTMLElement, searchResults: ServiceSearchResult[]) => {
-	let lastArticleID: number = -1;
-	let timesLastArticleHasAppeared: number = 0;
+export const formatSearchResults = (element: HTMLElement, searchResults: DocumentSearchResult[]) => {
+	let lastDocumentID: number = -1;
+	let timesLastDocumentHasAppeared: number = 0;
 	for (let i: number = 0; i < searchResults.length; i++) {
-		if (lastArticleID !== searchResults[i].id) {
+		if (lastDocumentID !== searchResults[i].id) {
 
-			// Add the "n other results in this article" text
-			if (timesLastArticleHasAppeared === 1) {
+			// Add the "n other results in this document" text
+			if (timesLastDocumentHasAppeared === 1) {
 				let textElement: HTMLElement = document.createElement(`p`);
-				textElement.innerText = language.getString(`search-overflow-singular`, timesLastArticleHasAppeared.toString());
+				textElement.innerText = language.getString(`search-overflow-singular`, timesLastDocumentHasAppeared.toString());
 				element.appendChild(textElement);
-			} else if (timesLastArticleHasAppeared > 1) {
+			} else if (timesLastDocumentHasAppeared > 1) {
 				let textElement: HTMLElement = document.createElement(`p`);
-				textElement.innerText = language.getString(`search-overflow-plural`, timesLastArticleHasAppeared.toString());
+				textElement.innerText = language.getString(`search-overflow-plural`, timesLastDocumentHasAppeared.toString());
 				element.appendChild(textElement);
 			}
 
 			// Create the element
 			let buttonElement: HTMLButtonElement = document.createElement(`button`);
-			buttonElement.setAttribute(`id`, `sidebar-article-btn-${searchResults[i].id}`);
-			buttonElement.setAttribute(`class`, `sidebar-article`);
+			buttonElement.setAttribute(`id`, `sidebar-document-btn-${searchResults[i].id}`);
+			buttonElement.setAttribute(`class`, `sidebar-document`);
 
 			let titleElement: HTMLElement = document.createElement(`b`);
 			titleElement.innerHTML = searchResults[i].title;
 			
 			let contentElement: HTMLElement = document.createElement(`p`);
-			contentElement.innerHTML = `...${searchResults[i].contentPreview}...`;
+			contentElement.innerHTML = searchResults[i].contentPreview; 
+			if (searchResults[i].contentPreview == ``) {
+				contentElement.innerHTML = language.getString(`empty-document`);
+				contentElement.style.opacity = `0.5`;
+			}
 
 			buttonElement.appendChild(titleElement);
 			buttonElement.appendChild(contentElement);
 
-			buttonElement.onclick = () => tabs.addTab(data.getArticle(searchResults[i].id));
+			buttonElement.onclick = () => tabs.addTab(data.getDocument(searchResults[i].id));
+
+			// Remove the margin from first search result
+			if (i == 0) {
+				buttonElement.style.marginTop = `.5rem`;
+			}
 
 			element.appendChild(buttonElement);
 
-			timesLastArticleHasAppeared = 0;
+			timesLastDocumentHasAppeared = 0;
 		} else {
-			timesLastArticleHasAppeared++;
+			timesLastDocumentHasAppeared++;
 		}
-		lastArticleID = searchResults[i].id;
+		lastDocumentID = searchResults[i].id;
 	}
 	
-	// Add the "n other results in this article" text
-	if (timesLastArticleHasAppeared === 1) {
+	// Add the "n other results in this document" text
+	if (timesLastDocumentHasAppeared === 1) {
 		let textElement: HTMLElement = document.createElement(`p`);
-		textElement.innerText = language.getString(`search-overflow-singular`, timesLastArticleHasAppeared.toString());
+		textElement.innerText = language.getString(`search-overflow-singular`, timesLastDocumentHasAppeared.toString());
 		element.appendChild(textElement);
-	} else if (timesLastArticleHasAppeared > 1) {
+	} else if (timesLastDocumentHasAppeared > 1) {
 		let textElement: HTMLElement = document.createElement(`p`);
-		textElement.innerText = language.getString(`search-overflow-plural`, timesLastArticleHasAppeared.toString());
+		textElement.innerText = language.getString(`search-overflow-plural`, timesLastDocumentHasAppeared.toString());
 		element.appendChild(textElement);
 	}
 }

@@ -13,9 +13,9 @@ import * as utils from '../../core/utils';
 import * as language from '../../core/language';
 import { search } from './search';
 import * as data from '../../core/data';
-import type { ServiceSearchResults, ServiceListResult } from '../../schemas';
+import type { DocumentSearchResults, DocumentListItem } from '../../schemas';
 
-let articleList: HTMLDivElement = <HTMLDivElement>document.getElementById(`article-list`);
+let documentListElement: HTMLDivElement = <HTMLDivElement>document.getElementById(`document-list`);
 let searchInput: HTMLInputElement = <HTMLInputElement>document.getElementById(`search-input`);
 let searchResults: HTMLDivElement = <HTMLDivElement>document.getElementById(`search-results`);
 let searchResultCount: HTMLSpanElement = document.getElementById(`search-result-count`);
@@ -25,14 +25,14 @@ let searchContentList: HTMLDivElement = <HTMLDivElement>document.getElementById(
 export const updateSidebar = () => {
 	if (searchInput.value === ``) {
 		searchResults.style.display = `none`;
-		articleList.style.display = `block`;
-		articleList.innerHTML = ``;
+		documentListElement.style.display = `block`;
+		documentListElement.innerHTML = ``;
 
-		let serviceList: ServiceListResult[] = data.getArticleList();
-		formatting.formatServiceList(serviceList);
+		let documentList: DocumentListItem[] = data.getDocumentList();
+		formatting.formatDocumentList(documentList);
 
 	} else {
-		let results: ServiceSearchResults = search(data.getData(), searchInput.value);
+		let results: DocumentSearchResults = search(data.getData(), searchInput.value);
 
 		let resultCount: number = results.title.length + results.content.length;
 		searchResultCount.innerHTML = language.getString(`search-results`, resultCount.toString());
@@ -57,22 +57,22 @@ export const updateSidebar = () => {
 		}
 
 		searchResults.style.display = `block`;
-		articleList.style.display = `none`;
+		documentListElement.style.display = `none`;
 	}
 }
 searchInput.placeholder = language.getString(`search`);
 searchInput.oninput = () => updateSidebar();
 updateSidebar();
 
-export const appendArticleToList = (service: ServiceListResult) => {
-	articleList.appendChild(formatting.formatServiceListItem({
-		id: service.id,
-		title: service.title,
-		contentPreview: service.contentPreview
+export const appendDocumentToList = (inputDocument: DocumentListItem) => {
+	documentListElement.appendChild(formatting.formatDocumentListItem({
+		id: inputDocument.id,
+		title: inputDocument.title,
+		contentPreview: inputDocument.contentPreview
 	}));
 }
 export const updateContentInList = (id: number, newContent: string) => {
-	let element: HTMLElement = document.getElementById(`sidebar-article-btn-${id}`).getElementsByTagName(`p`)[0];
+	let element: HTMLElement = document.getElementById(`sidebar-document-btn-${id}`).getElementsByTagName(`p`)[0];
 
 	if (newContent != ``) {
 		element.innerHTML = utils.createContentPreviewString(newContent);
@@ -83,7 +83,7 @@ export const updateContentInList = (id: number, newContent: string) => {
 	}
 }
 export const updateTitleInList = (id: number, newTitle: string) => {
-	let element: HTMLElement = document.getElementById(`sidebar-article-btn-${id}`).getElementsByTagName(`b`)[0];
+	let element: HTMLElement = document.getElementById(`sidebar-document-btn-${id}`).getElementsByTagName(`b`)[0];
 
 	if (newTitle != ``) {
 		element.innerHTML = utils.createContentPreviewString(newTitle);
@@ -93,8 +93,8 @@ export const updateTitleInList = (id: number, newTitle: string) => {
 		element.style.opacity = `0.5`;
 	}
 }
-export const removeArticleInList = (id: number) => {
-	let element: HTMLElement = document.getElementById(`sidebar-article-btn-${id}`);
+export const removeDocumentInList = (id: number) => {
+	let element: HTMLElement = document.getElementById(`sidebar-document-btn-${id}`);
 
 	element.style.height = `0`;
 

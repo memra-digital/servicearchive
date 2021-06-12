@@ -8,8 +8,8 @@
 import * as sidebar from '../sidebar/main';
 import * as language from '../../core/language';
 
-let wordCountDisplay: HTMLSpanElement = <HTMLSpanElement>document.getElementById(`info-word-count`);
-let characterCountDisplay: HTMLSpanElement = <HTMLSpanElement>document.getElementById(`info-character-count`);
+let wordCountDisplay: HTMLSpanElement = <HTMLSpanElement>document.getElementById(`editor-toolstrip-info-words`);
+let characterCountDisplay: HTMLSpanElement = <HTMLSpanElement>document.getElementById(`editor-toolstrip-info-characters`);
 let boldBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-bold-btn`);
 let italicBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-italic-btn`);
 let underlineBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-underline-btn`);
@@ -21,13 +21,32 @@ export const updateToolstripButtons = (formats: string[]) => {
 	underlineBtn.className = formats.includes(`u`) ? `editor-toolstrip-btn active` : `editor-toolstrip-btn`;
 	strikethroughBtn.className = formats.includes(`strike`) ? `editor-toolstrip-btn active` : `editor-toolstrip-btn`;
 }
-export const updateCountInfo = (text: string) => {
-	let wordCount: number = text.split(` `).length;
+
+export const updateCountInfo = async (text: string) => {
+	calculateWordCount(text).then((result: number) => {
+		wordCountDisplay.innerHTML = language.getString(`editor-words`, result.toString());
+	});
+
 	let charCount: number = text.split(``).length;
-	
-	wordCountDisplay.innerHTML = language.getString(`editor-words`, wordCount.toString());
 	characterCountDisplay.innerHTML = language.getString(`editor-characters`, charCount.toString());
 }
+const calculateWordCount = async (text: string) => {
+	return new Promise((resolve, reject) => {
+		let textWithoutSpaces: string[] = text.split(` `);
+		let splitText: string[] = [];
+		for (let i: number = 0; i < textWithoutSpaces.length; i++) {
+			let textWithoutNL: string[] = textWithoutSpaces[i].split(`\n`);
+			for (let o: number = 0; o < textWithoutNL.length; o++) {
+				if (textWithoutNL[o] != ``) {
+					splitText.push(textWithoutNL[o]);
+				}
+			}
+		}
+
+		resolve(splitText.length);
+	});
+}
+
 export const updateSidebarContent = (id: number, text: string) => {
 	sidebar.updateContentInList(id, text);
 }
