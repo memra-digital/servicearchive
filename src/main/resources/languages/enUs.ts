@@ -19,7 +19,7 @@ export const enUsLang: any = {
 	"search-overflow-plural": "+ $ other results in this document",
 	
 	"add-document": "Enter the new document's name:",
-	"rename-document": "Enter the new document's name:",
+	"rename-document": "Rename the document:",
 	"empty-document": "(Empty)",
 	"delete-document": "Do you really want to delete the document \"$\"?",
 

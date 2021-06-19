@@ -15,27 +15,10 @@
 	<img src="https://github.com/lekvado/servicearchive/raw/master/assets/branding/screenshot.png" alt="servicearchive screenshot">
 </p>
 
-# Planned release dates
-
-0.5.0 ✅ - June 10, 2021
-
-0.6.0 ✅ - June 11, 2021
-
-0.6.1 ✅ - (unplanned) June 11, 2021
-
-**0.7.0 ✅** - June 12, 2021
-
-1.0.0 release candidates - June 18, 2021
-
-1.0.0 - June 19, 2021
-
-After 1.0.0, servicearchive and servicearchive mobile are going to be following the same version numbers unless the update is a critical bug fix for a bug on only one of the platforms, which will increase the third version number.
-
-
 # Install
 
-Builds will be published on release 1.0.0.
-
+- [Windows](https://github.com/lekvado/servicearchive/releases/download/v1.0.0/windows-setup.exe)
+- [Universal](https://github.com/lekvado/servicearchive/releases/download/v1.0.0/universal.zip)
 
 # Set up for development
 
@@ -52,15 +35,15 @@ Builds will be published on release 1.0.0.
 
 3. Use the ```cd``` command like this:
 
-  ```cd [absolute servicearchive directory]```
+  	```cd [absolute servicearchive directory]```
 
 4. To install all of the required dependencies, type in this command:
 
-  ```yarn install```
+  	```yarn install```
 
 5. Once everything has been installed, type in this command to start the program:
 
-  ```yarn start```
+ 	```yarn start```
 
 ✔️ This should start the application.
 

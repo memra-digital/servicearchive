@@ -1,7 +1,7 @@
 {
   "name": "servicearchive",
   "productName": "servicearchive",
-  "version": "0.7.0",
+  "version": "1.0.0",
   "description": "A tool for transcribing and preparing for church services.",
   "main": ".webpack/main",
   "scripts": {

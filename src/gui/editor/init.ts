@@ -30,10 +30,6 @@ const onTextareaUpdate = () => {
 	updating.updateToolstripButtons(formatting.getCurrentFormat());
 	updating.updateCountInfo(textarea.innerText);
 	updating.updateSidebarContent(currentDocumentId, textarea.innerText);
-}
 
-const saveText = () => {
 	data.setDocumentContent(currentDocumentId, textarea.innerHTML);
-	setTimeout(saveText, 10000);
 }
-setTimeout(saveText, 10000);

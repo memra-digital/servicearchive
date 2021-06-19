@@ -1,3 +1,8 @@
+# 1.0.0rc1
+
+- Now everything gets saved just before exiting the application and the autosave interval is longer (60 seconds)
+- Implemented the created and last modified dates for documents even though it doesn't show up anywhere in the app
+
 # 0.7.0
 
 - Renamed all instances of "article" and "service" in code to "document"

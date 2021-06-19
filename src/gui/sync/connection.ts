@@ -5,8 +5,7 @@
 =====================================
 */
 
-//const url: string = `https://servicearchive.herokuapp.com`;
-const url: string = `http://localhost:8080`;
+const url: string = `https://servicearchive.herokuapp.com`;
 let selectedChoice: string = ``;
 
 export let uploadedChoice: string = ``;

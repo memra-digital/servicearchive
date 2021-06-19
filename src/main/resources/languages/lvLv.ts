@@ -19,7 +19,7 @@ export const lvLvLang: any = {
 	"search-overflow-plural": "+ $ citi rezultāti šajā rakstā",
 	
 	"add-document": "Ievadi jaunā dokumenta nosakumu:",
-	"rename-document": "Ievadi jauno dokumenta nosaukumu:",
+	"rename-document": "Pārsaukt dokumentu:",
 	"empty-document": "(Tukšs)",
 	"delete-document": "Vai Jūs tiešām vēlaties izdzēst dokumentu \"$\"?",
 
