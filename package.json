@@ -9,7 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-  "author": "Lekvado Media",
+  "author": "Memra Digital",
   "license": "GPL-3.0-only",
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",
@@ -46,7 +46,7 @@
           "config": {
             "name": "servicearchive",
             "iconUrl": "https://github.com/lekvado/servicearchive/raw/master/assets/icons/windows.ico",
-            "copyright": "© Lekvado Media, 2019-2021"
+            "copyright": "© Memra Digital, 2019-2022"
           }
         },
         {

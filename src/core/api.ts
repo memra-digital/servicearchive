@@ -1,19 +1,21 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
 import * as data from './data';
-import { Document } from '../schemas';
+import { DocumentMetadata, DocumentCategory } from '../schemas';
 
 export class ServiceAPI {
 	greet() {
 		console.log(`%cServiceAPI - console API for servicearchive!`, `font-weight: bold; font-size: 2rem;`);
 		console.log(`%cFor help, use ServiceAPI.help().`, `font-weight: bold;`);
+		console.log(`%cNOTE: ServiceAPI may not support all of the new features.`, `font-weight: bold;`);
 	}
 	help() {
+		console.log(`%cNOTE: ServiceAPI may not support all of the new features.`, `font-weight: bold;`);
 		console.log(`greet(): void - Show a greeting message
 help(): void - Show this list
 
@@ -31,10 +33,30 @@ getDocumentsCreationDate(id: number): number - Returns the time document was cre
 save() - Save all changes`);
 	}
 
-	addDocument(title: string) {
-		let newDocument: Document | boolean = data.addDocument(title);
+	addDocumentCategory(title: string) {
+		let newCategory: DocumentCategory | boolean = data.addDocumentCategory(title);
 
-		if (newDocument != false) {
+		if (newCategory !== false) {
+			return newCategory.id;
+		} else {
+			return -1;
+		}
+	}
+	removeDocumentCategory(id: number) {
+		return data.removeDocumentCategory(id);
+	}
+
+	getDocumentCategoryTitle(id: number) {
+		return data.getDocumentCategoryTitle(id);
+	}
+	setDocumentCategoryTitle(id: number, title: string) {
+		return data.setDocumentCategoryTitle(id, title);
+	}
+
+	addDocument(title: string, category: number) {
+		let newDocument: DocumentMetadata | boolean = data.addDocument(title, category);
+
+		if (newDocument !== false) {
 			return newDocument.id;
 		} else {
 			return -1;
@@ -44,21 +66,21 @@ save() - Save all changes`);
 		return data.removeDocument(id);
 	}
 
+	getDocumentsTitle(id: number) {
+		return data.getDocumentTitle(id);
+	}
 	setDocumentsTitle(id: number, title: string) {
 		return data.setDocumentTitle(id, title);
 	}
-	setDocumentsContent(id: number, content: string) {
+
+	getDocumentsContent(id: number) {
+		return data.getDocumentContent(id);
+	}
+	setDocumentsContent(id: number, content: any) {
 		return data.setDocumentContent(id, content);
 	}
 
-	getDocumentsContent(id: number) {
-
-	}
-	getDocumentsTitle(id: number) {
-		
-	}
-
 	save() {
-		
+		return data.save();
 	}
 }

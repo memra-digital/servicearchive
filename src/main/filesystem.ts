@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -11,6 +11,7 @@ import * as path from 'path';
 import * as utils from '../core/utils';
 import { loadDefaultResources } from './resourceLoader';
 import type { ThemeListItem, LanguageListItem } from '../schemas';
+console.log(app.getPath(`userData`));
 
 // Reload the resources if the version number is outdated
 if (!fs.existsSync(path.join(app.getPath(`userData`), `/version`))) {
@@ -92,6 +93,18 @@ ipcMain.on(`get-data`, (event, arg) => {
 	
 	event.returnValue = JSON.parse(fs.readFileSync(path.join(app.getPath(`userData`), `/data/data.json`)).toString());
 });
+ipcMain.on(`get-document`, (event, arg) => {
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/`))) {
+		fs.mkdirSync(path.join(app.getPath(`userData`), `/data/`));
+		loadDefaultResources();
+	}
+
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/${arg}`))) {
+		fs.writeFileSync(path.join(app.getPath(`userData`), `/data/${arg}`), `[]`);
+	}
+
+	event.returnValue = JSON.parse(fs.readFileSync(path.join(app.getPath(`userData`), `/data/${arg}`)).toString());
+});
 ipcMain.on(`set-data`, (event, arg) => {
 	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/`))) {
 		fs.mkdirSync(path.join(app.getPath(`userData`), `/data/`));
@@ -99,5 +112,14 @@ ipcMain.on(`set-data`, (event, arg) => {
 	}
 
 	fs.writeFileSync(path.join(app.getPath(`userData`), `/data/data.json`), JSON.stringify(arg));
+	event.returnValue = arg;
+});
+ipcMain.on(`set-document`, (event, arg) => {
+	if (!fs.existsSync(path.join(app.getPath(`userData`), `/data/`))) {
+		fs.mkdirSync(path.join(app.getPath(`userData`), `/data/`));
+		loadDefaultResources();
+	}
+
+	fs.writeFileSync(path.join(app.getPath(`userData`), `/data/${arg.id}`), JSON.stringify(arg.data));
 	event.returnValue = arg;
 });

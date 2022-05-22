@@ -1,14 +1,15 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
 import { tabs } from './main';
-import { loadAboutTab } from './tabs/aboutTab';
+import { loadGeneralTab } from './tabs/generalTab';
 import { loadThemeTab } from './tabs/themeTab';
 import { loadLanguageTab } from './tabs/languageTab';
+import { loadAboutTab } from './tabs/aboutTab';
 
 let modalMain: HTMLElement = document.getElementById(`settings-modal-main`);
 let modalSidebar: HTMLElement = document.getElementById(`settings-modal-sidebar`);
@@ -36,7 +37,8 @@ export const switchTab = (index: number) => {
 }
 
 let tabHandlers: (() => HTMLElement[])[] = [
-	loadAboutTab,
+	loadGeneralTab,
 	loadThemeTab,
-	loadLanguageTab
+	loadLanguageTab,
+	loadAboutTab
 ];

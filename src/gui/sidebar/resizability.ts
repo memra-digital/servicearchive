@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */

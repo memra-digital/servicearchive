@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -12,13 +12,67 @@ import * as input from './input';
 import * as search from './search';
 import * as tabs from '../tabs/main';
 import * as popup from './popup';
-import { DocumentListItem, DocumentSearchResult } from '../../schemas';
+import { DocumentCategoryListItem, DocumentListItem, DocumentSearchResult, DocumentCategory } from '../../schemas';
 
 let documentListElement: HTMLDivElement = <HTMLDivElement>document.getElementById(`document-list`);
 
-export const formatDocumentList = (documentList: DocumentListItem[]) => {
-	for (let i: number = 0; i < documentList.length; i++) {
-		documentListElement.appendChild(formatDocumentListItem(documentList[i]));
+let isDraggingDocument: boolean = false;
+let draggingDocumentId: number = 0;
+let draggingStartX: number = null;
+let draggingStartY: number = null;
+let draggingStartXOnDocumentElement: number = null;
+let draggingStartYOnDocumentElement: number = null;
+let categoryToDragDocumentTo: string = ``;
+
+export const formatDocumentCategoryList = (documentCategoryList: DocumentCategoryListItem[]) => {
+	for (let i: number = 0; i < documentCategoryList.length; i++) {
+		formatDocumentCategoryListItem(documentCategoryList[i]);
+	}
+}
+
+export const formatDocumentCategoryListItem = (inputDocumentCategory: DocumentCategoryListItem) => {
+	if (inputDocumentCategory.title === undefined) {
+		for (let i: number = 0; i < inputDocumentCategory.content.length; i++) {
+			documentListElement.appendChild(formatDocumentListItem(inputDocumentCategory.content[i]));
+		}
+	} else {
+		let categoryElement: HTMLElement = document.createElement(`div`);
+		categoryElement.className = `sidebar-category closed`;
+		categoryElement.setAttribute(`id`, `sidebar-document-category-${inputDocumentCategory.id}`);
+
+		let categoryHeaderElement: HTMLElement = document.createElement(`div`);
+		categoryHeaderElement.className = `sidebar-category-header`;
+		categoryHeaderElement.innerHTML =
+			`<i class="bi bi-chevron-right"></i>
+				<p>${inputDocumentCategory.title}</p>
+				<span class="category-color category-color-${inputDocumentCategory.color}"></span>`;
+
+
+		let categoryContentElement: HTMLElement = document.createElement(`div`);
+		categoryContentElement.className = `sidebar-category-content`;
+
+		for (let i: number = 0; i < inputDocumentCategory.content.length; i++) {
+			categoryContentElement.appendChild(formatDocumentListItem(inputDocumentCategory.content[i]))
+		}
+
+		categoryElement.appendChild(categoryHeaderElement);
+		categoryElement.appendChild(categoryContentElement);
+
+		documentListElement.appendChild(categoryElement);
+
+		categoryHeaderElement.onclick = (event: MouseEvent) => {
+			if (categoryElement.classList.contains(`closed`)) {
+				categoryElement.classList.remove(`closed`);
+				categoryElement.classList.add(`open`);
+
+				categoryElement.style.height = `${categoryContentElement.clientHeight + categoryHeaderElement.clientHeight + 15}px`;
+			} else {
+				categoryElement.classList.remove(`open`);
+				categoryElement.classList.add(`closed`);
+
+				categoryElement.style.height = `20px`;
+			}
+		}
 	}
 }
 
@@ -39,32 +93,11 @@ export const formatDocumentListItem = (inputDocument: DocumentListItem) => {
 		contentElement.style.opacity = `0.5`;
 	}
 
-	let renameButtonElement: HTMLButtonElement = document.createElement(`button`);
-	renameButtonElement.innerHTML = `<i class="bi bi-input-cursor-text"></i>`;
-
-	let deleteButtonElement: HTMLButtonElement = document.createElement(`button`);
-	deleteButtonElement.innerHTML = `<i class="bi bi-trash"></i>`;
-
 	buttonElement.appendChild(titleElement);
 	buttonElement.appendChild(contentElement);
-	buttonElement.appendChild(renameButtonElement);
-	buttonElement.appendChild(deleteButtonElement);
 
 	buttonElement.onclick = (event: MouseEvent) => {
-		if (event.target != renameButtonElement &&
-			event.target != deleteButtonElement &&
-			event.target != renameButtonElement.children[0] &&
-			event.target != deleteButtonElement.children[0]) {
-
-			tabs.addTab(data.getDocument(inputDocument.id));
-		}
-	}
-
-	renameButtonElement.onclick = () => {
-		input.showRenameDocumentInput(inputDocument.id);
-	}
-	deleteButtonElement.onclick = () => {
-		popup.open(inputDocument.id);
+		tabs.addTab(data.getDocument(inputDocument.id));
 	}
 
 	return buttonElement;

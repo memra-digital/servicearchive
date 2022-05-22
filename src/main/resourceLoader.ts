@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -36,7 +36,7 @@ export const loadDefaultResources = () => {
 	}
 
 	// Load all of the missing default languages
-	let loadedLanguages: string[] = fs.readdirSync(path.join(app.getPath(`userData`), `/languages/`));
+	let loadedLanguages: string[] = []//fs.readdirSync(path.join(app.getPath(`userData`), `/languages/`));
 	for (let i in defaultLanguages) {
 		if (!loadedLanguages.includes(i)) {
 			fs.writeFileSync(path.join(app.getPath(`userData`), `/languages/${i}.json`), JSON.stringify(defaultLanguages[i]));

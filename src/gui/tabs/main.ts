@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -9,14 +9,14 @@ import '../../styles/tabs.css';
 import * as reordering from './reordering';
 import { createTabElement } from './element';
 import * as editor from '../editor/main';
-import type { Document } from '../../schemas';
+import type { DocumentMetadata } from '../../schemas';
 
 let tabbar: HTMLDivElement = <HTMLDivElement>document.getElementById(`tabbar`);
 
-export let openTabs: Document[] = [];
+export let openTabs: DocumentMetadata[] = [];
 export let openTabIndex: number = -1;
 
-export const addTab = (sourceDocument: Document) => {
+export const addTab = (sourceDocument: DocumentMetadata) => {
 	// If the tab has been already added, just open it
 	if (document.getElementById(`tab-${sourceDocument.id}`) !== null) {
 		openTab(sourceDocument.id);
@@ -55,6 +55,10 @@ export const closeTab = (id: number) => {
 				setTimeout(() => editor.openDocument(-1), 200);
 			}
 
+			// Show the document as inactive in the sidebar
+			document.querySelector(`#sidebar-document-btn-${id}`).classList.remove(`open`);
+			document.querySelector(`#sidebar-document-btn-${id}`).classList.remove(`active`);
+
 			openTabs.splice(i, 1);
 
 			if (openTabs.length > 0) {
@@ -66,7 +70,7 @@ export const closeTab = (id: number) => {
 
 			setTimeout(() => {
 				tabbar.removeChild(tabToRemove);
-			}, 200);
+			}, 150);
 
 			continue;
 		}
@@ -79,11 +83,19 @@ export const openTab = (id: number) => {
 		if (openTabs[i].id == id) {
 			openTabIndex = i;
 
-			document.getElementById(`tab-${openTabs[i].id}`).className += ` tab-active`;
+			document.getElementById(`tab-${openTabs[i].id}`).classList.add(`tab-active`);
 
 			editor.openDocument(openTabs[i].id);
+
+			// Show the document as active in the sidebar
+			document.querySelector(`#sidebar-document-btn-${openTabs[i].id}`).classList.remove(`open`);
+			document.querySelector(`#sidebar-document-btn-${openTabs[i].id}`).classList.add(`active`);
 		} else {
 			document.getElementById(`tab-${openTabs[i].id}`).className = `tab`;
+
+			// Show the document as open in the sidebar
+			document.querySelector(`#sidebar-document-btn-${openTabs[i].id}`).classList.add(`open`);
+			document.querySelector(`#sidebar-document-btn-${openTabs[i].id}`).classList.remove(`active`);
 		}
 	}
 }

@@ -1,16 +1,34 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
-export interface Document {
+export interface DocumentCategory {
+	id: number,
+	title?: string,
+	color?: string,
+	content: DocumentMetadata[]
+}
+export interface DocumentCategoryListItem {
+	id: number,
+	title?: string,
+	color?: string,
+	content: DocumentListItem[]
+}
+
+export interface DocumentMetadata {
 	id: number,
 	title: string,
-	content: string,
 	created: number,
-	modified: number
+	lastModified: number,
+	metadata: {
+		pastor: string,
+		date: number,
+		location: string,
+		extra: string
+	}
 }
 
 export interface DocumentListItem {

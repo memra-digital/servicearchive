@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -17,17 +17,33 @@ let deletionPopupText: HTMLElement = document.getElementById(`deletion-popup-tex
 let deletionPopupOkBtn: HTMLElement = document.getElementById(`deletion-popup-btn-ok`);
 let deletionPopupCancelBtn: HTMLElement = document.getElementById(`deletion-popup-btn-cancel`);
 
-export const open = (id: number) => {
+export const open = (id: number, isDocument: boolean) => {
 	deletionPopupBg.style.display = `block`;
 	deletionPopup.style.display = `block`;
 
-	deletionPopupText.innerText = language.getString(`delete-document`, data.getDocumentTitle(id));
+	if (isDocument) {
+		deletionPopupText.innerText = language.getString(`delete-document`, data.getDocumentTitle(id));
+	} else {
+		deletionPopupText.innerText = language.getString(`delete-document-category`, data.getDocumentCategoryTitle(id));
+	}
 
 	deletionPopupOkBtn.onclick = () => {
-		sidebar.removeDocumentInList(id);
-		data.removeDocument(id);
-		tabs.closeTab(id);
-		close();
+		if (isDocument) {
+			sidebar.removeDocumentFromList(id);
+			data.removeDocument(id);
+			tabs.closeTab(id);
+			close();
+		} else {
+			let categoryDocuments = data.getDocumentCategoryContent(id);
+			
+			for (let i = 0; i < categoryDocuments.length; i++) {
+				tabs.closeTab(categoryDocuments[i].id);
+			}
+
+			sidebar.removeDocumentCategoryFromList(id);
+			data.removeDocumentCategory(id);
+			close();
+		}
 	}
 	deletionPopupCancelBtn.onclick = () => close();
 

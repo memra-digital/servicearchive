@@ -1,17 +1,21 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Overpass&display=swap');
+
+@font-face {
+	font-family: "overpass";
+	src: url("../res/font/overpass.ttf");
+}
 
 * {
 	margin: 0;
 	box-sizing: border-box;
-	font-family: 'Open Sans', sans-serif;
+	font-family: "overpass", sans-serif;
 
 	user-select: none;
 	-webkit-user-drag: none;
@@ -59,9 +63,9 @@ body {
 
 	transform: scale(0);
 	
-    transition-duration: 0.2s;
-    transition-timing-function: cubic-bezier(0.46, 0.03, 0.55, 1);
-    transition-property: transform;
+	transition-duration: 0.2s;
+	transition-timing-function: cubic-bezier(0.46, 0.03, 0.55, 1);
+	transition-property: transform;
 
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -93,30 +97,31 @@ body {
 }
 .modal-close-btn {
 	position: absolute;
-    right: .5rem;
-	top: .5rem;
+	right: 8px;
+	top: 8px;
 
-    display: block;
-    width: 2.5rem;
-    height: 2.5rem;
+	display: block;
+	width: 35px;
+	height: 35px;
 
-    border: 0;
+	border: 0;
 
-    background: var(--modal-btn-bg);
-    color: var(--modal-btn-fg);
+	background: var(--modal-btn-bg);
+	color: var(--modal-btn-fg);
 
-    font-size: 1rem;
+	font-size: 15px;
 
-    border-radius: 1.75rem;
+	border-radius: var(--modal-btn-corner-radius);
 
-    padding: .5rem;
+	padding: 8px;
 
-    cursor: pointer;
+	cursor: pointer;
 
-	transition: .2s all;
+	transition: .2s background, .2s color;
 }
 .modal-close-btn:hover {
-	box-shadow: 0px 2px 7px 1px var(--modal-btn-shadow);
+	background: var(--modal-btn-hover-bg);
+	color: var(--modal-btn-hover-fg);
 }
 .modal-close-btn:active {
 	background: var(--modal-btn-active-bg);

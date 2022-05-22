@@ -1,24 +1,24 @@
 <p align="center">
 	<a href="https://servicearchive.herokuapp.com">
-		<img src="https://github.com/lekvado/servicearchive/raw/master/assets/branding/title.png" alt="servicearchive">
+		<img src="https://github.com/memra-digital/servicearchive/raw/master/assets/branding/title.png" alt="servicearchive">
 	</a>
 </p>
 <p align="center">
-	<a href="https://github.com/lekvado/servicearchive/actions?query=workflow%3A%22Build+status%22">
-		<img src="https://github.com/lekvado/servicearchive/workflows/Build%20status/badge.svg" alt="Build status">
+	<a href="https://github.com/memra-digital/servicearchive/actions?query=workflow%3A%22Build+status%22">
+		<img src="https://github.com/memra-digital/servicearchive/workflows/Build%20status/badge.svg" alt="Build status">
 	</a>
 </p>
 <p align="center">
 	<b>A tool for transcribing and preparing for church services.</b>
 </p>
 <p align="center">
-	<img src="https://github.com/lekvado/servicearchive/raw/master/assets/branding/screenshot.png" alt="servicearchive screenshot">
+	<img src="https://github.com/memra-digital/servicearchive/raw/master/assets/branding/screenshot.png" alt="servicearchive screenshot">
 </p>
 
 # Install
 
-- [Windows](https://github.com/lekvado/servicearchive/releases/download/v1.0.0/windows-setup.exe)
-- [Universal](https://github.com/lekvado/servicearchive/releases/download/v1.0.0/universal.zip)
+- [Windows](https://github.com/memra-digital/servicearchive/releases/download/v1.0.0/windows-setup.exe)
+- [Universal](https://github.com/memra-digital/servicearchive/releases/download/v1.0.0/universal.zip)
 
 # Set up for development
 
@@ -51,6 +51,6 @@ To build the application, use the command ```yarn make```.
 
 ***
 
-© Lekvado Media, 2019-2021
+© Memra Digital, 2019-2022
 
 Licensed under the GPLv3 license.

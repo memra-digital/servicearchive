@@ -1,13 +1,13 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
-import { Document } from '../../schemas';
+import { DocumentMetadata } from '../../schemas';
 
-export const createTabElement = (sourceDocument: Document, active: boolean = false) => {
+export const createTabElement = (sourceDocument: DocumentMetadata, active: boolean = false) => {
 	let element: HTMLDivElement = document.createElement(`div`);
 	element.className = `tab`;
 	if (active) element.className += ` tab-active`;

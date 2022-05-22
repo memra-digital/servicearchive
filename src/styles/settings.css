@@ -1,72 +1,88 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
 .settings-modal {
-    overflow: hidden;
+	background: none;
+
+	overflow: hidden;
 }
 
 .settings-modal-sidebar {
-    background: var(--modal-sidebar-bg);
-    color: var(--modal-sidebar-fg);
+	background: var(--modal-sidebar-bg);
+	color: var(--modal-sidebar-fg);
 
-    display: inline-block;
-    width: 30%;
-    height: 100%;
+	display: inline-block;
+	width: 30%;
+	height: 100%;
 
-    vertical-align: top;
+	vertical-align: top;
 }
 .settings-modal-sidebar h1 {
-    margin-bottom: 0;
+	margin-bottom: 0;
 
-    font-family: 'Overpass', 'Open Sans', sans-serif;
-    font-weight: regular;
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
 }
 .settings-modal-sidebar button {
-    background: none;
-    color: var(--modal-sidebar-fg);
+	background: var(--modal-sidebar-btn-bg-color);
+	color: var(--modal-sidebar-btn-fg-color);
 
-    width: 100%;
-    height: 2rem;
+	width: calc(100% - 20px);
+	height: 35px;
 
-    font-size: 1rem;
-    text-align: left;
-    
-    padding: 1rem;
+	font-size: 15px;
+	text-align: left;
+	
+	padding: 8px;
 
-    border: 0;
+	margin: 10px;
+	margin-bottom: 0;
 
-    cursor: pointer;
+	border: 0;
 
-    transition: .2s opacity;
+	border-radius: var(--modal-sidebar-btn-corner-radius);
+
+	cursor: pointer;
+
+	transition: .2s background, .2s color;
 }
-.settings-modal-sidebar button:hover,
+.settings-modal-sidebar button:hover {
+	background: var(--modal-sidebar-btn-hover-bg-color);
+	color: var(--modal-sidebar-btn-hover-fg-color);
+}
 .settings-modal-sidebar button.active {
-    opacity: 0.75;
+	background: var(--modal-sidebar-btn-active-bg-color);
+	color: var(--modal-sidebar-btn-active-fg-color);
+}
+.settings-modal-sidebar button i {
+	margin-right: 2px;
 }
 
 .settings-modal-main {
-    display: inline-block;
-    width: 70%;
-    height: 100%;
+	display: inline-block;
+	width: 70%;
+	height: 100%;
 
-    margin-left: -5px;
+	margin-left: -5px;
 
-    padding: 1rem;
+	padding: 10px;
 
-    vertical-align: top;
+	background: var(--modal-bg);
 
-    overflow-y: scroll;
-    overflow-x: hidden;
+	vertical-align: top;
+
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 .settings-modal-main h1 {
-    margin: 0;
+	margin: 0;
 
-    font-family: 'Overpass', 'Open Sans', sans-serif;
-    font-weight: regular;
+	font-weight: bold;
 }
 .settings-modal-main::-webkit-scrollbar {
 	width: var(--modal-scrollbar-width);
@@ -79,30 +95,32 @@
 }
 
 .settings-wide-button {
-    display: block;
-    width: 100%;
-    height: 3rem;
+	display: block;
+	width: 100%;
+	height: 35px;
 
-    margin: .5rem;
+	margin: 10px;
+	margin-bottom: 0;
 
-    border: 0;
+	border: 0;
 
-    background: var(--modal-btn-bg);
-    color: var(--modal-btn-fg);
+	background: var(--modal-btn-bg);
+	color: var(--modal-btn-fg);
 
-    font-size: 1rem;
+	font-size: 15px;
 
-    border-radius: 1.5rem;
+	border-radius: var(--modal-btn-corner-radius);
 
-    cursor: pointer;
+	cursor: pointer;
 
-    transition: .2s all;
+	transition: .2s background, .2s color;
 }
 .settings-wide-button:hover {
-    box-shadow: 0px 2px 7px 1px var(--modal-btn-shadow);
+	background: var(--modal-btn-hover-bg);
+	color: var(--modal-btn-hover-fg);
 }
 .settings-wide-button.active,
 .settings-wide-button:active {
-    background: var(--modal-btn-active-bg);
-    color: var(--modal-btn-active-fg);
+	background: var(--modal-btn-active-bg);
+	color: var(--modal-btn-active-fg);
 }

@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -15,14 +15,15 @@ let settingsModalCloseBtn: HTMLButtonElement = <HTMLButtonElement>document.getEl
 let settingsModalBg: HTMLElement = document.getElementById(`settings-modal-bg`);
 
 export let tabs: string[] = [
-	`<i class="bi bi-info-circle"></i> ${language.getString(`settings-about`)}`,
+	`<i class="bi bi-toggles2"></i> ${language.getString(`settings-general`)}`,
 	`<i class="bi bi-brush"></i> ${language.getString(`settings-theme`)}`,
-	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`
+	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`,
+	`<i class="bi bi-info-circle"></i> ${language.getString(`settings-about`)}`
 ];
 
 export let isSettingsModalOpen: boolean = false;
 export const openSettingsModal = () => {
-    loader.loadSidebar();
+	loader.loadSidebar();
 
 	settingsModalBg.style.display = `block`;
 	settingsModal.style.display = `block`;

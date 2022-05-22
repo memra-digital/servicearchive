@@ -1,6 +1,6 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
@@ -98,11 +98,11 @@ const displayQRCode = async (value: string) => {
 		type: `canvas`,
 		data: value,
 		dotsOptions: {
-			color: `#000000`,
+			color: (<HTMLElement>document.querySelector(`:root`)).style.getPropertyValue(`--modal-fg`),
 			type: `rounded`
 		},
 		backgroundOptions: {
-			color: `#ffffff`,
+			color: (<HTMLElement>document.querySelector(`:root`)).style.getPropertyValue(`--modal-bg`),
 		}
 	});
 	

@@ -1,15 +1,33 @@
 /*
 =====================================
-  © Lekvado Media, 2019-2021
+  © Memra Digital, 2019-2022
   Licensed under the GPLv3 license.
 =====================================
 */
 
 import * as os from 'os';
 import * as utils from '../../../core/utils';
+import * as language from '../../../core/language';
 
 export const loadAboutTab = () => {
 	let elements: HTMLElement[] = [];
+
+	let logoElement: HTMLImageElement = document.createElement(`img`);
+	logoElement.src = ``;
+	elements.push(logoElement);
+
+	let mainInfoTextElement: HTMLElement = document.createElement(`p`);
+	mainInfoTextElement.innerText =
+		`© Memra Digital, 2019-2022
+		${language.getString(`license`)}
+		
+		servicearchive ${utils.version}`;
+	elements.push(mainInfoTextElement);
+
+	let technicalInfoHeaderTextElement: HTMLElement = document.createElement(`b`);
+	technicalInfoHeaderTextElement.innerText = `${language.getString(`technical-info`)}`;
+	elements.push(technicalInfoHeaderTextElement);
+
 
 	let osInfo: string;
 
@@ -39,15 +57,12 @@ export const loadAboutTab = () => {
 			break;
 	}
 
-	let textElement: HTMLElement = document.createElement(`p`);
-	textElement.innerText =
-		`© Lekvado Media, 2019-2021
-		License: GPLv3 ("GPL-3.0-only")
-		
-		servicearchive ${utils.version}
-		${osInfo} (${os.release()})`;
-
-	elements.push(textElement);
+	let technicalInfoTextElement: HTMLElement = document.createElement(`p`);
+	technicalInfoTextElement.innerText =
+		`OS: ${osInfo} (${os.release()})
+		ST: ${null}
+		T: none`;
+	elements.push(technicalInfoTextElement);
 
 	return elements;
 }
