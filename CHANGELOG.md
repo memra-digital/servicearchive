@@ -1,3 +1,7 @@
+# 2.0.0
+BUGS FIXED:
+- When resizing the window, layout would break
+
 # 1.0.0rc1
 
 - Now everything gets saved just before exiting the application and the autosave interval is longer (60 seconds)

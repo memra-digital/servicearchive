@@ -9,7 +9,7 @@
 
 @font-face {
 	font-family: "overpass";
-	src: url("../res/font/overpass.ttf");
+	/* src: url("/fonts/overpass.ttf"); */
 }
 
 * {

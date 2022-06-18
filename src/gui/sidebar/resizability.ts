@@ -44,3 +44,6 @@ if (localStorage.getItem(`sidebar-width`) == undefined) {
 	localStorage.setItem(`sidebar-width`, Math.floor(window.innerWidth / 3).toString());
 }
 resizeSidebar(parseInt(localStorage.getItem(`sidebar-width`)));
+window.onresize = () => {
+	resizeSidebar(parseInt(localStorage.getItem(`sidebar-width`)));
+}
