@@ -6,11 +6,16 @@
 */
 
 import { ipcRenderer } from 'electron';
-import type { DocumentCategory, DocumentCategoryListItem, DocumentMetadata, DocumentListItem } from '../schemas';
+import type { DocumentCategory, DocumentMetadata, DocumentCategoryListItem, DocumentListItem } from '../schemas';
 
 let data: DocumentCategory[] = ipcRenderer.sendSync(`get-data`);
 
 export const save = () => {
+	// Don't save the data if the data is just an error message to avoid corrupting data
+	if ((<any>data).error !== undefined) {
+		return;
+	}
+
 	ipcRenderer.sendSync(`set-data`, data);
 }
 
@@ -77,29 +82,6 @@ export const removeDocumentCategory = (id: number) => {
 	return false;
 }
 
-export const getDocumentCategoryList = () => {
-	let results: DocumentCategoryListItem[] = [];
-
-	for (let i = 0; i < data.length; i++) {
-		let categoryContent: DocumentListItem[] = [];
-		for (let o = 0; o < data[i].content.length; o++) {
-			categoryContent.push({
-				id: data[i].content[o].id,
-				title: data[i].content[o].title,
-				contentPreview: ``//utils.createContentPreviewString(data[i].content[o].content)
-			});
-		}
-
-		results.push({
-			id: data[i].id,
-			title: data[i].title || undefined,
-			color: data[i].color || undefined,
-			content: categoryContent
-		});
-	}
-
-	return results;
-}
 export const getDocumentCategory = (id: number) => {
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {

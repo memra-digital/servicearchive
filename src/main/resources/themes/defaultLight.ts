@@ -23,6 +23,8 @@ export const defaultLightTheme: any = {
 		"sidebar-btn-hover-bg-color": "#2C2C34",
 
 		"sidebar-category-title-color": "#BBBBC3",
+		"sidebar-category-title-hover-color": "#747480",
+		"sidebar-category-title-active-color": "#747480",
 
 		"sidebar-document-bg-color": "#1B1B20",
 		"sidebar-document-open-bg-color": "#2C2C34",
@@ -77,6 +79,7 @@ export const defaultLightTheme: any = {
 		"modal-bg": "#FFFFFF",
 		"modal-fg": "#000000",
 		"modal-corner-radius": "30px",
+
 		"modal-btn-bg": "#DDDDDD",
 		"modal-btn-fg": "#000000",
 		"modal-btn-hover-bg": "#C6C6C6",
@@ -84,6 +87,14 @@ export const defaultLightTheme: any = {
 		"modal-btn-active-bg": "#A3A3A3",
 		"modal-btn-active-fg": "#000000",
 		"modal-btn-corner-radius": "10px",
+
+		"modal-input-bg": "#DDDDDD",
+		"modal-input-fg": "#000000",
+		"modal-input-hover-bg": "#C6C6C6",
+		"modal-input-hover-fg": "#000000",
+		"modal-input-active-bg": "#A3A3A3",
+		"modal-input-active-fg": "#000000",
+		"modal-input-corner-radius": "10px",
 
 		"modal-sidebar-bg": "#1A1A1F",
 		"modal-sidebar-fg": "#FFFFFF",

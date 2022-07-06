@@ -30,22 +30,11 @@ export interface DocumentMetadata {
 		extra: string
 	}
 }
-
 export interface DocumentListItem {
 	id: number,
+	isDocument: boolean,
 	title: string,
 	contentPreview: string
-}
-export interface DocumentSearchResult {
-	id: number,
-	title: string,
-	contentPreview: string,
-	highlightStart: number,
-	highlightEnd: number
-}
-export interface DocumentSearchResults {
-	title: DocumentSearchResult[],
-	content: DocumentSearchResult[]
 }
 
 export interface ThemeListItem {

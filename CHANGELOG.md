@@ -1,5 +1,18 @@
 # 2.0.0
-BUGS FIXED:
+
+**NEW FEATURES:**
+
+- Document categories with customizable colors
+
+**CHANGED FEATURES:**
+
+- Brand new design for the whole program
+- Added general tab in settings
+- There's an WYSIWYG editor now
+- Changed the way documents are saved
+
+**BUGS FIXED:**
+
 - When resizing the window, layout would break
 
 # 1.0.0rc1

@@ -6,60 +6,66 @@
 */
 
 import '../../styles/popup.css';
-import * as data from '../../core/data';
 import * as language from '../../core/language';
-import * as sidebar from './main';
-import * as tabs from '../tabs/main';
+import * as data from '../../core/data';
+import { DocumentMetadata } from '../../schemas';
 
-let deletionPopup: HTMLElement = document.getElementById(`deletion-popup`);
-let deletionPopupBg: HTMLElement = document.getElementById(`deletion-popup-bg`);
-let deletionPopupText: HTMLElement = document.getElementById(`deletion-popup-text`);
-let deletionPopupOkBtn: HTMLElement = document.getElementById(`deletion-popup-btn-ok`);
-let deletionPopupCancelBtn: HTMLElement = document.getElementById(`deletion-popup-btn-cancel`);
+let popup: HTMLElement = document.getElementById(`popup`);
+let popupBg: HTMLElement = document.getElementById(`popup-bg`);
+let popupText: HTMLElement = document.getElementById(`popup-text`);
+let popupInput: HTMLInputElement = <HTMLInputElement>document.getElementById(`popup-input`);
+let popupOkBtn: HTMLElement = document.getElementById(`popup-btn-ok`);
+let popupCancelBtn: HTMLElement = document.getElementById(`popup-btn-cancel`);
 
-export const open = (id: number, isDocument: boolean) => {
-	deletionPopupBg.style.display = `block`;
-	deletionPopup.style.display = `block`;
+let addDocumentBtn: HTMLElement = document.getElementById(`add-btn`);
 
-	if (isDocument) {
-		deletionPopupText.innerText = language.getString(`delete-document`, data.getDocumentTitle(id));
+const open = (text: string, isInputShown: boolean, onClick: Function) => {
+	popupBg.style.display = `block`;
+	popup.style.display = `block`;
+
+	popupText.innerText = text;
+
+	if (isInputShown) {
+		popupInput.style.display = `block`;
 	} else {
-		deletionPopupText.innerText = language.getString(`delete-document-category`, data.getDocumentCategoryTitle(id));
+		popupInput.style.display = `none`;
 	}
 
-	deletionPopupOkBtn.onclick = () => {
-		if (isDocument) {
-			sidebar.removeDocumentFromList(id);
-			data.removeDocument(id);
-			tabs.closeTab(id);
-			close();
-		} else {
-			let categoryDocuments = data.getDocumentCategoryContent(id);
-			
-			for (let i = 0; i < categoryDocuments.length; i++) {
-				tabs.closeTab(categoryDocuments[i].id);
-			}
+	let popupContentHeight: number = 47 + popupText.clientHeight;
+	if (isInputShown) popupContentHeight += 43;
+	popup.style.height = `${popupContentHeight}px`;
+	popup.style.top = `calc(50% - ${popupContentHeight / 2}px)`;
 
-			sidebar.removeDocumentCategoryFromList(id);
-			data.removeDocumentCategory(id);
-			close();
-		}
-	}
-	deletionPopupCancelBtn.onclick = () => close();
+	popupOkBtn.onclick = () => onClick(popupInput.value);
+	popupCancelBtn.onclick = () => close();
 
 	setTimeout(() => {
-		deletionPopupBg.style.opacity = `0.5`;
-		deletionPopup.style.transform = `scale(1.0)`;
+		popupBg.style.opacity = `0.5`;
+		popup.style.transform = `scale(1.0)`;
 	}, 1);
 
-	deletionPopupBg.onclick = () => close();
+	popupBg.onclick = () => close();
 }
-export const close = () => {
-	deletionPopupBg.style.opacity = `0`;
-	deletionPopup.style.transform = `scale(0)`;
+const close = () => {
+	popupBg.style.opacity = `0`;
+	popup.style.transform = `scale(0)`;
 	
 	setTimeout(() => {
-		deletionPopupBg.style.display = `none`;
-		deletionPopup.style.display = `none`;
+		popupBg.style.display = `none`;
+		popup.style.display = `none`;
 	}, 200);
+}
+
+addDocumentBtn.onclick = () => {
+	open(language.getString(`add-document`), true, (name: string) => {
+		if (name !== ``) {
+			let document: DocumentMetadata | boolean = data.addDocument(name);
+
+			if (document !== false) {
+				
+			}
+		}
+
+		close();
+	});
 }

@@ -26,7 +26,7 @@ export const init = () => {
 
 	editor.on(`text-change`, () => {
 		data.setDocumentContent(main.currentDocumentId, editor.getContents());
-		sidebar.updateContentInList(main.currentDocumentId, editor.getText());
+		//sidebar.updateContentInList(main.currentDocumentId, editor.getText());
 	});
 
 	boldBtn.className = `editor-toolstrip-btn icon`;

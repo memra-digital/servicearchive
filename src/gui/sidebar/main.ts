@@ -7,72 +7,146 @@
 
 import '../../styles/sidebar.css';
 import './resizability';
-import './input';
-import Sortable from 'sortablejs';
-import * as formatting from './formatting'
-import * as utils from '../../core/utils';
+import './popup';
 import * as language from '../../core/language';
-import { search } from './search';
 import * as data from '../../core/data';
-import type { DocumentCategoryListItem, DocumentSearchResults, DocumentListItem } from '../../schemas';
+import * as tabs from '../tabs/main';
+import { DocumentCategory, DocumentCategoryListItem, DocumentListItem } from '../../schemas';
 
-let documentListElement: HTMLDivElement = <HTMLDivElement>document.getElementById(`document-list`);
+let documentListElement: HTMLDivElement = <HTMLDivElement>document.getElementById(`sidebar-document-list`);
 let searchInput: HTMLInputElement = <HTMLInputElement>document.getElementById(`search-input`);
-let searchResults: HTMLDivElement = <HTMLDivElement>document.getElementById(`search-results`);
-let searchResultCount: HTMLSpanElement = document.getElementById(`search-result-count`);
-let searchTitleList: HTMLDivElement = <HTMLDivElement>document.getElementById(`search-title-list`);
-let searchContentList: HTMLDivElement = <HTMLDivElement>document.getElementById(`search-content-list`);
+
+
+let documentListData: any = [];
+
 
 /*
-	Updates the entire sidebar
-	This gets called upon start, when the search bar value is changed, etc.
+	A recursive function that puts all of the documents & categories into the sidebar
 */
-export const updateSidebar = () => {
-	if (searchInput.value === ``) {
-		// Display the regular document list
-		
-		searchResults.style.display = `none`;
-		documentListElement.style.display = `block`;
-		documentListElement.innerHTML = ``;
+const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
+	for (let i: number = 0; i < documents.length; i++) {
+		if (documents[i].isDocument) {
+			/*
+				Create the document element
+			*/
+			let sidebarDocumentElement: HTMLElement = document.createElement(`div`);
+			sidebarDocumentElement.className = `sidebar-document`;
+			sidebarDocumentElement.setAttribute(`data-id`, documents[i].id);
+			sidebarDocumentElement.innerHTML = `
+				<b>${documents[i].title}</b>
+				<p>${documents[i].contentPreview}</p>
+			`;
 
-		let documentCategoryList: DocumentCategoryListItem[] = data.getDocumentCategoryList();
-		formatting.formatDocumentCategoryList(documentCategoryList);
-	} else {
-		// Find the search results and display them
+			parentElement.appendChild(sidebarDocumentElement);
 
-		let results: DocumentSearchResults = search(data.getData(), searchInput.value);
+ 			sidebarDocumentElement.onclick = (event: MouseEvent) => {
+				tabs.addTab(data.getDocument(parseInt(sidebarDocumentElement.getAttribute(`data-id`))));
+			}
+		} else {
+			/*
+				Create the document category
+			*/
+			let sidebarCategoryElement: HTMLElement = document.createElement(`div`);
+			sidebarCategoryElement.className = `sidebar-category`;
 
-		let resultCount: number = results.title.length + results.content.length;
-		searchResultCount.innerHTML = language.getString(`search-results`, resultCount.toString());
+			let sidebarCategoryHeaderElement: HTMLElement = document.createElement(`div`);
+			sidebarCategoryHeaderElement.className = `sidebar-category-header`;
+			sidebarCategoryHeaderElement.setAttribute(`data-id`, documents[i].id);
+			sidebarCategoryHeaderElement.innerHTML = `
+				<i class="bi bi-chevron-right sidebar-category-header"></i>
+				<b>${documents[i].title}</b>
+				<div class="category-color ${documents[i].color}"></div>
+			`;
+			sidebarCategoryElement.appendChild(sidebarCategoryHeaderElement);
 
-		searchTitleList.innerHTML = ``;
-		searchContentList.innerHTML = ``;
+			let sidebarCategoryContentElement: HTMLElement = document.createElement(`div`);
+			sidebarCategoryContentElement.className = `sidebar-category-content`;
+			sidebarCategoryContentElement.innerHTML = `
+				<div class="sidebar-category-line ${documents[i].color}"></div>
+			`;
+			sidebarCategoryElement.appendChild(sidebarCategoryContentElement);
+			loadDocuments(sidebarCategoryContentElement, documents[i].content);
 
-		if (results.title.length !== 0) {
-			let titleElement: HTMLElement = document.createElement(`b`);
-			titleElement.innerText = language.getString(`search-titles-section`);
-			searchTitleList.appendChild(titleElement);
+			parentElement.appendChild(sidebarCategoryElement);
 
-			formatting.formatSearchResults(searchTitleList, results.title);
+			sidebarCategoryHeaderElement.onclick = () => {
+				if (sidebarCategoryElement.classList.contains(`active`)) {
+					sidebarCategoryElement.classList.remove(`active`);
+					sidebarCategoryElement.style.height = `20px`;
+				} else {
+					sidebarCategoryElement.classList.add(`active`);
+					sidebarCategoryElement.style.height = `${sidebarCategoryContentElement.clientHeight + 28}px`;
+				}
+			}
 		}
-
-		if (results.content.length !== 0) {
-			let titleElement: HTMLElement = document.createElement(`b`);
-			titleElement.innerText = language.getString(`search-content-section`);
-			searchContentList.appendChild(titleElement);
-
-			formatting.formatSearchResults(searchContentList, results.content);
-		}
-
-		searchResults.style.display = `block`;
-		documentListElement.style.display = `none`;
 	}
 }
-searchInput.placeholder = language.getString(`search`);
-searchInput.oninput = () => updateSidebar();
-updateSidebar();
 
-export const appendDocumentToList = (inputDocument: DocumentListItem) => {
+
+/*
+	Loading all of the data
+*/
+const loadData = () => {
+	documentListData = [];
+
+	let rawData: DocumentCategory[] = data.getData();
+
+	for (let i: number = 0; i < rawData.length; i++) {
+		let categoryDocumentList: any[] = [];
+
+		for (let o: number = 0; o < rawData[i].content.length; o++) {
+
+			let documentData: DocumentListItem = {
+				id: rawData[i].content[o].id,
+				isDocument: true,
+				title: rawData[i].content[o].title,
+				contentPreview: `benžāns ir saujā`
+			}
+
+			if (rawData[i].title === undefined) {
+				documentListData.push(documentData);
+			} else {
+				categoryDocumentList.push(documentData);
+			}
+		}
+
+		if (rawData[i].title !== undefined) {
+			documentListData.push({
+				id: rawData[i].id,
+				isDocument: false,
+				title: rawData[i].title,
+				color: rawData[i].color,
+				content: categoryDocumentList
+			});
+		}
+	}
+}
+
+
+/*
+	Updating the sidebar
+*/
+export const updateSidebar = () => {
+	documentListElement.innerHTML = ``;
+
+	loadData();
+
+	if (searchInput.value === ``) {
+		// Display the regular document list
+		loadDocuments(documentListElement, documentListData);
+	} else {
+		// Find the search results and display them
+	}
+}
+const initializeSidebar = () => {	
+	searchInput.placeholder = language.getString(`search`);
+	searchInput.oninput = () => updateSidebar();
+	updateSidebar();
+}
+initializeSidebar();
+
+
+/* export const appendDocumentToList = (inputDocument: DocumentListItem) => {
 	let firstSidebarCategoryElement: HTMLElement;
 	for (let element of document.querySelectorAll(`div.sidebar-category`)) {
 		firstSidebarCategoryElement = <HTMLElement>element;
@@ -137,4 +211,4 @@ export const removeDocumentCategoryFromList = (id: number) => {
 	setTimeout(() => {
 		element.parentElement.removeChild(element);
 	}, 200);
-}
+} */

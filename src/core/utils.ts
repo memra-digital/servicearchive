@@ -5,8 +5,6 @@
 =====================================
 */
 
-import * as language from './language';
-
 export const version: string = `v2.0 (UNRELEASED)`;
 
 export const removeHTMLTags = (input: string) => { // Function taken from https://www.tutorialspoint.com/how-to-remove-html-tags-from-a-string-in-javascript
