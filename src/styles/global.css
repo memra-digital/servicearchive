@@ -56,8 +56,8 @@ body {
 
 	z-index: 5;
 
-	background: var(--modal-bg);
-	color: var(--modal-fg);
+	background: var(--modal-bg-color);
+	color: var(--modal-fg-color);
 
 	border-radius: var(--modal-corner-radius);
 
@@ -97,8 +97,8 @@ body {
 
 	border: 0;
 
-	background: var(--modal-btn-bg);
-	color: var(--modal-btn-fg);
+	background: var(--modal-btn-bg-color);
+	color: var(--modal-btn-fg-color);
 
 	font-size: 15px;
 
@@ -111,12 +111,12 @@ body {
 	transition: .2s background, .2s color;
 }
 .modal-close-btn:hover {
-	background: var(--modal-btn-hover-bg);
-	color: var(--modal-btn-hover-fg);
+	background: var(--modal-btn-hover-bg-color);
+	color: var(--modal-btn-hover-fg-color);
 }
 .modal-close-btn:active {
-	background: var(--modal-btn-active-bg);
-	color: var(--modal-btn-active-fg);
+	background: var(--modal-btn-active-bg-color);
+	color: var(--modal-btn-active-fg-color);
 }
 .modal-bg,
 .popup-bg {

@@ -16,7 +16,7 @@
 	padding-top: 24px;
 	padding-bottom: 4px;
 	font-size: 15px;
-	color: var(--modal-fg);
+	color: var(--modal-fg-color);
 }
 
 .popup input {
@@ -25,8 +25,8 @@
 	font-size: 15px;
 	line-height: 19px;
 	padding: 8px;
-	background: var(--modal-input-bg);
-	color: var(--modal-input-fg);
+	background: var(--modal-input-bg-color);
+	color: var(--modal-input-fg-color);
 	border: 0;
 	margin: 8px;
 	margin-bottom: 4px;
@@ -42,8 +42,8 @@
 	font-size: 24px;
 	line-height: 24px;
 	padding: 4px;
-	background: var(--modal-btn-bg);
-	color: var(--modal-btn-fg);
+	background: var(--modal-btn-bg-color);
+	color: var(--modal-btn-fg-color);
 	border: 0;
 	margin: 4px;
 	border-radius: var(--modal-btn-corner-radius);
@@ -51,10 +51,10 @@
 	transition: .2s color, .2s background;
 }
 .popup button:hover {
-	background: var(--modal-btn-hover-bg);
-	color: var(--modal-btn-hover-fg);
+	background: var(--modal-btn-hover-bg-color);
+	color: var(--modal-btn-hover-fg-color);
 }
 .popup button:active {
-	background: var(--modal-btn-active-bg);
-	color: var(--modal-btn-active-fg);
+	background: var(--modal-btn-active-bg-color);
+	color: var(--modal-btn-active-fg-color);
 }

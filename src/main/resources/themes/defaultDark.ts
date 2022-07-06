@@ -8,9 +8,9 @@
 export const defaultDarkTheme: any = {
 	"name": "Default Dark",
 	"description": "Default dark theme for servicearchive.",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"colors": {
-		"sidebar-bg-color": "#1C1B20",
+		"sidebar-bg-color": "#1B1B20",
 
 		"sidebar-search-bg-color": "#2C2C34",
 		"sidebar-search-placeholder-color": "#6C6C78",
@@ -23,6 +23,8 @@ export const defaultDarkTheme: any = {
 		"sidebar-btn-hover-bg-color": "#2C2C34",
 
 		"sidebar-category-title-color": "#BBBBC3",
+		"sidebar-category-title-hover-color": "#747480",
+		"sidebar-category-title-active-color": "#747480",
 
 		"sidebar-document-bg-color": "#1B1B20",
 		"sidebar-document-open-bg-color": "#2C2C34",
@@ -48,45 +50,55 @@ export const defaultDarkTheme: any = {
 		"category-color-blue": "#3E6CE3",
 		"category-color-purple": "#B83EE3",
 
-		"tabbar-bg": "#121217",
-		"tab-bg": "#2C2C34",
-		"tab-fg": "#FFFFFF",
+		"tabbar-bg-color": "#111115",
+		"tab-fg-color": "#000000",
+		"tab-inactive-opacity": "0.6",
+		"tab-divider-color": "#BCBCBC",
+		"tab-active-bg-color": "#FFFFFF",
+		"tab-active-fg-color": "#000000",
 		"tab-corner-radius": "10px",
-		"tab-active-bg": "#2C2C34",
-		"tab-active-fg": "#FFFFFF",
 
-		"editor-bg": "#2C2C34",
-		"editor-fg": "#FFFFFF",
-		"editor-selection-bg": "#4E4E56",
-		"editor-selection-fg": "#FFFFFF",
+		"editor-bg-color": "#111115",
+		"editor-fg-color": "#FFFFFF",
+		"editor-selection-bg-color": "#D8D8D8",
+		"editor-selection-fg-color": "#000000",
 
-		"editor-toolstrip-bg": "#2C2C34",
-		"editor-toolstrip-btn-bg": "#3b3b44",
-		"editor-toolstrip-btn-fg": "#FFFFFF",
-		"editor-toolstrip-btn-hover-bg": "#4e4e56",
-		"editor-toolstrip-btn-hover-fg": "#FFFFFF",
-		"editor-toolstrip-btn-active-bg": "#6b6b77",
-		"editor-toolstrip-btn-active-fg": "#FFFFFF",
+		"editor-toolstrip-bg-color": "#111115",
+		"editor-toolstrip-btn-bg-color": "#1B1B20",
+		"editor-toolstrip-btn-fg-color": "#FFFFFF",
+		"editor-toolstrip-btn-hover-bg-color": "#E5E5E5",
+		"editor-toolstrip-btn-hover-fg-color": "#000000",
+		"editor-toolstrip-btn-active-bg-color": "#CFCFCF",
+		"editor-toolstrip-btn-active-fg-color": "#000000",
 		"editor-toolstrip-btn-corner-radius": "10px",
 
 		"editor-scrollbar-width": "10px",
 		"editor-scrollbar-corner-radius": "10px",
-		"editor-scrollbar-bg": "#FFFFFF",
-		"editor-scrollbar-fg": "#D8D8D8",
+		"editor-scrollbar-bg-color": "#FFFFFF",
+		"editor-scrollbar-fg-color": "#D8D8D8",
 
-		"modal-bg": "#2C2C34",
-		"modal-fg": "#FFFFFF",
+		"modal-bg-color": "#111115",
+		"modal-fg-color": "#FFFFFF",
 		"modal-corner-radius": "30px",
-		"modal-btn-bg": "#3B3B44",
-		"modal-btn-fg": "#FFFFFF",
-		"modal-btn-hover-bg": "#4E4E56",
-		"modal-btn-hover-fg": "#FFFFFF",
-		"modal-btn-active-bg": "#6B6B77",
-		"modal-btn-active-fg": "#FFFFFF",
+
+		"modal-btn-bg-color": "#DDDDDD",
+		"modal-btn-fg-color": "#000000",
+		"modal-btn-hover-bg-color": "#C6C6C6",
+		"modal-btn-hover-fg-color": "#000000",
+		"modal-btn-active-bg-color": "#A3A3A3",
+		"modal-btn-active-fg-color": "#000000",
 		"modal-btn-corner-radius": "10px",
 
-		"modal-sidebar-bg": "#1A1A1F",
-		"modal-sidebar-fg": "#FFFFFF",
+		"modal-input-bg-color": "#DDDDDD",
+		"modal-input-fg-color": "#000000",
+		"modal-input-hover-bg-color": "#C6C6C6",
+		"modal-input-hover-fg-color": "#000000",
+		"modal-input-active-bg-color": "#A3A3A3",
+		"modal-input-active-fg-color": "#000000",
+		"modal-input-corner-radius": "10px",
+
+		"modal-sidebar-bg-color": "#1A1A1F",
+		"modal-sidebar-fg-color": "#FFFFFF",
 		"modal-sidebar-btn-fg-color": "#FFFFFF",
 		"modal-sidebar-btn-bg-color": "#1B1B20",
 		"modal-sidebar-btn-hover-fg-color": "#FFFFFF",
@@ -96,7 +108,7 @@ export const defaultDarkTheme: any = {
 		"modal-sidebar-btn-corner-radius": "10px",
 
 		"modal-scrollbar-width": "10px",
-		"modal-scrollbar-bg": "#FFFFFF",
-		"modal-scrollbar-fg": "#D8D8D8"
+		"modal-scrollbar-bg-color": "#FFFFFF",
+		"modal-scrollbar-fg-color": "#D8D8D8"
 	}
-}
+};

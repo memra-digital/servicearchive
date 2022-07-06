@@ -12,11 +12,11 @@
 }
 
 .settings-modal-sidebar {
-	background: var(--modal-sidebar-bg);
-	color: var(--modal-sidebar-fg);
+	background: var(--modal-sidebar-bg-color);
+	color: var(--modal-sidebar-fg-color);
 
 	display: inline-block;
-	width: 30%;
+	width: max(30%, 200px);
 	height: 100%;
 
 	vertical-align: top;
@@ -65,14 +65,14 @@
 
 .settings-modal-main {
 	display: inline-block;
-	width: 70%;
+	width: min(70%, 100% - 200px);
 	height: 100%;
 
 	margin-left: -5px;
 
 	padding: 10px;
 
-	background: var(--modal-bg);
+	background: var(--modal-bg-color);
 
 	vertical-align: top;
 
@@ -104,8 +104,8 @@
 
 	border: 0;
 
-	background: var(--modal-btn-bg);
-	color: var(--modal-btn-fg);
+	background: var(--modal-btn-bg-color);
+	color: var(--modal-btn-fg-color);
 
 	font-size: 15px;
 
@@ -116,11 +116,11 @@
 	transition: .2s background, .2s color;
 }
 .settings-wide-button:hover {
-	background: var(--modal-btn-hover-bg);
-	color: var(--modal-btn-hover-fg);
+	background: var(--modal-btn-hover-bg-color);
+	color: var(--modal-btn-hover-fg-color);
 }
 .settings-wide-button.active,
 .settings-wide-button:active {
-	background: var(--modal-btn-active-bg);
-	color: var(--modal-btn-active-fg);
+	background: var(--modal-btn-active-bg-color);
+	color: var(--modal-btn-active-fg-color);
 }

@@ -8,7 +8,7 @@
 export const defaultLightTheme: any = {
 	"name": "Default Light",
 	"description": "Default light theme for servicearchive.",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"colors": {
 		"sidebar-bg-color": "#1B1B20",
 
@@ -111,4 +111,4 @@ export const defaultLightTheme: any = {
 		"modal-scrollbar-bg-color": "#FFFFFF",
 		"modal-scrollbar-fg-color": "#D8D8D8"
 	}
-}
+};

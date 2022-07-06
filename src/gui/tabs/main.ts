@@ -115,7 +115,7 @@ export const recalculateLayout = () => {
 
 			(<HTMLElement>document.querySelector(`.tab[data-id="${openTabs[i].id}"] .close`)).onclick = () => closeTab(openTabs[i].id);
 
-			(<HTMLElement>document.querySelector(`.tab[data-id="${openTabs[i].id}"]`)).style.width = `min(calc(100% / ${openTabs.length} - 20px), 250px)`;
+			(<HTMLElement>document.querySelector(`.tab[data-id="${openTabs[i].id}"]`)).style.width = `min(calc(100% / ${openTabs.length}), 250px)`;
 		}
 	}
 }
