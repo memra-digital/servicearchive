@@ -30,7 +30,7 @@ body {
 
 	overflow: hidden;
 
-	background: var(--tabbar-bg);
+	background: var(--tabbar-bg-color);
 }
 *:focus {
 	outline: none;

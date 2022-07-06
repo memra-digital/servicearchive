@@ -7,113 +7,75 @@
 
 .tabbar {
 	width: 100%;
-	height: 3rem;
-
-	background: var(--tabbar-bg);
-
+	height: 39px;
+	background: var(--tabbar-bg-color);
 	overflow: hidden;
-
 	user-select: none;
 	-webkit-user-drag: none;
 }
 .tab {
 	position: relative;
-
 	display: inline-block;
 	width: 0;
-	height: 3rem;
-
-	padding: 1rem;
-
-	font-size: 1rem;
-	line-height: 1rem;
-
+	height: 39px;
+	padding: 12px;
+	font-size: 15px;
+	line-height: 15px;
 	user-select: none;
 	-webkit-user-drag: none;
-
 	cursor: pointer;
-
 	border-radius: var(--tab-corner-radius) var(--tab-corner-radius) 0 0;
-
 	margin: 0;
-	margin-right: calc(var(--tab-corner-radius) * 2);
-
-	background: var(--tab-bg);
-
 	vertical-align: top;
-
-	transition: .2s width;
+	transition: .25s width, .2s opacity;
 }
 .tab p {
 	display: inline-block;
-
-	width: calc(100% - 1.5rem);
-	height: 1rem;
-
-	color: var(--tab-fg);
-
+	width: calc(100% - 20px);
+	height: 15px;
+	color: var(--tab-fg-color);
 	overflow: hidden;
+	margin-top: 1px;
 }
 .tab button {
 	display: inline-block;
-	width: 1rem;
-	height: 1rem;
-
+	width: 20px;
+	height: 20px;
 	vertical-align: top;
-
 	background: none;
-	color: var(--tab-fg);
-
-	font-size: 1rem;
-
+	color: var(--tab-fg-color);
+	font-size: 20px;
 	padding: 0;
-
 	border: 0;
-
 	margin: 0;
-
+	margin-top: -2px;
 	cursor: pointer;
 }
-.tab::before {
+.tab.active {
+	background: var(--tab-active-bg-color);
+	opacity: 1;
+}
+.tab.active::before {
 	content: "";
-
 	position: absolute;
 	left: calc(0px - var(--tab-corner-radius) * 2);
 	bottom: 0;
-
 	display: block;
 	width: calc(var(--tab-corner-radius) * 2);
 	height: var(--tab-corner-radius);
-
-	background: var(--tabbar-bg);
-
+	background: var(--tabbar-bg-color);
 	border-bottom-right-radius: var(--tab-corner-radius);
-	
-	box-shadow: var(--tab-corner-radius) 0 0 0 var(--tab-bg);
+	box-shadow: var(--tab-corner-radius) 0 0 0 var(--tab-active-bg-color);
 }
-.tab::after {
+.tab.active::after {
 	content: "";
-
 	position: absolute;
 	right: calc(0px - var(--tab-corner-radius) * 2);
 	bottom: 0;
-
 	display: block;
 	width: calc(var(--tab-corner-radius) * 2);
 	height: var(--tab-corner-radius);
-
 	border-bottom-left-radius: var(--tab-corner-radius);
-	
-	box-shadow: calc(0px - var(--tab-corner-radius)) 0 0 0 var(--tab-bg);
-	
+	box-shadow: calc(0px - var(--tab-corner-radius)) 0 0 0 var(--tab-active-bg-color);
 	z-index: 2;
-}
-.tab-active {
-	background: var(--tab-active-bg);
-}
-.tab-active::before {
-	box-shadow: var(--tab-corner-radius) 0 0 0 var(--tab-active-bg);
-}
-.tab-active::after {
-	box-shadow: calc(0px - var(--tab-corner-radius)) 0 0 0 var(--tab-active-bg);
 }

@@ -54,7 +54,7 @@ document.onmousemove = (event: MouseEvent) => {
 		openTabs.splice(newTabPosition, 0, tabItemToMove);
 
 		// If the tabs get reordered, remove their elements and add everything back in the new order
-		if (currentMovingTabIndex != newTabPosition) {
+		if (currentMovingTabIndex !== newTabPosition) {
 			tabbar.innerHTML = ``;
 
 			for (let i = 0; i < openTabs.length; i++) {

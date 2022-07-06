@@ -9,26 +9,20 @@
 	display: none;
 	width: 100%;
 	height: calc(100vh - 3rem);
-
-	background: var(--editor-bg);
-	color: var(--editor-fg);
-
+	background: var(--editor-bg-color);
+	color: var(--editor-fg-color);
 	opacity: 0;
 }
 .editor::before {
 	content: "";
-
 	display: block;
 	width: 100%;
 	height: calc(100% - 3rem);
-
 	position: fixed;
 	bottom: 0;
 	left: 0;
-
 	z-index: -1;
-
-	background: var(--editor-bg);
+	background: var(--editor-bg-color);
 }
 
 .editor-toolstrip {
@@ -37,14 +31,14 @@
 
 	padding: 8px;
 
-	background: var(--editor-toolstrip-bg);
+	background: var(--editor-toolstrip-bg-color);
 
 	user-select: none;
 	-webkit-user-drag: none;
 }
 .editor-toolstrip-btn {
-	background: var(--editor-toolstrip-btn-bg);
-	color: var(--editor-toolstrip-btn-fg);
+	background: var(--editor-toolstrip-btn-bg-color);
+	color: var(--editor-toolstrip-btn-fg-color);
 
 	cursor: pointer;
 
@@ -76,12 +70,12 @@
 	padding-right: 4px;
 }
 .editor-toolstrip-btn:hover {
-	background: var(--editor-toolstrip-btn-hover-bg);
-	color: var(--editor-toolstrip-btn-hover-fg);
+	background: var(--editor-toolstrip-btn-hover-bg-color);
+	color: var(--editor-toolstrip-btn-hover-fg-color);
 }
 .editor-toolstrip-btn.active {
-	background: var(--editor-toolstrip-btn-active-bg);
-	color: var(--editor-toolstrip-btn-active-fg);
+	background: var(--editor-toolstrip-btn-active-bg-color);
+	color: var(--editor-toolstrip-btn-active-fg-color);
 }
 .editor-toolstrip-info {
 	display: inline-block;
@@ -102,9 +96,9 @@
 	padding-right: 12px;
 	padding-top: 8px;
 
-	background: var(--editor-bg);
-	color: var(--editor-fg);
-	text-decoration-color: var(--editor-fg);
+	background: var(--editor-bg-color);
+	color: var(--editor-fg-color);
+	text-decoration-color: var(--editor-fg-color);
 
 	width: 100%;
 	height: calc(100% - 51px);
@@ -114,41 +108,20 @@
 	cursor: text;
 }
 .textarea::selection {
-	background: var(--editor-selection-bg);
-	color: var(--editor-selection-bg);
+	background: var(--editor-selection-bg-color);
+	color: var(--editor-selection-bg-color);
 }
 
 .textarea::-webkit-scrollbar {
 	width: var(--editor-scrollbar-width);
 }
 .textarea::-webkit-scrollbar-track {
-	background: var(--editor-scrollbar-bg);
+	background: var(--editor-scrollbar-bg-color);
 
 	border-radius: var(--editor-scrollbar-corner-radius);
 }
 .textarea::-webkit-scrollbar-thumb {
-	background: var(--editor-scrollbar-fg);
+	background: var(--editor-scrollbar-fg-color);
 
 	border-radius: var(--editor-scrollbar-corner-radius);
-}
-
-.textarea-line-width-test {
-	position: absolute;
-	top: 0;
-	left: 0;
-
-	z-index: -1;
-
-	visibility: hidden;
-}
-.textarea-line-width-test * {
-	display: inline-block;
-}
-
-@keyframes blink {
-	0% { opacity: 1; }
-	40% { opacity: 1; }
-	50% { opacity: 0; }
-	90% { opacity: 0; }
-	100% { opacity: 1; }
 }

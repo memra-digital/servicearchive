@@ -146,7 +146,7 @@
 }
 .sidebar-category-content {
 	position: relative;
-	padding-left: 12px;
+	padding-left: 20px;
 }
 .sidebar-category-line {
 	position: absolute;
@@ -179,9 +179,9 @@
 .sidebar-category-line.blue {
 	background: #3E6CE3;
 }
-.category-color.magenta,
-.sidebar-category-line.magenta {
-	background: #B83EE3;
+.category-color.purple,
+.sidebar-category-line.purple {
+	background: #993ee3;
 }
 
 .sidebar-document {
