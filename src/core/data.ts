@@ -297,9 +297,19 @@ export const setDocumentTitle = (id: number, title: string) => {
 	}
 }
 export const setDocumentContent = (id: number, content: any) => {
-	console.trace(`Data set`);
+	for (let i = 0; i < data.length; i++) {
+		for (let o = 0; o < data[i].content.length; o++) {
+			if (data[i].content[o].id === id) {
+				data[i].content[o].lastModified = Date.now();
 
-	ipcRenderer.sendSync(`set-document`, { id, data: content });
+				ipcRenderer.sendSync(`set-document`, { id, data: content });
+
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
 
 const autosave = () => {

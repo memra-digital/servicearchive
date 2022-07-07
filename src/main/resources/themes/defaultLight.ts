@@ -21,6 +21,8 @@ export const defaultLightTheme: any = {
 		"sidebar-btn-bg-color": "#1B1B20",
 		"sidebar-btn-hover-fg-color": "#FFFFFF",
 		"sidebar-btn-hover-bg-color": "#2C2C34",
+		"sidebar-btn-active-fg-color": "#FFFFFF",
+		"sidebar-btn-active-bg-color": "#3E3E48",
 
 		"sidebar-category-title-color": "#BBBBC3",
 		"sidebar-category-title-hover-color": "#747480",

@@ -73,6 +73,10 @@
 	background: var(--sidebar-btn-hover-bg-color);
 	color: var(--sidebar-btn-hover-fg-color);
 }
+.sidebar-btn:active {
+	background: var(--sidebar-btn-active-bg-color);
+	color: var(--sidebar-btn-active-fg-color);
+}
 
 .sidebar-document-list {
 	position: relative;

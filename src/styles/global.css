@@ -16,7 +16,6 @@
 	margin: 0;
 	box-sizing: border-box;
 	font-family: "overpass", sans-serif;
-
 	user-select: none;
 	-webkit-user-drag: none;
 }
@@ -24,12 +23,9 @@ body {
 	position: fixed;
 	top: 0;
 	left: 0;
-
 	width: 100vw;
 	height: 100vh;
-
 	overflow: hidden;
-
 	background: var(--tabbar-bg-color);
 }
 *:focus {
@@ -38,7 +34,6 @@ body {
 
 .workspace {
 	width: 70vw;
-
 	position: fixed;
 	right: 0;
 	top: 0;
@@ -49,24 +44,17 @@ body {
 	position: absolute;
 	top: 25vh;
 	left: 25vw;
-
 	display: none;
 	width: 50vw;
 	height: 50vh;
-
 	z-index: 5;
-
 	background: var(--modal-bg-color);
 	color: var(--modal-fg-color);
-
 	border-radius: var(--modal-corner-radius);
-
 	transform: scale(0);
-	
 	transition-duration: 0.2s;
 	transition-timing-function: cubic-bezier(0.46, 0.03, 0.55, 1);
 	transition-property: transform;
-
 	overflow-x: hidden;
 	overflow-y: auto;
 }
@@ -78,36 +66,26 @@ body {
 }
 .modal::-webkit-scrollbar-track {
 	background: var(--modal-scrollbar-bg);
-
 	border-radius: var(--modal-scrollbar-corner-radius);
 }
 .modal::-webkit-scrollbar-thumb {
 	background: var(--modal-scrollbar-fg);
-
 	border-radius: var(--modal-scrollbar-corner-radius);
 }
 .modal-close-btn {
 	position: absolute;
 	right: 8px;
 	top: 8px;
-
 	display: block;
 	width: 35px;
 	height: 35px;
-
 	border: 0;
-
 	background: var(--modal-btn-bg-color);
 	color: var(--modal-btn-fg-color);
-
 	font-size: 15px;
-
 	border-radius: var(--modal-btn-corner-radius);
-
 	padding: 8px;
-
 	cursor: pointer;
-
 	transition: .2s background, .2s color;
 }
 .modal-close-btn:hover {
@@ -123,17 +101,12 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-
 	display: none;
 	width: 100vw;
 	height: 100vh;
-
 	z-index: 4;
-
 	background: #000000;
-
 	opacity: 0;
-
 	transition: .2s opacity;
 }
 
