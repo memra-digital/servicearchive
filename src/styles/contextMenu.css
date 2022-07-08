@@ -1,0 +1,117 @@
+/*
+=====================================
+  © Memra Digital, 2019-2022
+  Licensed under the GPLv3 license.
+=====================================
+*/
+
+.context-menu {
+	position: fixed;
+	top: 10%;
+	left: 10%;
+	display: none;
+	width: 250px;
+	height: 0;
+	padding-top: 8px;
+	background: var(--context-menu-bg-color);
+	border-radius: var(--context-menu-corner-radius);
+	overflow: hidden;
+	z-index: 5;
+	opacity: 0;
+	transition: .2s height, .1s opacity;
+}
+
+.context-menu .option,
+.context-menu .selection {
+	display: block;
+	width: calc(100% - 16px);
+	height: 35px;
+	color: var(--context-menu-btn-fg-color);
+	background: var(--context-menu-btn-bg-color);
+	border-radius: var(--context-menu-btn-corner-radius);
+	font-size: 15px;
+	margin: 8px;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 8px;
+	cursor: pointer;
+	transition: .2s background, .2s color;
+}
+.context-menu .option:hover,
+.context-menu .selection:hover {
+	color: var(--context-menu-btn-hover-fg-color);
+	background: var(--context-menu-btn-hover-bg-color);
+}
+.context-menu .option:active,
+.context-menu .selection:active {
+	color: var(--context-menu-btn-active-fg-color);
+	background: var(--context-menu-btn-active-bg-color);
+}
+.context-menu .option p,
+.context-menu .selection p {
+	display: inline-block;
+}
+
+.context-menu .divider {
+	display: block;
+	width: 90%;
+	height: 3px;
+	margin-left: 5%;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	background: var(--context-menu-divider-color);
+	border-radius: 3px;
+}
+
+.context-menu .selection {
+	position: relative;
+}
+.context-menu .selection p {
+	position: absolute;
+	left: 8px;
+	display: block;
+	width: calc(100% - 23px);
+}
+.context-menu .selection i {
+	position: absolute;
+	right: 8px;
+	display: block;
+	width: 15px;
+	height: 15px;
+	font-size: 15px;
+}
+
+.context-menu .color {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+.context-menu .color.red {
+	background: var(--red-color);
+}
+.context-menu .color.orange {
+	background: var(--orange-color);
+}
+.context-menu .color.yellow {
+	background: var(--yellow-color);
+}
+.context-menu .color.green {
+	background: var(--green-color);
+}
+.context-menu .color.cyan {
+	background: var(--cyan-color);
+}
+.context-menu .color.lblue {
+	background: var(--light-blue-color);
+}
+.context-menu .color.blue {
+	background: var(--blue-color);
+}
+.context-menu .color.purple {
+	background: var(--purple-color);
+}
+.context-menu .color.pink {
+	background: var(--pink-color);
+}

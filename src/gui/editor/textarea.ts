@@ -9,9 +9,12 @@ import Quill, { StringMap } from 'quill';
 import * as main from './main';
 import * as sidebar from '../sidebar/main';
 import * as data from '../../core/data';
+import * as language from '../../core/language';
+import ContextMenu from '../contextMenu/main';
 
 export let value: any = [];
 
+let editorElement: HTMLElement = document.querySelector(`#editor-textarea`);
 let editor: Quill;
 
 let boldBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`editor-bold-btn`);
@@ -100,6 +103,64 @@ export const init = () => {
 	listBtn.onclick = () => {
 		editor.format(`list`, !isListBtnActive);
 	}
+
+	// Add the context menu
+	let contextMenu: ContextMenu = new ContextMenu(editorElement, [
+		{
+			type: `option`,
+			id: `copy`,
+			text: language.getString(`editor-copy`),
+			onClick: () => {
+				navigator.clipboard.writeText(`<empty clipboard>`)
+			}
+		},
+		{
+			type: `option`,
+			id: `cut`,
+			text: language.getString(`editor-cut`),
+			onClick: () => {
+				navigator.clipboard.writeText(`<empty clipboard>`)
+			}
+		},
+		{
+			type: `option`,
+			id: `paste`,
+			text: language.getString(`editor-paste`),
+			onClick: () => {
+				navigator.clipboard.readText()
+			}
+		},
+		{
+			type: `divider`
+		},
+		{
+			type: `option`,
+			id: `undo`,
+			text: language.getString(`editor-undo`),
+			onClick: () => {
+
+			}
+		},
+		{
+			type: `option`,
+			id: `redo`,
+			text: language.getString(`editor-redo`),
+			onClick: () => {
+
+			}
+		},
+		{
+			type: `divider`
+		},
+		{
+			type: `option`,
+			id: `closeTab`,
+			text: language.getString(`editor-close-tab`),
+			onClick: () => {
+
+			}
+		}
+	]);
 }
 
 export const setContent = (value: any) => {

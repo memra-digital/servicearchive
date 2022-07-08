@@ -9,23 +9,22 @@ export const lvLvLang: any = {
 	"language-code": "lv-lv",
 	"language-english": "Latvian",
 	"language-native": "Latviešu",
-	"language-test": "Ja Jūs redzat šo tekstu, tad šī valoda darbojas.",
 
 	"search": "Meklēt...",
-	"search-results": "Atrada $ rezultātus.",
+	"search-results": "Atrada $1 rezultātus.",
 	"search-titles-section": "Virsraksti",
 	"search-content-section": "Saturs",
-	"search-overflow-singular": "+ $ cits rezultāts šajā rakstā",
-	"search-overflow-plural": "+ $ citi rezultāti šajā rakstā",
+	"search-overflow-singular": "+ $1 cits rezultāts šajā rakstā",
+	"search-overflow-plural": "+ $1 citi rezultāti šajā rakstā",
 	
 	"add-document": "Ievadiet jaunā dokumenta nosaukumu:",
 	"rename-document": "Pārsaukt dokumentu:",
 	"empty-document": "(Tukšs)",
-	"delete-document": "Vai Jūs tiešām vēlaties izdzēst dokumentu \"$\"?",
+	"delete-document": "Vai tiešām vēlaties izdzēst dokumentu \"$1\"?",
 
-	"add-document-category": "Ievadi jaunās kategorijas nosaukumu:",
+	"add-document-category": "Ievadiet jaunās kategorijas nosaukumu:",
 	"rename-document-category": "Pārsaukt kategoriju:",
-	"delete-document-category": "Vai Jūs tiešām vēlaties izdzēst kategoriju \"$\"? Tiks izdzēsti arī tie dokumenti, kas tajā ir iekšā.",
+	"delete-document-category": "Vai tiešām vēlaties izdzēst kategoriju \"$1\"? Tiks izdzēsti arī tie dokumenti, kas tajā ir iekšā.",
 
 	"loading": "Ielādējas...",
 
@@ -49,7 +48,34 @@ export const lvLvLang: any = {
 	"editor-characters-one": "$ rakstzīme",
 	"editor-characters-two": "$ rakstzīmes",
 	"editor-characters-plural": "$ rakstzīmes",
-	
-	"created": "Izveidots: ",
-	"last-modified": "Pēdējoreiz modificēts: "
+
+	"editor-copy": "Kopēt",
+	"editor-paste": "Ielīmēt",
+	"editor-cut": "Izgriezt",
+	"editor-undo": "Atsaukt",
+	"editor-redo": "Atcelt atsaukšanu",
+	"editor-close-tab": "Aizvērt šo cilni",
+
+	"tab-close": "Aizvērt cilni",
+
+	"document-created": "Izveidots: ",
+	"document-last-modified": "Pēdējoreiz modificēts: ",
+
+	"red": "Sarkans",
+	"orange": "Oranžs",
+	"yellow": "Dzeltens",
+	"green": "Zaļš",
+	"cyan": "Ciāna",
+	"light-blue": "Gaiši zils",
+	"blue": "Zils",
+	"purple": "Violets",
+	"pink": "Rozā",
+
+	"category-color": "Krāsa",
+	"category-rename": "Pārsaukt",
+	"category-delete": "Izdzēst",
+
+	"document-rename": "Pārsaukt",
+	"document-delete": "Izdzēst",
+	"document-switch-category": "Nomainīt kategoriju"
 };

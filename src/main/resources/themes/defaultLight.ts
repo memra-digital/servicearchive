@@ -111,6 +111,27 @@ export const defaultLightTheme: any = {
 
 		"modal-scrollbar-width": "10px",
 		"modal-scrollbar-bg-color": "#FFFFFF",
-		"modal-scrollbar-fg-color": "#D8D8D8"
+		"modal-scrollbar-fg-color": "#D8D8D8",
+
+		"context-menu-bg-color": "#1A1A1F",
+		"context-menu-divider-color": "#3E3E48",
+		"context-menu-corner-radius": "10px",
+		"context-menu-btn-fg-color": "#FFFFFF",
+		"context-menu-btn-bg-color": "#1B1B20",
+		"context-menu-btn-hover-fg-color": "#FFFFFF",
+		"context-menu-btn-hover-bg-color": "#2C2C34",
+		"context-menu-btn-active-fg-color": "#FFFFFF",
+		"context-menu-btn-active-bg-color": "#3E3E48",
+		"context-menu-btn-corner-radius": "10px",
+
+		"red-color": "#E74747",
+		"orange-color": "#F5763C",
+		"yellow-color": "#ECAF2A",
+		"green-color": "#1BC537",
+		"cyan-color": "#16C591",
+		"light-blue-color": "#2391D1",
+		"blue-color": "#1D3CC7",
+		"purple-color": "#993EE3",
+		"pink-color": "#E43A65"
 	}
 };

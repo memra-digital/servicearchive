@@ -46,3 +46,12 @@ export interface LanguageListItem {
 	name: string,
 	file: string
 }
+
+export interface ContextMenuItem {
+	type: string,
+	id?: string,
+	text?: string,
+	color?: string,
+	options?: ContextMenuItem[],
+	onClick?: Function
+}

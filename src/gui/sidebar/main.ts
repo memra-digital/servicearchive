@@ -11,6 +11,7 @@ import './popup';
 import * as language from '../../core/language';
 import * as data from '../../core/data';
 import * as tabs from '../tabs/main';
+import ContextMenu from '../contextMenu/main';
 import { DocumentCategory, DocumentCategoryListItem, DocumentListItem } from '../../schemas';
 
 let documentListElement: HTMLDivElement = <HTMLDivElement>document.getElementById(`sidebar-document-list`);
@@ -42,6 +43,24 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
  			sidebarDocumentElement.onclick = (event: MouseEvent) => {
 				tabs.addTab(data.getDocument(parseInt(sidebarDocumentElement.getAttribute(`data-id`))));
 			}
+
+			let contextMenu: ContextMenu = new ContextMenu(sidebarDocumentElement, [
+				{
+					type: `option`,
+					id: `rename`,
+					text: language.getString(`document-rename`)
+				},
+				{
+					type: `option`,
+					id: `delete`,
+					text: language.getString(`category-delete`)
+				},
+				{
+					type: `option`,
+					id: `switchCategory`,
+					text: language.getString(`category-switch-category`)
+				}
+			]);
 		} else {
 			/*
 				Create the document category
@@ -78,6 +97,74 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 					sidebarCategoryElement.style.height = `${sidebarCategoryContentElement.clientHeight + 28}px`;
 				}
 			}
+
+			let contextMenu: ContextMenu = new ContextMenu(sidebarCategoryHeaderElement, [
+				{
+					type: `selection`,
+					id: `color`,
+					text: language.getString(`category-color`),
+					options: [
+						{
+							type: `option`,
+							color: `red`,
+							text: language.getString(`red`)
+						},
+						{
+							type: `option`,
+							color: `orange`,
+							text: language.getString(`orange`)
+						},
+						{
+							type: `option`,
+							color: `yellow`,
+							text: language.getString(`yellow`)
+						},
+						{
+							type: `option`,
+							color: `green`,
+							text: language.getString(`green`)
+						},
+						{
+							type: `option`,
+							color: `cyan`,
+							text: language.getString(`cyan`)
+						},
+						{
+							type: `option`,
+							color: `lblue`,
+							text: language.getString(`light-blue`)
+						},
+						{
+							type: `option`,
+							color: `blue`,
+							text: language.getString(`blue`)
+						},
+						{
+							type: `option`,
+							color: `purple`,
+							text: language.getString(`purple`)
+						},
+						{
+							type: `option`,
+							color: `pink`,
+							text: language.getString(`pink`)
+						}
+					]
+				},
+				{
+					type: `divider`
+				},
+				{
+					type: `option`,
+					id: `rename`,
+					text: language.getString(`category-rename`)
+				},
+				{
+					type: `option`,
+					id: `delete`,
+					text: language.getString(`category-delete`)
+				}
+			]);
 		}
 	}
 }
