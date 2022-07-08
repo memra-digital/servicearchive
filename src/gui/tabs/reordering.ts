@@ -16,9 +16,14 @@ let clickedTab: boolean = false;
 let newTabPosition: number = 0;
 
 export const handleTabMouseDown = (event: MouseEvent, id: number) => {
+	// Don't do anything if it's not left click
+	if (event.button !== 0) {
+		return;
+	}
+
 	// Don't do anything if clicked the tabs X button
-	if ((<HTMLElement>event.target).id == `tab-${id}-close` ||
-		(<HTMLElement>event.target).className == `bi bi-x`) {
+	if (event.target === document.querySelector(`.tab[data-id="${id}"] .close`) ||
+		event.target === document.querySelector(`.tab[data-id="${id}"] .close i`)) {
 		
 		return;
 	}

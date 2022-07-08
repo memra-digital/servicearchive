@@ -7,8 +7,10 @@
 
 import '../../styles/tabs.css';
 import * as reordering from './reordering';
-import { createTabElement } from './element';
 import * as editor from '../editor/main';
+import * as i18n from '../../core/i18n';
+import ContextMenu from '../contextMenu/main';
+import { createTabElement } from './element';
 import type { DocumentMetadata } from '../../schemas';
 
 let tabbar: HTMLDivElement = <HTMLDivElement>document.getElementById(`tabbar`);
@@ -31,7 +33,18 @@ export const addTab = (sourceDocument: DocumentMetadata) => {
 
 	setTimeout(() => {
 		openTabs.push(sourceDocument);
-		tabbar.appendChild(createTabElement(sourceDocument));
+
+		let newTabElement: HTMLDivElement = createTabElement(sourceDocument);
+		tabbar.appendChild(newTabElement);
+		let contextMenu: ContextMenu = new ContextMenu(newTabElement, [
+			{
+				type: `option`,
+				text: i18n.getString(`tab-menu-close`),
+				onClick: () => {
+					closeTab(sourceDocument.id);
+				}
+			}
+		]);
 
 		setTimeout(() => {
 			recalculateLayout();
@@ -80,10 +93,13 @@ export const closeTab = (id: number) => {
 }
 export const openTab = (id: number) => {
 	for (let i: number = 0; i < openTabs.length; i++) {
-		if (openTabs[i].id == id) {
+		if (openTabs[i].id === id) {
 			openTabIndex = i;
 
 			document.querySelector(`.tab[data-id="${openTabs[i].id}"]`).classList.add(`active`);
+			if (i !== 0) {
+				document.querySelector(`.tab[data-id="${openTabs[i - 1].id}"]`).classList.add(`no-right-divider`);
+			}
 
 			editor.openDocument(openTabs[i].id);
 
@@ -91,7 +107,10 @@ export const openTab = (id: number) => {
 			document.querySelector(`.sidebar-document[data-id="${openTabs[i].id}"]`).classList.remove(`open`);
 			document.querySelector(`.sidebar-document[data-id="${openTabs[i].id}"]`).classList.add(`active`);
 		} else {
-			document.querySelector(`.tab[data-id="${openTabs[i].id}"]`).className = `tab`;
+			document.querySelector(`.tab[data-id="${openTabs[i].id}"]`).classList.remove(`active`);
+			if (i !== 0) {
+				document.querySelector(`.tab[data-id="${openTabs[i - 1].id}"]`).classList.remove(`no-right-divider`);
+			}
 
 			// Show the document as open in the sidebar
 			document.querySelector(`.sidebar-document[data-id="${openTabs[i].id}"]`).classList.add(`open`);

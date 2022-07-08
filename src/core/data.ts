@@ -96,6 +96,22 @@ export const getDocumentCategory = (id: number) => {
 		content: []
 	};
 }
+export const getCategoryByDocumentId = (id: number) => {
+	for (let i: number = 0; i < data.length; i++) {
+		for (let o: number = 0; o < data[i].content.length; o++) {
+			if (data[i].content[o].id === id) {
+				return data[i];
+			}
+		}
+	}
+
+	return {
+		id: 0,
+		title: undefined,
+		color: undefined,
+		content: []
+	};
+}
 export const getDocumentCategoryTitle = (id: number) => {
 	for (let i = 0; i < data.length; i++) {
 		if (data[i].id == id) {

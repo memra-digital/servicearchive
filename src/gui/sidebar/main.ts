@@ -47,17 +47,14 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 			let contextMenu: ContextMenu = new ContextMenu(sidebarDocumentElement, [
 				{
 					type: `option`,
-					id: `rename`,
 					text: i18n.getString(`document-menu-rename`)
 				},
 				{
 					type: `option`,
-					id: `delete`,
 					text: i18n.getString(`document-menu-delete`)
 				},
 				{
 					type: `option`,
-					id: `switchCategory`,
 					text: i18n.getString(`document-menu-switch-category`)
 				}
 			]);
@@ -101,7 +98,6 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 			let contextMenu: ContextMenu = new ContextMenu(sidebarCategoryHeaderElement, [
 				{
 					type: `selection`,
-					id: `color`,
 					text: i18n.getString(`category-menu-color`),
 					options: [
 						{
@@ -112,7 +108,10 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 						{
 							type: `option`,
 							color: `orange`,
-							text: i18n.getString(`orange`)
+							text: i18n.getString(`orange`),
+							onClick: () => {
+								console.log(`Poopoo`)
+							}
 						},
 						{
 							type: `option`,
@@ -156,12 +155,10 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 				},
 				{
 					type: `option`,
-					id: `rename`,
 					text: i18n.getString(`category-menu-rename`)
 				},
 				{
 					type: `option`,
-					id: `delete`,
 					text: i18n.getString(`category-menu-delete`)
 				}
 			]);

@@ -49,7 +49,6 @@ export interface LanguageListItem {
 
 export interface ContextMenuItem {
 	type: string,
-	id?: string,
 	text?: string,
 	color?: string,
 	options?: ContextMenuItem[],

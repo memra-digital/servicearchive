@@ -37,8 +37,10 @@ export default class ContextMenu {
 				this.contextMenuElementHeight += 35;
 
 				if (menuItems[i].onClick !== undefined) {
-					optionElement.addEventListener(`click`, () => {
-						menuItems[i].onClick();
+					optionElement.addEventListener(`mousedown`, (event: MouseEvent) => {
+						if (event.button === 0) {
+							menuItems[i].onClick();
+						}
 					});
 				}
 

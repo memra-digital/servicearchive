@@ -13,6 +13,7 @@
 	user-select: none;
 	-webkit-user-drag: none;
 }
+
 .tab {
 	position: relative;
 	display: inline-block;
@@ -27,17 +28,81 @@
 	border-radius: var(--tab-corner-radius) var(--tab-corner-radius) 0 0;
 	margin: 0;
 	vertical-align: top;
+	opacity: var(--tab-inactive-opacity);
 	transition: .25s width, .2s opacity;
 }
+.tab:hover {
+	opacity: var(--tab-inactive-hover-opacity);
+}
+.tab:active {
+	opacity: var(--tab-inactive-active-opacity);
+}
+.tab::after {
+	content: "";
+	position: absolute;
+	top: 15%;
+	right: -1px;
+	display: block;
+	width: 2px;
+	height: 70%;
+	border-radius: 2px;
+	background: var(--tab-divider-color);
+}
+.tab.no-right-divider::after {
+	display: none;
+}
+
 .tab p {
 	display: inline-block;
-	width: calc(100% - 20px);
 	height: 15px;
+	max-width: calc(100% - 30px);
 	color: var(--tab-fg-color);
 	overflow: hidden;
+	vertical-align: middle;
 	margin-top: 1px;
 }
-.tab button {
+
+.tab .color {
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 8px;
+	margin-bottom: 2px;
+	background: var(--no-color);
+}
+.tab .color.red {
+	background: var(--red-color);
+}
+.tab .color.orange {
+	background: var(--orange-color);
+}
+.tab .color.yellow {
+	background: var(--yellow-color);
+}
+.tab .color.green {
+	background: var(--green-color);
+}
+.tab .color.cyan {
+	background: var(--cyan-color);
+}
+.tab .color.lblue {
+	background: var(--light-blue-color);
+}
+.tab .color.blue {
+	background: var(--blue-color);
+}
+.tab .color.purple {
+	background: var(--purple-color);
+}
+.tab .color.pink {
+	background: var(--pink-color);
+}
+
+.tab .close {
+	position: absolute;
+	right: 8px;
 	display: inline-block;
 	width: 20px;
 	height: 20px;
@@ -50,7 +115,15 @@
 	margin: 0;
 	margin-top: -2px;
 	cursor: pointer;
+	transition: .2s opacity;
 }
+.tab .close:hover {
+	opacity: var(--tab-btn-hover-opacity);
+}
+.tab .close:active {
+	opacity: var(--tab-btn-active-opacity);
+}
+
 .tab.active {
 	background: var(--tab-active-bg-color);
 	opacity: 1;
@@ -71,8 +144,10 @@
 	content: "";
 	position: absolute;
 	right: calc(0px - var(--tab-corner-radius) * 2);
+	top: unset;
 	bottom: 0;
 	display: block;
+	background: none;
 	width: calc(var(--tab-corner-radius) * 2);
 	height: var(--tab-corner-radius);
 	border-bottom-left-radius: var(--tab-corner-radius);

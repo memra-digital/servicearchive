@@ -5,6 +5,7 @@
 =====================================
 */
 
+import * as data from '../../core/data';
 import { DocumentMetadata } from '../../schemas';
 
 export const createTabElement = (sourceDocument: DocumentMetadata, active: boolean = false) => {
@@ -13,14 +14,21 @@ export const createTabElement = (sourceDocument: DocumentMetadata, active: boole
 	if (active) element.classList.add(`active`);
 	element.setAttribute(`data-id`, sourceDocument.id.toString());
 
+	let color: string = data.getCategoryByDocumentId(sourceDocument.id).color;
+	let colorElement: HTMLDivElement = document.createElement(`div`);
+	colorElement.className = `color`;
+	if (color !== undefined) {
+		colorElement.classList.add(color);
+	}
+	element.appendChild(colorElement);
+
 	let textElement: HTMLParagraphElement = document.createElement(`p`);
 	textElement.innerText = sourceDocument.title;
+	element.appendChild(textElement);
 
 	let closeBtnElement: HTMLButtonElement = document.createElement(`button`);
 	closeBtnElement.className = `close`;
 	closeBtnElement.innerHTML = `<i class="bi bi-x"></i>`;
-
-	element.appendChild(textElement);
 	element.appendChild(closeBtnElement);
 
 	return element;

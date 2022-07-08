@@ -54,10 +54,14 @@ export const defaultLightTheme: any = {
 
 		"tabbar-bg-color": "#D8D8D8",
 		"tab-fg-color": "#000000",
-		"tab-inactive-opacity": "0.6",
 		"tab-divider-color": "#BCBCBC",
+		"tab-inactive-opacity": "0.8",
+		"tab-inactive-hover-opacity": "0.6",
+		"tab-inactive-active-opacity": "0.5",
 		"tab-active-bg-color": "#FFFFFF",
 		"tab-active-fg-color": "#000000",
+		"tab-btn-hover-opacity": "0.7",
+		"tab-btn-active-opacity": "0.5",
 		"tab-corner-radius": "10px",
 
 		"editor-bg-color": "#FFFFFF",
@@ -124,6 +128,7 @@ export const defaultLightTheme: any = {
 		"context-menu-btn-active-bg-color": "#3E3E48",
 		"context-menu-btn-corner-radius": "10px",
 
+		"no-color": "#808080",
 		"red-color": "#E74747",
 		"orange-color": "#F5763C",
 		"yellow-color": "#ECAF2A",

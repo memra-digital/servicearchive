@@ -108,7 +108,6 @@ export const init = () => {
 	let contextMenu: ContextMenu = new ContextMenu(editorElement, [
 		{
 			type: `option`,
-			id: `copy`,
 			text: i18n.getString(`editor-menu-copy`),
 			onClick: () => {
 				navigator.clipboard.writeText(`<empty clipboard>`)
@@ -116,7 +115,6 @@ export const init = () => {
 		},
 		{
 			type: `option`,
-			id: `cut`,
 			text: i18n.getString(`editor-menu-cut`),
 			onClick: () => {
 				navigator.clipboard.writeText(`<empty clipboard>`)
@@ -124,7 +122,6 @@ export const init = () => {
 		},
 		{
 			type: `option`,
-			id: `paste`,
 			text: i18n.getString(`editor-menu-paste`),
 			onClick: () => {
 				navigator.clipboard.readText()
@@ -135,7 +132,6 @@ export const init = () => {
 		},
 		{
 			type: `option`,
-			id: `undo`,
 			text: i18n.getString(`editor-menu-undo`),
 			onClick: () => {
 
@@ -143,7 +139,6 @@ export const init = () => {
 		},
 		{
 			type: `option`,
-			id: `redo`,
 			text: i18n.getString(`editor-menu-redo`),
 			onClick: () => {
 
@@ -154,7 +149,6 @@ export const init = () => {
 		},
 		{
 			type: `option`,
-			id: `closeTab`,
 			text: i18n.getString(`editor-menu-close-tab`),
 			onClick: () => {
 
