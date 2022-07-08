@@ -43,7 +43,7 @@ ipcMain.on(`get-language-list`, (event, arg) => {
 		let language: any = JSON.parse(fs.readFileSync(path.join(app.getPath(`userData`), `/languages/`, files[i])).toString());
 
 		results.push({
-			name: language[`language-native`],
+			name: language.metadata[`name-native`],
 			file: files[i]
 		});
 	}

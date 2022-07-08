@@ -6,8 +6,6 @@
 */
 
 import { ipcRenderer } from 'electron';
-import { openSettingsModal } from '../main';
-import { switchTab } from '../tabSwitcher';
 import type { LanguageListItem } from '../../../schemas';
 
 let languages: LanguageListItem[] = [];
@@ -20,11 +18,11 @@ export const loadLanguageTab = () => {
 	for (let i: number = 0; i < languages.length; i++) {
 
 		let buttonElement: HTMLButtonElement = document.createElement(`button`);
-		buttonElement.setAttribute(`class`, `settings-wide-button settings-language-button`);
+		buttonElement.className = `settings-wide-button settings-language-button`;
 		buttonElement.innerText = languages[i].name;
 
-		if (languages[i].file.split(`.`)[0] == activeLanguage) {
-			buttonElement.className += ` active`;
+		if (languages[i].file.split(`.`)[0] === activeLanguage) {
+			buttonElement.classList.add(`active`);
 		}
 
 		buttonElement.onclick = () => switchLanguage(i);

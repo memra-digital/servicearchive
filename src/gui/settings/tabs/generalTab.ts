@@ -7,7 +7,7 @@
 
 import * as os from 'os';
 import * as utils from '../../../core/utils';
-import * as language from '../../../core/language';
+import * as language from '../../../core/i18n';
 
 export const loadGeneralTab = () => {
 	let elements: HTMLElement[] = [];

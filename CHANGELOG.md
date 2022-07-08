@@ -13,7 +13,7 @@
 **CHANGED FEATURES:**
 
 - Design refresh for the whole program - it's more consistent, compact and practical
-- Improved editor - the word/char counters are faster and more useful, there are more formatting options and there are 
+- Improved editor - the word/char counters are faster and more useful and there are more formatting options
 - Renaming and deleting doesn't have buttons in the sidebar anymore - instead, context menus are used for that now
 
 **BUGS FIXED:**
@@ -23,7 +23,8 @@
 
 **TECHNICAL CHANGES:**
 
-- The way documents are saved is completely different (previously everything would be saved in one JSON file, now only metadata is saved in a central JSON file and document content is saved in separate files). This might negatively impact performance a little bit, but it definitely improves the safety of the files.
+- The way documents are saved is completely different (previously everything would be saved in one JSON file, now only metadata is saved in a central JSON file and document content is saved in separate files). This might negatively impact performance a little bit for some operations (i.e. searching), but it definitely decreases the RAM usage and chance of data loss.
+- Even though there are no new languages, the application is now much better for localization - it now supports various plurality rules (see [here](https://unicode-org.github.io/cldr-staging/charts/latest/supplemental/language_plural_rules.html)). The string names are also now cleaned up and string values now support multiple placeholders.
 
 # 1.0.0rc1
 

@@ -6,7 +6,7 @@
 */
 
 import './styles/global.css';
-import './core/language';
+import './core/i18n';
 import './core/themes';
 import './gui/sidebar/main';
 import './gui/tabs/main';

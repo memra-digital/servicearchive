@@ -6,76 +6,140 @@
 */
 
 export const lvLvLang: any = {
-	"language-code": "lv-lv",
-	"language-english": "Latvian",
-	"language-native": "Latviešu",
+	"metadata": {
+		"code": "lv-lv",
+		"name-english": "Latvian",
+		"name-native": "Latviešu",
+	},
+	"properties": {
+		"plural": {
+			"zero": false,
+			"one": true,
+			"two": false,
+			"few": false,
+			"many": false,
+			"other": true,
+			"fewRange": [],
+			"manyRange": []
+		}
+	},
+	"strings": {
+		"search-placeholder": "Meklēt...",
 
-	"search": "Meklēt...",
-	"search-results": "Atrada $1 rezultātus.",
-	"search-titles-section": "Virsraksti",
-	"search-content-section": "Saturs",
-	"search-overflow-singular": "+ $1 cits rezultāts šajā rakstā",
-	"search-overflow-plural": "+ $1 citi rezultāti šajā rakstā",
+		"search-result-count": {
+			"one": "Atrasts $1 rezultāts.",
+			"other": "Atrasti $1 rezultāti."
+		},
 	
-	"add-document": "Ievadiet jaunā dokumenta nosaukumu:",
-	"rename-document": "Pārsaukt dokumentu:",
-	"empty-document": "(Tukšs)",
-	"delete-document": "Vai tiešām vēlaties izdzēst dokumentu \"$1\"?",
+		"add-document-tooltip": "Pievienot dokumentu",
+		"add-document-popup-title": "Pievienot dokumentu",
+		"add-document-popup-document-title": "Nosaukums",
+		"add-document-popup-document-category": "Kategorija",
 
-	"add-document-category": "Ievadiet jaunās kategorijas nosaukumu:",
-	"rename-document-category": "Pārsaukt kategoriju:",
-	"delete-document-category": "Vai tiešām vēlaties izdzēst kategoriju \"$1\"? Tiks izdzēsti arī tie dokumenti, kas tajā ir iekšā.",
+		"rename-document-popup-title": "Pārsaukt dokumentu",
+		"rename-document-popup-current-document-title": "Pašreizējais dokumenta nosaukums",
+		"rename-document-popup-new-document-title": "Jaunais dokumenta nosaukums",
 
-	"loading": "Ielādējas...",
+		"change-category-popup-title": "Nomainīt kategoriju",
 
-	"sync": "Sinhronizē ar mobilo ierīci",
-	"sync-instructions": "Lai sinhronizētu, atveriet servicearchive Jūsu mobilajā ierīcē, tad nospiediet uz datora ikonu blakus meklēšanas lodziņam un noskenējiet QR kodu, kas redzams zemāk! Negaidiet pārāk ilgi, jo QR kods var beigt darboties pēc dažām minūtēm.",
+		"delete-document-popup-title": "Izdzēst dokumentu",
+		"delete-document-popup-text": "Vai tiešām vēlaties izdzēst dokumentu \"$1\"?",
 
-	"settings": "Iestatījumi",
-	"settings-general": "Vispārēji",
-	"settings-theme": "Dizains",
-	"settings-language": "Valoda",
-	"settings-about": "Par",
+		"add-category-tooltip": "Pievienot kategoriju",
+		"add-category-popup-title": "Pievienot kategoriju",
+		"add-category-popup-category-title": "Nosaukums",
+		"add-category-popup-category-color": "Krāsa",
 
-	"license": "License: GPLv3 (\"GPL-3.0-only\")",
-	"technical-info": "Tehniskā informācija",
-	
-	"editor-words-zero": "$ vārdi",
-	"editor-words-one": "$ vārds",
-	"editor-words-two": "$ vārdi",
-	"editor-words-plural": "$ vārdi",
-	"editor-characters-zero": "$ rakstzīmes",
-	"editor-characters-one": "$ rakstzīme",
-	"editor-characters-two": "$ rakstzīmes",
-	"editor-characters-plural": "$ rakstzīmes",
+		"rename-category-popup-title": "Pārsaukt kategoriju",
+		"rename-category-popup-current-category-title": "Pašreizējais kategorijas nosaukums",
+		"rename-category-popup-new-category-title": "Jaunais kategorijas nosaukums",
 
-	"editor-copy": "Kopēt",
-	"editor-paste": "Ielīmēt",
-	"editor-cut": "Izgriezt",
-	"editor-undo": "Atsaukt",
-	"editor-redo": "Atcelt atsaukšanu",
-	"editor-close-tab": "Aizvērt šo cilni",
+		"delete-category-popup-title": "Izdzēst kategoriju",
+		"delete-category-popup-text": "Vai tiešām vēlaties izdzēst kategoriju \"$1\"?",
 
-	"tab-close": "Aizvērt cilni",
+		"empty-document-content": "(Tukšs)",
 
-	"document-created": "Izveidots: ",
-	"document-last-modified": "Pēdējoreiz modificēts: ",
+		"loading": "Ielādējas...",
 
-	"red": "Sarkans",
-	"orange": "Oranžs",
-	"yellow": "Dzeltens",
-	"green": "Zaļš",
-	"cyan": "Ciāna",
-	"light-blue": "Gaiši zils",
-	"blue": "Zils",
-	"purple": "Violets",
-	"pink": "Rozā",
+		"sync-tooltip": "Sinhronizēt ar mobilo ierīci",
+		"sync-title": "Sinhronizēt ar mobilo ierīci",
+		"sync-instructions": "Lai sinhronizētu, atveriet servicearchive savā mobilajā ierīcē, tad nospiediet uz datora ikonas blakus meklēšanas lodziņam un noskenējiet QR kodu, kas redzams zemāk! Negaidiet pārāk ilgi, jo QR kods var beigt darboties pēc dažām minūtēm.",
 
-	"category-color": "Krāsa",
-	"category-rename": "Pārsaukt",
-	"category-delete": "Izdzēst",
+		"settings-tooltip": "Iestatījumi",
+		"settings-title": "Iestatījumi",
 
-	"document-rename": "Pārsaukt",
-	"document-delete": "Izdzēst",
-	"document-switch-category": "Nomainīt kategoriju"
+		"settings-general-title": "Vispārēji",
+		"settings-reopen-tabs": "Saglabāt cilnes pēc aplikācijas aizvēršanas",
+		"settings-autosave-interval": "Automātiskās saglabāšanas intervāls",
+
+		"settings-theme-title": "Dizains",
+
+		"settings-language-title": "Valoda",
+
+		"settings-about-title": "Par",
+		"settings-license-text": "Licence: GPLv3 (\"GPL-3.0-only\")",
+		"settings-technical-title": "Tehniskā informācija",
+
+		"tab-close-tooltip": "Aizvērt",
+		
+		"editor-word-count": {
+			"one": "$1 vārds",
+			"other": "$1 vārdi"
+		},
+		"editor-character-count": {
+			"one": "$1 rakstzīme",
+			"other": "$1 rakstzīmes"
+		},
+
+		"editor-bold-tooltip": "Treknraksts",
+		"editor-italic-tooltip": "Slīpraksts",
+		"editor-underline-tooltip": "Pasvītrojums",
+		"editor-strikethrough-tooltip": "Nosvītrojums",
+		"editor-list-tooltip": "Saraksts",
+		"editor-blockquote-tooltip": "Citāts",
+		"editor-info-tooltip": "Informācija",
+
+		"document-info-title": "Informācija par dokumentu",
+		"document-info-pastor": "Mācītājs",
+		"document-info-date": "Datums",
+		"document-info-location": "Vieta",
+		"document-info-other": "Cita informācija",
+		"document-info-created": "Izveidots: $1",
+		"document-info-last-modified": "Pēdējoreiz modificēts: $1",
+
+		"splash-last-opened": "Pēdējoreiz atvērti",
+		"splash-resources": "Resursi",
+		"splash-tutorial": "Pamācība",
+		"splash-website": "Mājaslapa",
+		"splash-memra-website": "Memra Digital mājaslapa",
+
+		"editor-menu-copy": "Kopēt",
+		"editor-menu-paste": "Ielīmēt",
+		"editor-menu-cut": "Izgriezt",
+		"editor-menu-undo": "Atsaukt",
+		"editor-menu-redo": "Atcelt atsaukšanu",
+		"editor-menu-info": "Informācija",
+		"editor-menu-close-tab": "Aizvērt šo cilni",
+
+		"category-menu-color": "Krāsa",
+		"category-menu-rename": "Pārsaukt",
+		"category-menu-delete": "Izdzēst",
+
+		"document-menu-rename": "Pārsaukt",
+		"document-menu-delete": "Izdzēst",
+		"document-menu-switch-category": "Nomainīt kategoriju",
+		"document-menu-info": "Informācija",
+
+		"tab-menu-close": "Aizvērt",
+
+		"red": "Sarkans",
+		"orange": "Oranžs",
+		"yellow": "Dzeltens",
+		"green": "Zaļš",
+		"cyan": "Ciāna",
+		"light-blue": "Gaiši zils",
+		"blue": "Zils",
+		"purple": "Violets",
+		"pink": "Rozā"
+	}
 };

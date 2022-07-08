@@ -6,7 +6,7 @@
 */
 
 import '../../styles/popup.css';
-import * as language from '../../core/language';
+import * as i18n from '../../core/i18n';
 import * as data from '../../core/data';
 import { DocumentMetadata } from '../../schemas';
 
@@ -57,7 +57,7 @@ const close = () => {
 }
 
 addDocumentBtn.onclick = () => {
-	open(language.getString(`add-document`), true, (name: string) => {
+	open(i18n.getString(`add-document-popup-title`), true, (name: string) => {
 		if (name !== ``) {
 			let document: DocumentMetadata | boolean = data.addDocument(name);
 

@@ -9,7 +9,7 @@ import Quill, { StringMap } from 'quill';
 import * as main from './main';
 import * as sidebar from '../sidebar/main';
 import * as data from '../../core/data';
-import * as language from '../../core/language';
+import * as i18n from '../../core/i18n';
 import ContextMenu from '../contextMenu/main';
 
 export let value: any = [];
@@ -109,7 +109,7 @@ export const init = () => {
 		{
 			type: `option`,
 			id: `copy`,
-			text: language.getString(`editor-copy`),
+			text: i18n.getString(`editor-menu-copy`),
 			onClick: () => {
 				navigator.clipboard.writeText(`<empty clipboard>`)
 			}
@@ -117,7 +117,7 @@ export const init = () => {
 		{
 			type: `option`,
 			id: `cut`,
-			text: language.getString(`editor-cut`),
+			text: i18n.getString(`editor-menu-cut`),
 			onClick: () => {
 				navigator.clipboard.writeText(`<empty clipboard>`)
 			}
@@ -125,7 +125,7 @@ export const init = () => {
 		{
 			type: `option`,
 			id: `paste`,
-			text: language.getString(`editor-paste`),
+			text: i18n.getString(`editor-menu-paste`),
 			onClick: () => {
 				navigator.clipboard.readText()
 			}
@@ -136,7 +136,7 @@ export const init = () => {
 		{
 			type: `option`,
 			id: `undo`,
-			text: language.getString(`editor-undo`),
+			text: i18n.getString(`editor-menu-undo`),
 			onClick: () => {
 
 			}
@@ -144,7 +144,7 @@ export const init = () => {
 		{
 			type: `option`,
 			id: `redo`,
-			text: language.getString(`editor-redo`),
+			text: i18n.getString(`editor-menu-redo`),
 			onClick: () => {
 
 			}
@@ -155,7 +155,7 @@ export const init = () => {
 		{
 			type: `option`,
 			id: `closeTab`,
-			text: language.getString(`editor-close-tab`),
+			text: i18n.getString(`editor-menu-close-tab`),
 			onClick: () => {
 
 			}

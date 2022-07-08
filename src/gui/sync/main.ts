@@ -6,7 +6,7 @@
 */
 
 import '../../styles/sync.css';
-import * as language from '../../core/language';
+import * as i18n from '../../core/i18n';
 import * as data from '../../core/data';
 import * as connection from './connection';
 import QRCodeStyling from 'qr-code-styling';
@@ -28,9 +28,9 @@ export const openSyncModal = async () => {
 	qrCodeDisplay.style.display = `none`;
 	qrCodeOptions.style.display = `none`;
 
-	syncModalTitle.innerText = language.getString(`sync`);
-	syncModalInstructions.innerText = language.getString(`sync-instructions`);
-	(<HTMLParagraphElement>qrCodeLoading.children[1]).innerText = language.getString(`loading`);
+	syncModalTitle.innerText = i18n.getString(`sync-title`);
+	syncModalInstructions.innerText = i18n.getString(`sync-instructions`);
+	(<HTMLParagraphElement>qrCodeLoading.children[1]).innerText = i18n.getString(`loading`);
 
 	syncModalBg.style.display = `block`;
 	syncModal.style.display = `block`;

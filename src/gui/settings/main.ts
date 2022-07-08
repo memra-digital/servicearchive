@@ -6,7 +6,7 @@
 */
 
 import '../../styles/settings.css';
-import * as language from '../../core/language';
+import * as i18n from '../../core/i18n';
 import * as loader from './loader';
 
 let openSettingsModalBtn: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`settings-btn`);
@@ -15,10 +15,10 @@ let settingsModalCloseBtn: HTMLButtonElement = <HTMLButtonElement>document.getEl
 let settingsModalBg: HTMLElement = document.getElementById(`settings-modal-bg`);
 
 export let tabs: string[] = [
-	`<i class="bi bi-toggles2"></i> ${language.getString(`settings-general`)}`,
-	`<i class="bi bi-brush"></i> ${language.getString(`settings-theme`)}`,
-	`<i class="bi bi-translate"></i> ${language.getString(`settings-language`)}`,
-	`<i class="bi bi-info-circle"></i> ${language.getString(`settings-about`)}`
+	`<i class="bi bi-toggles2"></i> ${i18n.getString(`settings-general-title`)}`,
+	`<i class="bi bi-brush"></i> ${i18n.getString(`settings-theme-title`)}`,
+	`<i class="bi bi-translate"></i> ${i18n.getString(`settings-language-title`)}`,
+	`<i class="bi bi-info-circle"></i> ${i18n.getString(`settings-about-title`)}`
 ];
 
 export let isSettingsModalOpen: boolean = false;

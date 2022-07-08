@@ -7,7 +7,7 @@
 
 import * as os from 'os';
 import * as utils from '../../../core/utils';
-import * as language from '../../../core/language';
+import * as i18n from '../../../core/i18n';
 
 export const loadAboutTab = () => {
 	let elements: HTMLElement[] = [];
@@ -19,13 +19,13 @@ export const loadAboutTab = () => {
 	let mainInfoTextElement: HTMLElement = document.createElement(`p`);
 	mainInfoTextElement.innerText =
 		`© Memra Digital, 2019-2022
-		${language.getString(`license`)}
+		${i18n.getString(`settings-license-text`)}
 		
 		servicearchive ${utils.version}`;
 	elements.push(mainInfoTextElement);
 
 	let technicalInfoHeaderTextElement: HTMLElement = document.createElement(`b`);
-	technicalInfoHeaderTextElement.innerText = `${language.getString(`technical-info`)}`;
+	technicalInfoHeaderTextElement.innerText = `${i18n.getString(`settings-technical-title`)}`;
 	elements.push(technicalInfoHeaderTextElement);
 
 

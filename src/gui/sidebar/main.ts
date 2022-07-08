@@ -8,7 +8,7 @@
 import '../../styles/sidebar.css';
 import './resizability';
 import './popup';
-import * as language from '../../core/language';
+import * as i18n from '../../core/i18n';
 import * as data from '../../core/data';
 import * as tabs from '../tabs/main';
 import ContextMenu from '../contextMenu/main';
@@ -48,17 +48,17 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 				{
 					type: `option`,
 					id: `rename`,
-					text: language.getString(`document-rename`)
+					text: i18n.getString(`document-menu-rename`)
 				},
 				{
 					type: `option`,
 					id: `delete`,
-					text: language.getString(`category-delete`)
+					text: i18n.getString(`document-menu-delete`)
 				},
 				{
 					type: `option`,
 					id: `switchCategory`,
-					text: language.getString(`category-switch-category`)
+					text: i18n.getString(`document-menu-switch-category`)
 				}
 			]);
 		} else {
@@ -102,52 +102,52 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 				{
 					type: `selection`,
 					id: `color`,
-					text: language.getString(`category-color`),
+					text: i18n.getString(`category-menu-color`),
 					options: [
 						{
 							type: `option`,
 							color: `red`,
-							text: language.getString(`red`)
+							text: i18n.getString(`red`)
 						},
 						{
 							type: `option`,
 							color: `orange`,
-							text: language.getString(`orange`)
+							text: i18n.getString(`orange`)
 						},
 						{
 							type: `option`,
 							color: `yellow`,
-							text: language.getString(`yellow`)
+							text: i18n.getString(`yellow`)
 						},
 						{
 							type: `option`,
 							color: `green`,
-							text: language.getString(`green`)
+							text: i18n.getString(`green`)
 						},
 						{
 							type: `option`,
 							color: `cyan`,
-							text: language.getString(`cyan`)
+							text: i18n.getString(`cyan`)
 						},
 						{
 							type: `option`,
 							color: `lblue`,
-							text: language.getString(`light-blue`)
+							text: i18n.getString(`light-blue`)
 						},
 						{
 							type: `option`,
 							color: `blue`,
-							text: language.getString(`blue`)
+							text: i18n.getString(`blue`)
 						},
 						{
 							type: `option`,
 							color: `purple`,
-							text: language.getString(`purple`)
+							text: i18n.getString(`purple`)
 						},
 						{
 							type: `option`,
 							color: `pink`,
-							text: language.getString(`pink`)
+							text: i18n.getString(`pink`)
 						}
 					]
 				},
@@ -157,12 +157,12 @@ const loadDocuments = (parentElement: HTMLElement, documents: any[]) => {
 				{
 					type: `option`,
 					id: `rename`,
-					text: language.getString(`category-rename`)
+					text: i18n.getString(`category-menu-rename`)
 				},
 				{
 					type: `option`,
 					id: `delete`,
-					text: language.getString(`category-delete`)
+					text: i18n.getString(`category-menu-delete`)
 				}
 			]);
 		}
@@ -226,7 +226,7 @@ export const updateSidebar = () => {
 	}
 }
 const initializeSidebar = () => {	
-	searchInput.placeholder = language.getString(`search`);
+	searchInput.placeholder = i18n.getString(`search-placeholder`);
 	searchInput.oninput = () => updateSidebar();
 	updateSidebar();
 }

@@ -6,7 +6,7 @@
 */
 
 import { tabs } from './main';
-import * as language from '../../core/language';
+import * as i18n from '../../core/i18n';
 import * as tabSwitcher from './tabSwitcher';
 
 let sidebar: HTMLElement = document.getElementById(`settings-modal-sidebar`);
@@ -15,7 +15,7 @@ export const loadSidebar = () => {
 	sidebar.innerHTML = ``;
 
 	let titleElement = document.createElement(`h1`);
-	titleElement.innerText = language.getString(`settings`);
+	titleElement.innerText = i18n.getString(`settings-title`);
 	sidebar.append(titleElement);
 
 	for (let i = 0; i < tabs.length; i++) {
